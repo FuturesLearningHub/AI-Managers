@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{{TITLE}}</title>
+<meta name="description" content="{{DESC}}" />
+<meta name="theme-color" content="#1C1C1C" />
+<meta property="og:title" content="{{TITLE}}" />
+<meta property="og:description" content="{{DESC}}" />
+<meta property="og:type" content="website" />
+
+<!--
+  ══════════════════════════════════════════════════════════════════════════
+  LEADING WITH AI · a Vanderbilt manager course
+  Built on the Working Smarter pattern from me5231979/Course_Library.
+  One self-contained file: inline styles, inline scripts, no framework, no
+  build step, no backend. Fonts and lockups live in {{A}}/.
+
+  TWO EDITIONS, one source. tools/build.py writes both:
+    index.html            self-paced, opens in mode "web"
+    classroom/index.html  instructor-led, opens in mode "class"
+  body[data-mode] decides which .mode-web / .mode-class blocks render, on
+  screen and in the print takeaway. The bottom bar can switch modes so a
+  learner who lands on the wrong edition is never stuck.
+
+  BOOK MODE: the pager groups the scroll page into .page articles, one per
+  section, routed by #p/<section>/<n>. Without JS the scroll layout stands.
+
+  WHAT IS STORED: leading-progress-<page> booleans, leading-page (last open
+  page), leading-mode-locked, leading-habit (the habit picked in Module 05),
+  and the five prompt-builder fields plus one reflection note, all in this
+  browser's localStorage. Nothing is ever sent anywhere. Reset in the footer
+  clears all of it.
+
+  PALETTE: the approved Vanderbilt FLH set only. Gold #CFAE70 carries accents
+  on black; Oak #946E24 carries them on white, because gold reads at 2.1:1 on
+  a white ground. There is no approved red, so a wrong answer is marked with a
+  word and a dashed edge, never with color alone. python3 tools/contrast-check.py
+  is the gate.
+
+  This is an internal training prototype, NOT an official Vanderbilt site.
+  ══════════════════════════════════════════════════════════════════════════
+-->
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%231C1C1C'/%3E%3Cpath d='M14 16h11l7 20 7-20h11L36 50h-8z' fill='%23CFAE70'/%3E%3C/svg%3E" />
+<link rel="apple-touch-icon" href="{{A}}/img/favicon-96.png" />
+
+<script>document.documentElement.classList.add('js','paged'); /* 'paged' arms book mode; the pager removes it if it cannot build, restoring the scroll fallback */</script>
+
+<style>
+/* Self-hosted brand faces (no third-party font CDN). */
+@font-face{font-family:'Libre Caslon Display';font-style:normal;font-weight:400;font-display:swap;
+  src:url('{{A}}/fonts/libre-caslon-display-latin-400-normal.woff2') format('woff2');}
+/* Display has no italic cut; serve Libre Caslon Text italic under the same family so <em> renders a true italic */
+@font-face{font-family:'Libre Caslon Display';font-style:italic;font-weight:400;font-display:swap;
+  src:url('{{A}}/fonts/libre-caslon-text-latin-400-italic.woff2') format('woff2');}
+@font-face{font-family:'Libre Caslon Text';font-style:normal;font-weight:400;font-display:swap;
+  src:url('{{A}}/fonts/libre-caslon-text-latin-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Libre Caslon Text';font-style:italic;font-weight:400;font-display:swap;
+  src:url('{{A}}/fonts/libre-caslon-text-latin-400-italic.woff2') format('woff2');}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;
+  src:url('{{A}}/fonts/inter-latin-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;
+  src:url('{{A}}/fonts/inter-latin-500-normal.woff2') format('woff2');}
+@font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;
+  src:url('{{A}}/fonts/inter-latin-600-normal.woff2') format('woff2');}
+@font-face{font-family:'Antonio';font-style:normal;font-weight:700;font-display:swap;
+  src:url('{{A}}/fonts/antonio-latin-700-normal.woff2') format('woff2');}
+
+{{CSS}}
+</style>
+</head>
+<body>
+<a href="#main" class="skip">Skip to content</a>
+
+<!-- ═══════════════════ NAV ═══════════════════ -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <div class="bar">
+      <a class="logo" href="#top" aria-label="Vanderbilt University, Leading with AI home">
+        <img src="{{A}}/img/v-lockup-white@2x.png" alt="Vanderbilt University" width="166" height="36" decoding="async" />
+      </a>
+      <div class="bar-r">
+        <nav class="links" aria-label="Primary">
+          <a href="#tools">Tools</a>
+          <a href="#anchors">Anchors</a>
+          <a href="#clarity">Clarity</a>
+          <a href="#coach">Coaching</a>
+          <a href="#decide">Decisions</a>
+          <a href="#hours">Habits</a>
+          <a href="#practice">Practice</a>
+          <a href="#sources">Appendix</a>
+        </nav>
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+          <span class="b b1" aria-hidden="true"></span><span class="b b2" aria-hidden="true"></span><span class="b b3" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- mobile overlay menu -->
+<nav class="mobile-menu" id="mobileMenu" aria-label="Mobile">
+  <a class="mlink" href="#top"><span class="mono">01</span>Welcome</a>
+  <a class="mlink" href="#mission"><span class="mono">02</span>The Chancellor&rsquo;s charge</a>
+  <a class="mlink" href="#tools"><span class="mono">03</span>Which tool, which moment</a>
+  <a class="mlink" href="#anchors"><span class="mono">04</span>Module 01: the four anchors</a>
+  <a class="mlink" href="#clarity"><span class="mono">05</span>Module 02: clear communication</a>
+  <a class="mlink" href="#coach"><span class="mono">06</span>Module 03: coaching prep</a>
+  <a class="mlink" href="#decide"><span class="mono">07</span>Module 04: sharper decisions</a>
+  <a class="mlink" href="#hours"><span class="mono">08</span>Module 05: three habits</a>
+  <a class="mlink" href="#guardrails"><span class="mono">09</span>Guardrails</a>
+  <a class="mlink" href="#practice"><span class="mono">10</span>Practice now</a>
+  <a class="mlink" href="#check"><span class="mono">11</span>Knowledge check</a>
+  <a class="mlink" href="#recap"><span class="mono">12</span>Recap</a>
+  <a class="mlink" href="#sources"><span class="mono">13</span>Appendix</a>
+  <a class="mlink" href="{{OTHERHREF}}"><span class="mono" aria-hidden="true">&rarr;</span>{{OTHERTEXT}}</a>
+  <div class="mfoot">matthew.estes@vanderbilt.edu</div>
+</nav>
+
+<main id="main"><span id="top"></span>

@@ -1,0 +1,111 @@
+
+<!-- ═══════════ 07 · MODULE 04 · SHARPER DECISIONS ═══════════ -->
+<section id="decide" class="th-light" aria-label="Module 04: decide with sharper thinking">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="you-are">Module 04 of 5. About three minutes.</span>
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Module 04 &middot; Change and collective learning</span></span>
+      <h2>Wider options before the <em class="s">call</em>.</h2>
+      <p>AI is an extremely persuasive summarizer, and that is the risk. It can argue any side well, which means a strong case for
+        the option you already liked tells you almost nothing. Use it to widen what you can see and to attack your own plan.
+        Then apply judgment, because the judgment is the part that was always yours.</p>
+    </div>
+
+    <div class="concept">
+      <span class="c-label">Two prompts, in this order</span>
+      <p>The first prompt widens: it asks for options that are genuinely different from each other, not three shades of the same idea, plus an early signal you could watch for to tell whether each one is working.</p>
+      <p>The second prompt attacks: it assumes your decision already failed and asks for the retrospective. This is called a <b>premortem</b>, and it works because it is far easier to explain a failure that has happened than to imagine one that has not.</p>
+    </div>
+
+    <div class="ex-grid">
+      <div class="pcard">
+        <div class="pc-head">
+          <span class="mono">Prompt 01 &middot; options and tradeoffs</span>
+          <button type="button" class="btn btn-ghost btn-sm copy-btn" data-copy="d1code">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy prompt</span></button>
+        </div>
+        <pre class="pcode" id="d1code">I am deciding whether to [decision]. Here is what I know: [context].
+The stakeholders are: [list them by role]. Constraints: [budget, timeline, policy].
+
+Give me:
+1. Three distinct options. Not variations on one idea.
+2. For each: the strongest case, the biggest risk, and one signal
+   I could look for in the next 30 days to know if it is working.
+3. One option I probably have not considered.
+
+End with the three questions I should be able to answer before I decide.</pre>
+      </div>
+      <div class="pcard">
+        <div class="pc-head">
+          <span class="mono">Prompt 02 &middot; the premortem</span>
+          <button type="button" class="btn btn-ghost btn-sm copy-btn" data-copy="d2code">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy prompt</span></button>
+        </div>
+        <pre class="pcode" id="d2code">Assume the decision I just described failed badly, six months from now.
+Write the memo my leadership would send explaining what went wrong.
+
+Then work backward: what were the three earliest warning signs we ignored?
+What would a version of me who saw them coming have done differently?</pre>
+        <p class="hinttxt" style="margin-top:12px">Run this one second, on the option you are leaning toward. Read it twice. It is the part managers skip, and it is the part that pays.</p>
+      </div>
+    </div>
+
+    <div class="ttry">
+      <span class="c-label">Try these in</span>
+      <div class="ttry-row">
+        <a class="ttry-card rec" href="https://www.vanderbilt.ai/" target="_blank" rel="noopener">
+          <span class="tt-name">Amplify <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+          <span class="tt-tag">Recommended</span>
+          <span class="tt-why">Real decisions carry budget, staffing, and operational detail about your own unit. That is Levels 1 to 3, and it belongs here.</span>
+        </a>
+        <a class="ttry-card" href="https://copilot.microsoft.com" target="_blank" rel="noopener">
+          <span class="tt-name">Copilot <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+          <span class="tt-tag">Also fine</span>
+          <span class="tt-why">Useful when the numbers behind the decision are already sitting in an Excel file.</span>
+        </a>
+        <span class="ttry-card off" role="note" aria-label="ChatGPT EDU sits this one out">
+          <span class="tt-name">ChatGPT EDU</span>
+          <span class="tt-tag">Sits this one out</span>
+          <span class="tt-why">Budget and staffing detail about your own operation is internal. Send it to Amplify.</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="rule-strip" role="note">
+      <p class="r">The one thing AI cannot do for you: <b>own the decision.</b> Run the four anchors again before you commit, and lean hardest on Truth.</p>
+    </div>
+
+    <!-- ── the drill ────────────────────────────────────────────────────── -->
+    <div class="sec-head" style="margin-top:clamp(40px,6vw,64px);margin-bottom:18px">
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Try it &middot; 30 seconds</span></span>
+      <h3 style="font-family:var(--serif);font-weight:400;font-size:1.6rem">The output is in. What is your next move?</h3>
+    </div>
+    <div class="qz" data-q data-drill="decide">
+      <p class="qz-q"><b>1.</b> You asked for three options and the model came back strongly recommending option A, with a confident case.</p>
+      <button type="button" class="qopt" data-ok="0">Go with A. A clear recommendation is what decision support is for.</button>
+      <button type="button" class="qopt" data-ok="1">Ask for the strongest case against A and what information would change the answer, then decide yourself.</button>
+      <button type="button" class="qopt" data-ok="0">Ask it to confirm A once more in a fresh chat.</button>
+      <p class="qz-x" role="status" hidden>Ask for the counter-case. The model can argue any side persuasively, so a strong case for A tells you little until you have read the strongest case against it. Once you have both, the call is yours to make and yours to own.</p>
+    </div>
+    <div class="qz" data-q data-drill="decide">
+      <p class="qz-q"><b>2.</b> The premortem names a failure you cannot rule out. What does that finding become?</p>
+      <button type="button" class="qopt" data-ok="0">A reason to abandon the decision.</button>
+      <button type="button" class="qopt" data-ok="1">A question to answer before you commit, and a signal to watch for after you do.</button>
+      <button type="button" class="qopt" data-ok="0">A footnote in the memo, so nobody can say you were not warned.</button>
+      <p class="qz-x" role="status" hidden>It becomes a to-check item. A premortem finding is not a veto and it is not paperwork. Every failure reason you cannot rule out is either a question to answer now or a signal to put on your calendar for later.</p>
+    </div>
+    <p class="qscore" id="decideScore" role="status" aria-live="polite" hidden></p>
+
+    <div class="moment mode-class">
+      <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+      <div><span class="m-label">Together</span>
+      <p>Take one real open decision from the room, described by role only. The instructor runs the options prompt live, then the premortem. Tables split the output: one takes the warning signs, one takes the option nobody considered, one takes the three questions. Each reports back in a sentence.</p></div>
+    </div>
+    <div class="moment mode-web">
+      <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>
+      <div><span class="m-label">Pause + reflect</span>
+      <p>Name the decision that has been sitting on your desk longest. Then answer one question honestly: are you waiting because it is genuinely hard, or because you have not yet seen the option that makes it easy? The first prompt is for the second case.</p></div>
+    </div>
+    <div class="bridge"><span class="b-label">Module 05</span><p>Three habits, and the hours they <em>return</em>.</p></div>
+  </div>
+</section>

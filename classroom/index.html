@@ -1,0 +1,2788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Leading with AI (classroom) · The CHART Program</title>
+<meta name="description" content="Part of Vanderbilt's CHART Program: the instructor-led edition of the 15-minute manager course, with a QR welcome, paired activities, and a printable discussion-notes takeaway." />
+<meta name="theme-color" content="#1C1C1C" />
+<meta property="og:title" content="Leading with AI (classroom) · The CHART Program" />
+<meta property="og:description" content="Part of Vanderbilt's CHART Program: the instructor-led edition of the 15-minute manager course, with a QR welcome, paired activities, and a printable discussion-notes takeaway." />
+<meta property="og:type" content="website" />
+
+<!--
+  ══════════════════════════════════════════════════════════════════════════
+  LEADING WITH AI · a Vanderbilt manager course
+  Built on the Working Smarter pattern from me5231979/Course_Library.
+  One self-contained file: inline styles, inline scripts, no framework, no
+  build step, no backend. Fonts and lockups live in ../assets/.
+
+  TWO EDITIONS, one source. tools/build.py writes both:
+    index.html            self-paced, opens in mode "web"
+    classroom/index.html  instructor-led, opens in mode "class"
+  body[data-mode] decides which .mode-web / .mode-class blocks render, on
+  screen and in the print takeaway. The bottom bar can switch modes so a
+  learner who lands on the wrong edition is never stuck.
+
+  BOOK MODE: the pager groups the scroll page into .page articles, one per
+  section, routed by #p/<section>/<n>. Without JS the scroll layout stands.
+
+  WHAT IS STORED: leading-progress-<page> booleans, leading-page (last open
+  page), leading-mode-locked, leading-habit (the habit picked in Module 05),
+  and the five prompt-builder fields plus one reflection note, all in this
+  browser's localStorage. Nothing is ever sent anywhere. Reset in the footer
+  clears all of it.
+
+  PALETTE: the approved Vanderbilt FLH set only. Gold #CFAE70 carries accents
+  on black; Oak #946E24 carries them on white, because gold reads at 2.1:1 on
+  a white ground. There is no approved red, so a wrong answer is marked with a
+  word and a dashed edge, never with color alone. python3 tools/contrast-check.py
+  is the gate.
+
+  This is an internal training prototype, NOT an official Vanderbilt site.
+  ══════════════════════════════════════════════════════════════════════════
+-->
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%231C1C1C'/%3E%3Cpath d='M14 16h11l7 20 7-20h11L36 50h-8z' fill='%23CFAE70'/%3E%3C/svg%3E" />
+<link rel="apple-touch-icon" href="../assets/img/favicon-96.png" />
+
+<script>document.documentElement.classList.add('js','paged'); /* 'paged' arms book mode; the pager removes it if it cannot build, restoring the scroll fallback */</script>
+
+<style>
+/* Self-hosted brand faces (no third-party font CDN). */
+@font-face{font-family:'Libre Caslon Display';font-style:normal;font-weight:400;font-display:swap;
+  src:url('../assets/fonts/libre-caslon-display-latin-400-normal.woff2') format('woff2');}
+/* Display has no italic cut; serve Libre Caslon Text italic under the same family so <em> renders a true italic */
+@font-face{font-family:'Libre Caslon Display';font-style:italic;font-weight:400;font-display:swap;
+  src:url('../assets/fonts/libre-caslon-text-latin-400-italic.woff2') format('woff2');}
+@font-face{font-family:'Libre Caslon Text';font-style:normal;font-weight:400;font-display:swap;
+  src:url('../assets/fonts/libre-caslon-text-latin-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Libre Caslon Text';font-style:italic;font-weight:400;font-display:swap;
+  src:url('../assets/fonts/libre-caslon-text-latin-400-italic.woff2') format('woff2');}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;
+  src:url('../assets/fonts/inter-latin-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;
+  src:url('../assets/fonts/inter-latin-500-normal.woff2') format('woff2');}
+@font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;
+  src:url('../assets/fonts/inter-latin-600-normal.woff2') format('woff2');}
+@font-face{font-family:'Antonio';font-style:normal;font-weight:700;font-display:swap;
+  src:url('../assets/fonts/antonio-latin-700-normal.woff2') format('woff2');}
+
+/* Self-hosted brand faces (no third-party font CDN). */
+@font-face{font-family:'Libre Caslon Display';font-style:normal;font-weight:400;font-display:swap;
+  src:url('../../assets/fonts/libre-caslon-display-latin-400-normal.woff2') format('woff2');}
+/* Display has no italic cut; serve Libre Caslon Text italic under the same family so <em> renders a true italic */
+@font-face{font-family:'Libre Caslon Display';font-style:italic;font-weight:400;font-display:swap;
+  src:url('../../assets/fonts/libre-caslon-text-latin-400-italic.woff2') format('woff2');}
+@font-face{font-family:'Libre Caslon Text';font-style:normal;font-weight:400;font-display:swap;
+  src:url('../../assets/fonts/libre-caslon-text-latin-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Libre Caslon Text';font-style:italic;font-weight:400;font-display:swap;
+  src:url('../../assets/fonts/libre-caslon-text-latin-400-italic.woff2') format('woff2');}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;
+  src:url('../../assets/fonts/inter-latin-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;
+  src:url('../../assets/fonts/inter-latin-500-normal.woff2') format('woff2');}
+@font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;
+  src:url('../../assets/fonts/inter-latin-600-normal.woff2') format('woff2');}
+@font-face{font-family:'Antonio';font-style:normal;font-weight:700;font-display:swap;
+  src:url('../../assets/fonts/antonio-latin-700-normal.woff2') format('woff2');}
+
+/* ═══════════════════ TOKENS (shared with the Working Smarter course) ═══════════════════ */
+:root{
+  --vu-black:#1C1C1C; --vu-white:#FFFFFF;
+  --vu-gold:#CFAE70; --vu-highlight:#ECB748; --vu-oak:#946E24;
+  --vu-cream:#F5F3EF; --vu-sand:#E0D5C0;
+  --vu-gray-l:#E4E4E4; --vu-gray-d:#777;
+  --vu-sky:#B3C9CD; --vu-sage:#8BA18E;
+  /* No approved red exists in the palette, so a wrong answer is carried by a
+     word and a dashed edge, never by color alone. */
+  --metal:linear-gradient(135deg,#FEEEB6 0%,#CFAE70 45%,#B49248 100%);
+  --maxw:1200px; --r:4px;
+  --ease:cubic-bezier(.33,1,.68,1);
+  --serif:'Libre Caslon Display','Libre Caslon Text','Times New Roman',serif;
+  --serif-i:'Libre Caslon Text','Times New Roman',serif;
+  --sans:'Inter',Arial,system-ui,sans-serif;
+  --cond:'Antonio','Arial Narrow',Impact,sans-serif;
+}
+/* theme scopes : every component reads these vars, so each section theme recolors everything */
+.th-dark{
+  background:var(--vu-black); color:#FFFFFF;
+  --tx:#FFFFFF; --tx2:rgba(255,255,255,.74); --tx3:rgba(255,255,255,.64);
+  --bd:rgba(255,255,255,.15); --bdg:rgba(207,174,112,.35);
+  --card:#262624; --card2:#212120; --field:#141414; --field-bd:rgba(255,255,255,.2);
+  --eyebrow:#CFAE70; --link:#CFAE70; --strong:#ECB748; --focus:#ECB748; --acc:#CFAE70;
+  --btn-bg:#CFAE70; --btn-tx:#1C1C1C; --btn-hv:#ECB748;
+  --gold:#CFAE70; --champ:#ECB748; --muted:rgba(255,255,255,.74); --faint:rgba(255,255,255,.56); --ink:#1C1C1C;
+}
+.th-light{
+  background:var(--vu-white); color:var(--vu-black);
+  --tx:#1C1C1C; --tx2:#555555; --tx3:#6E6E6E;
+  --bd:#E4E4E4; --bdg:rgba(148,110,36,.55);
+  --card:#FFFFFF; --card2:#FFFFFF; --field:#F5F3EF; --field-bd:#E0D5C0;
+  --eyebrow:#946E24; --link:#946E24; --strong:#946E24; --focus:#946E24; --acc:#946E24;
+  --btn-bg:#1C1C1C; --btn-tx:#FFFFFF; --btn-hv:#946E24;
+  --gold:#946E24; --champ:#946E24; --muted:#555555; --faint:#6E6E6E; --ink:#1C1C1C;
+}
+
+*,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; scroll-padding-top:118px; }
+body{ font-family:var(--sans); font-size:1.0625rem; background:var(--vu-black); color:#fff; line-height:1.6;
+  overflow-x:hidden; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; min-height:100dvh; }
+h1,h2{ font-family:var(--serif); font-weight:400; line-height:1.1; letter-spacing:-.01em; color:var(--tx,#fff); }
+h3,h4,h5{ font-family:var(--sans); font-weight:600; line-height:1.3; letter-spacing:-.01em; color:var(--tx,#fff); }
+h1 em,h2 em,em.s{ font-family:var(--serif-i); font-style:italic; font-weight:400; letter-spacing:0; }
+h2 em.s{ color:var(--strong); }
+p{ max-width:65ch; }
+a{ color:inherit; text-decoration:none; } img{ max-width:100%; display:block; height:auto; }
+button{ font:inherit; color:inherit; } input,select,textarea{ font:inherit; }
+::selection{ background:rgba(207,174,112,.55); color:#1C1C1C; }
+:focus-visible{ outline:2px solid var(--focus,#ECB748); outline-offset:3px; border-radius:2px; }
+.wrap{ width:100%; max-width:var(--maxw); margin-inline:auto; padding-inline:clamp(20px,5vw,48px); }
+.skip{ position:absolute; left:-999px; top:10px; z-index:400; background:var(--vu-gold); color:#1C1C1C; padding:12px 20px; border-radius:var(--r); font-weight:500; }
+.skip:focus{ left:16px; }
+.sr{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
+
+/* Antonio microlabel */
+.mono{ font-family:var(--cond); font-weight:700; font-size:.8125rem; letter-spacing:.04em; text-transform:uppercase; color:var(--eyebrow,#CFAE70); }
+.eyebrow{ display:inline-flex; align-items:center; gap:12px; }
+.eyebrow .tick{ width:26px; height:2px; background:var(--acc); }
+.you-are{ display:block; font-family:var(--cond); font-weight:700; font-size:.75rem; letter-spacing:.05em; text-transform:uppercase; color:var(--tx3); margin-bottom:14px; }
+
+/* metallic headline : white words, gold italic emphasis */
+.metal{ color:var(--vu-white); }
+.metal em{ color:var(--vu-gold); font-style:italic; }
+@supports ((-webkit-background-clip:text) or (background-clip:text)){
+  .metal em{ background:var(--metal); -webkit-background-clip:text; background-clip:text; color:transparent; -webkit-text-fill-color:transparent; padding-bottom:.14em; margin-bottom:-.14em; }
+}
+
+/* superscript citations */
+sup.cite{ font-size:.66em; line-height:0; vertical-align:super; }
+sup.cite a{ color:var(--link); font-weight:600; padding:2px; }
+sup.cite a:hover{ color:var(--strong); }
+
+/* ═══════════════════ NAV ═══════════════════ */
+header.nav{ position:fixed; inset:0 0 auto 0; z-index:200; background:var(--vu-black); border-bottom:1px solid transparent; transition:border-color .3s; }
+header.nav.scrolled{ border-bottom-color:rgba(207,174,112,.2); }
+header.nav .wrap{ max-width:1440px; }
+header.nav .bar{ display:flex; align-items:center; justify-content:space-between; gap:clamp(16px,2vw,36px); height:96px; }
+.logo{ display:flex; align-items:center; flex-shrink:1; min-width:0; }
+.logo img{ height:48px; width:auto; display:block; }
+.bar-r{ display:flex; align-items:center; gap:10px; min-width:0; }
+nav.links{ display:flex; align-items:center; flex-wrap:nowrap; gap:clamp(0px,.5vw,10px); }
+nav.links a{ position:relative; padding:10px clamp(9px,.9vw,16px); color:#fff; font-size:.9rem; font-weight:500; letter-spacing:.02em; white-space:nowrap; }
+nav.links a::after{ content:''; position:absolute; left:12px; right:12px; bottom:5px; height:2px; background:var(--vu-gold);
+  transform:scaleX(0); transform-origin:left; transition:transform .2s var(--ease); }
+nav.links a:hover::after,nav.links a:focus-visible::after{ transform:scaleX(1); }
+nav.links .nav-cta{ margin-left:clamp(8px,1vw,20px); } nav.links .nav-cta::after{ display:none; }
+nav.links a.nav-cta{ color:#1C1C1C; min-height:50px; padding:13px clamp(20px,1.8vw,30px); font-size:.9rem; letter-spacing:0; }
+.menu-btn{ display:none; background:transparent; border:1px solid rgba(255,255,255,.25); color:#fff;
+  width:46px; height:46px; border-radius:var(--r); cursor:pointer; place-items:center; }
+.menu-btn .b{ display:block; width:18px; height:2px; background:currentColor; transition:transform .3s var(--ease),opacity .2s; }
+.menu-btn .b + .b{ margin-top:4px; }
+body.menu-open .menu-btn .b1{ transform:translateY(6px) rotate(45deg); }
+body.menu-open .menu-btn .b2{ opacity:0; }
+body.menu-open .menu-btn .b3{ transform:translateY(-6px) rotate(-45deg); }
+.mobile-menu{ position:fixed; inset:0; z-index:150; background:var(--vu-black); overflow-y:auto;
+  display:flex; flex-direction:column; justify-content:flex-start; padding:96px clamp(24px,8vw,60px) 56px;
+  opacity:0; visibility:hidden; transition:opacity .3s var(--ease), visibility 0s .3s; }
+.mobile-menu::before,.mobile-menu::after{ content:''; display:block; margin:auto; }
+body.menu-open .mobile-menu{ opacity:1; visibility:visible; transition:opacity .3s var(--ease); }
+body.menu-open{ overflow:hidden; }
+.mobile-menu a.mlink{ font-family:var(--serif); font-size:clamp(1.5rem,7vw,2.4rem); color:#fff;
+  padding:12px 0; border-bottom:1px solid rgba(255,255,255,.12); display:flex; align-items:baseline; gap:18px; }
+.mobile-menu a.mlink .mono{ font-size:.75rem; color:var(--vu-gold); }
+.mobile-menu .mfoot{ margin-top:30px; color:rgba(255,255,255,.55); font-size:.85rem; }
+
+/* ═══════════════════ BUTTONS ═══════════════════ */
+.btn{ display:inline-flex; align-items:center; justify-content:center; gap:10px; font-family:var(--sans); font-size:.95rem; font-weight:500;
+  min-height:48px; padding:12px 26px; border-radius:var(--r); cursor:pointer; border:1px solid transparent; text-align:center;
+  transition:background-color .2s ease-out, border-color .2s ease-out, color .2s ease-out; }
+.btn svg{ width:17px; height:17px; flex-shrink:0; }
+.btn-primary{ background:var(--btn-bg,#CFAE70); color:var(--btn-tx,#1C1C1C); }
+.btn-primary:hover{ background:var(--btn-hv,#ECB748); color:var(--btn-tx,#1C1C1C); }
+.btn-gold{ background:var(--vu-gold); color:#1C1C1C; }
+.btn-gold:hover{ background:var(--vu-highlight); }
+.btn-ghost{ background:transparent; color:var(--tx,#fff); border-color:var(--bd,rgba(255,255,255,.25)); }
+.btn-ghost:hover{ border-color:var(--strong,#CFAE70); color:var(--strong,#CFAE70); }
+.btn-sm{ min-height:44px; padding:9px 18px; font-size:.875rem; }
+.btn[disabled]{ opacity:.45; cursor:not-allowed; }
+.copied{ color:var(--strong) !important; }
+
+/* ═══════════════════ HERO / QR WELCOME ═══════════════════ */
+.hero{ position:relative; min-height:100svh; display:flex; flex-direction:column; justify-content:center; padding:140px 0 96px; overflow:hidden; }
+.hero .wrap{ position:relative; z-index:2; }
+.hero-grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:clamp(28px,5vw,72px); align-items:center; }
+.hero h1{ font-size:clamp(2.75rem,7vw,5.25rem); line-height:1.05; letter-spacing:-.01em; margin-top:28px; max-width:1000px; }
+.hero .lead{ font-size:1.125rem; color:rgba(255,255,255,.78); max-width:54ch; margin-top:22px; }
+.hero .lead b{ color:#fff; font-weight:600; }
+.hero .meta-line{ font-family:var(--cond); font-weight:700; font-size:.8125rem; letter-spacing:.03em; text-transform:uppercase;
+  color:rgba(255,255,255,.55); margin-top:22px; }
+.hero .meta-line b{ color:var(--vu-gold); font-weight:700; }
+.hero .lframe{ margin-top:20px; }
+.hw-mini{ display:none; }
+html.paged .hero .hw-mini{ display:flex; flex-wrap:wrap; gap:4px 22px; list-style:none; margin:14px 0 0; padding:9px 0 0;
+  border-top:1px solid rgba(255,255,255,.16); counter-reset:hm; max-width:none; }
+html.paged .hero .hw-mini li{ display:inline-flex; align-items:baseline; gap:8px; counter-increment:hm;
+  color:rgba(255,255,255,.62); font-size:.78rem; line-height:1.45; }
+html.paged .hero .hw-mini li::before{ content:counter(hm,decimal-leading-zero); font-family:var(--cond); font-weight:700;
+  font-size:.68rem; letter-spacing:.05em; color:var(--vu-gold); }
+/* QR card : the pattern from the Brave Teams facilitator deck, on Working Smarter tokens */
+.qr-side{ text-align:center; justify-self:center; }
+.qr-side .qr-label{ display:block; margin-bottom:14px; color:var(--vu-gold); }
+.qr-card{ display:inline-block; background:var(--vu-white); border-radius:var(--r);
+  border:1px solid rgba(207,174,112,.55); padding:1.1rem 1.1rem .8rem;
+  box-shadow:0 0 0 6px rgba(207,174,112,.08), 0 20px 60px rgba(0,0,0,.45); }
+.qr-card__code{ width:clamp(180px,22vh,250px); height:auto; margin-inline:auto; }
+.qr-card__code svg{ display:block; width:100%; height:auto; }
+.qr-card__url{ margin:.6rem 0 0; font-family:var(--cond); font-weight:700; text-transform:uppercase;
+  letter-spacing:.05em; font-size:.8rem; color:var(--vu-oak); word-break:break-all; max-width:none; }
+.qr-side .qr-sub{ margin:14px auto 0; font-size:.85rem; color:rgba(255,255,255,.62); max-width:30ch; }
+
+/* ═══════════════════ SECTIONS / SHARED ═══════════════════ */
+section{ position:relative; padding:clamp(64px,10vw,150px) 0; }
+section + section{ border-top:1px solid transparent; }
+.th-light + .th-light{ border-top-color:var(--vu-gray-l); }
+.sec-head{ max-width:840px; margin-bottom:clamp(36px,6vw,64px); }
+.sec-head h2{ font-size:clamp(2rem,4.5vw,3.5rem); margin-top:18px; }
+.sec-head p{ color:var(--tx2); margin-top:18px; font-size:1.125rem; }
+.chip{ display:inline-flex; align-items:center; gap:8px; font-family:var(--cond); font-weight:700; font-size:.72rem; letter-spacing:.05em; text-transform:uppercase;
+  color:var(--tx2); border:1px solid var(--bd); border-radius:var(--r); padding:6px 12px; }
+.honest{ display:inline-flex; align-items:flex-start; gap:10px; margin-top:18px; padding:14px 16px; border-radius:var(--r);
+  border:1px dashed var(--bdg); color:var(--tx2); font-size:.9rem; max-width:660px; }
+.honest svg{ width:16px; height:16px; flex-shrink:0; color:var(--eyebrow); margin-top:3px; }
+.honest b{ color:var(--tx); font-weight:600; }
+.lframe{ display:block; margin-top:18px; }
+.lf-chip{ display:inline-flex; align-items:baseline; gap:9px; margin:0 6px 8px 0; border:1px solid var(--bd); border-radius:var(--r); vertical-align:top;
+  padding:8px 12px; font-size:.85rem; color:var(--tx2); background:var(--card2); }
+.lf-chip b{ font-family:var(--cond); font-weight:700; font-size:.68rem; letter-spacing:.05em; text-transform:uppercase; color:var(--eyebrow); white-space:nowrap; }
+.hero .lf-chip{ background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.18); color:rgba(255,255,255,.78); }
+.hero .lf-chip b{ color:var(--vu-gold); }
+.hinttxt{ font-size:.8rem; color:var(--tx3); max-width:none; }
+
+/* concept block : the mental model before every activity */
+.concept{ margin:0 0 26px; padding:2px 0 2px 20px; border-left:3px solid var(--acc); max-width:780px; }
+.concept .c-label{ display:block; font-family:var(--cond); font-weight:700; font-size:.72rem; letter-spacing:.07em; text-transform:uppercase; color:var(--eyebrow); margin-bottom:8px; }
+.concept p{ color:var(--tx2); font-size:.9575rem; line-height:1.75; max-width:68ch; }
+.concept p + p{ margin-top:10px; }
+.concept p b{ color:var(--tx); font-weight:600; }
+.concept p em{ font-family:var(--serif-i); font-style:italic; }
+
+/* bridge : one connective sentence handing a section to the next */
+.bridge{ display:flex; align-items:baseline; flex-wrap:wrap; gap:10px 18px; margin-top:clamp(44px,6vw,64px); padding-top:24px; border-top:1px solid var(--bd); }
+.bridge .b-label{ display:inline-flex; align-items:center; gap:10px; font-family:var(--cond); font-weight:700; font-size:.75rem; letter-spacing:.08em; text-transform:uppercase; color:var(--eyebrow); }
+.bridge .b-label::before{ content:''; width:26px; height:2px; background:var(--acc); }
+.bridge p{ font-family:var(--serif); font-size:clamp(1.05rem,2.2vw,1.3rem); line-height:1.45; color:var(--tx); max-width:none; }
+.bridge p em{ font-family:var(--serif-i); font-style:italic; color:var(--strong); }
+
+/* evidence : a real citation, named and linked, grounding the module */
+.evidence{ margin-top:24px; border:1px solid var(--bd); border-left:3px solid var(--acc); border-radius:var(--r); background:var(--card); padding:20px 22px; max-width:820px; }
+.evidence .e-label{ display:block; font-family:var(--cond); font-weight:700; font-size:.72rem; letter-spacing:.07em; text-transform:uppercase; color:var(--eyebrow); margin-bottom:10px; }
+.evidence p{ color:var(--tx2); font-size:.9375rem; line-height:1.75; max-width:none; }
+.evidence p + p{ margin-top:10px; }
+.evidence p b{ color:var(--tx); font-weight:600; }
+.evidence p em{ font-family:var(--serif-i); font-style:italic; }
+.evidence .e-num{ font-family:var(--cond); font-weight:700; font-size:1.6rem; line-height:1; color:var(--eyebrow); display:block; margin-bottom:10px; }
+.evidence .e-src{ display:block; margin-top:12px; padding-top:10px; border-top:1px solid var(--bd); font-size:.83rem; color:var(--tx3); }
+.ev-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:26px; }
+.ev-grid .evidence{ margin-top:0; max-width:none; display:flex; flex-direction:column; }
+.ev-grid .evidence p{ flex:1; }
+.honest a,.evidence a,.rstep a,.concept p a,.src a,.prov a{ color:var(--link); border-bottom:1px solid var(--bdg); }
+.honest a:hover,.evidence a:hover,.rstep a:hover,.concept p a:hover,.src a:hover,.prov a:hover{ color:var(--strong); }
+
+/* method / guardrail cards */
+.roadmap{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+.roadmap.three{ grid-template-columns:repeat(3,1fr); }
+.rstep{ border:1px solid var(--bd); border-radius:var(--r); padding:22px 20px; background:var(--card2); }
+.rstep .rno{ font-family:var(--cond); font-weight:700; font-size:.72rem; letter-spacing:.05em; text-transform:uppercase; color:var(--eyebrow); }
+.rstep h5{ font-size:1rem; margin-top:8px; }
+.rstep h3{ font-family:var(--serif); font-weight:400; font-size:1.35rem; margin-top:8px; }
+.rstep p{ color:var(--tx2); font-size:.875rem; margin-top:8px; }
+.rstep p b{ color:var(--tx); font-weight:600; }
+.rstep p em{ font-family:var(--serif-i); font-style:italic; }
+.rstep ul{ list-style:none; margin-top:10px; display:flex; flex-direction:column; gap:9px; }
+.rstep li{ display:flex; gap:9px; align-items:flex-start; color:var(--tx2); font-size:.85rem; }
+.rstep li svg{ width:14px; height:14px; flex-shrink:0; color:var(--eyebrow); margin-top:4px; }
+.rstep .cr-chips{ display:flex; flex-wrap:wrap; gap:6px; margin-top:12px; }
+.rstep .cr-chips span{ font-family:var(--cond); font-weight:700; font-size:.66rem; letter-spacing:.05em; text-transform:uppercase;
+  color:var(--eyebrow); border:1px solid var(--acc); border-radius:2px; padding:4px 9px; }
+/* the cited proof point inside a method step: pinned to the card bottom so
+   the three columns align; a compact labeled stat, not a second headline */
+.roadmap .rstep{ display:flex; flex-direction:column; }
+.rstep .rs-ev{ margin-top:auto; padding-top:12px; border-top:1px solid var(--bd); }
+.rstep .rs-ev > *:first-child{ margin-top:14px; }
+.rstep .rs-stat{ display:flex; align-items:baseline; gap:8px; margin-top:14px; }
+.rstep .rs-num{ font-family:var(--cond); font-weight:700; font-size:1.55rem; line-height:1; color:var(--eyebrow); }
+.rstep .rs-lab{ font-family:var(--cond); font-weight:700; font-size:.68rem; letter-spacing:.06em; text-transform:uppercase; color:var(--eyebrow); }
+.rstep .rs-ev p{ margin-top:7px; font-size:.85rem; color:var(--tx2); }
+.rstep .rs-ev .e-src{ display:block; margin-top:7px; font-size:.75rem; color:var(--tx3); }
+
+/* ═══════════════════ MODES: class vs web ═══════════════════
+   body[data-mode] is set by JS (web is the default until chosen).
+   Without JS there is no data-mode, so BOTH variants render, each
+   under its own label : the no-JS fallback. */
+body[data-mode="class"] .mode-web{ display:none !important; }
+body[data-mode="web"] .mode-class{ display:none !important; }
+/* QR is a classroom-only device: solo learners get a full-width welcome */
+body[data-mode="web"] .hero-grid{ grid-template-columns:1fr; }
+/* the same statement on the welcome page, white on the dark hero */
+.hero-state{ font-family:var(--serif); font-size:clamp(1.4rem,3vw,2rem); line-height:1.3; color:var(--vu-white);
+  margin-top:14px; max-width:40ch; padding-bottom:12px; border-bottom:2px solid var(--vu-gold); }
+html.paged .hero-state{ font-size:clamp(1.25rem,2.7vh,1.7rem); margin-top:10px; padding-bottom:8px; }
+/* the opening page fits with as little scrolling as possible in book mode */
+html.paged #mode .sec-head h2{ font-size:clamp(1.7rem,3vh + .8rem,2.7rem); }
+html.paged #mode .mode-lead{ margin-top:8px; padding-bottom:8px; font-size:clamp(1.45rem,3.3vh,2rem); }
+html.paged #mode .sec-head p{ margin-top:10px; }
+html.paged #mode .mode-q{ margin:12px 0 4px; font-size:clamp(1.2rem,2.4vh,1.6rem); }
+html.paged #mode .moment{ margin-top:12px; padding:11px 14px; }
+html.paged #mode .bridge{ margin-top:12px; }
+
+/* moment : the adult-learning beat, one per major page, bifurcated by mode */
+.moment{ display:flex; gap:14px; align-items:flex-start; margin-top:26px; max-width:720px;
+  border:1px solid var(--bdg); border-left:3px solid var(--acc); border-radius:var(--r); background:var(--card2); padding:16px 20px; }
+.moment .m-ic{ width:38px; height:38px; border-radius:var(--r); display:grid; place-items:center; flex-shrink:0;
+  background:rgba(207,174,112,.14); border:1px solid var(--bdg); color:var(--eyebrow); }
+.moment .m-ic svg{ width:18px; height:18px; }
+.moment .m-label{ display:block; font-family:var(--cond); font-weight:700; font-size:.72rem; letter-spacing:.07em; text-transform:uppercase; color:var(--eyebrow); }
+.moment p{ color:var(--tx2); font-size:.9375rem; margin-top:6px; max-width:60ch; }
+.moment p b{ color:var(--tx); font-weight:600; }
+html.paged .moment{ margin-top:18px; padding:13px 16px; }
+/* the two modes look different on purpose: classroom beats are gold and lively,
+   self-paced beats are sage and quiet, so each experience has its own signature */
+.th-dark .moment.mode-class{ background:rgba(207,174,112,.10); }
+.moment.mode-web{ border-left-color:var(--vu-sage); }
+.th-dark .moment.mode-web{ background:rgba(139,161,142,.09); }
+.moment.mode-web .m-ic{ background:rgba(139,161,142,.16); border-color:rgba(139,161,142,.5); color:var(--eyebrow); }
+.moment.mode-web .m-label{ color:var(--eyebrow); }
+.th-dark .moment.mode-web .m-ic{ color:var(--vu-sage); }
+.th-dark .moment.mode-web .m-label{ color:var(--vu-sage); }
+
+/* the typed CRIT brief: three fields feed the live preview and the printout */
+.crit-form{ display:flex; flex-direction:column; gap:10px; margin:14px 0 16px; }
+.crit-form label{ display:flex; flex-direction:column; gap:5px; }
+.cf-l{ font-family:var(--cond); font-weight:700; font-size:.7rem; letter-spacing:.07em; text-transform:uppercase; color:var(--eyebrow); }
+.crit-form textarea, .crit-form input, #cfNote{ font:inherit; font-size:.9rem; color:var(--tx);
+  background:var(--card); border:1px solid var(--bd); border-radius:var(--r); padding:9px 12px; width:100%; resize:vertical; }
+.crit-form textarea:focus, .crit-form input:focus, #cfNote:focus{ outline:2px solid var(--focus); outline-offset:1px; }
+.cf-fixed{ display:flex; flex-direction:column; gap:5px; font-size:.9rem; color:var(--tx2); }
+.cf-note{ color:var(--tx3, var(--tx2)); font-size:.8rem; }
+/* try-it-in: the three approved tools under each example. One is recommended
+   with the reason stated; a tool that shouldn't carry the example is shown
+   greyed out with the reason, not hidden. */
+.ttry{ margin-top:14px; }
+.ttry-row{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-top:8px; }
+@media (max-width:720px){ .ttry-row{ grid-template-columns:1fr; } }
+.ttry-card{ display:flex; flex-direction:column; gap:4px; border:1px solid var(--bd); border-radius:var(--r);
+  background:var(--card); padding:10px 12px; color:inherit; text-decoration:none; transition:border-color .15s ease-out; }
+a.ttry-card:hover{ border-color:var(--bdg); }
+.ttry-card .tt-name{ font-family:var(--cond); font-weight:700; font-size:.78rem; letter-spacing:.04em; text-transform:uppercase; color:var(--tx);
+  display:inline-flex; align-items:center; gap:6px; }
+.ttry-card .tt-name svg{ width:11px; height:11px; color:var(--eyebrow); }
+.ttry-card .tt-tag{ font-family:var(--cond); font-weight:700; font-size:.62rem; letter-spacing:.07em; text-transform:uppercase; color:var(--eyebrow); }
+.ttry-card .tt-why{ font-size:.8rem; color:var(--tx2); line-height:1.45; }
+.ttry-card.rec{ border-color:var(--acc); box-shadow:inset 0 0 0 1px var(--acc); }
+.th-dark .ttry-card.rec{ background:rgba(207,174,112,.10); }
+.ttry-card.off{ opacity:.6; border-style:dashed; cursor:not-allowed; }
+.ttry-card.off .tt-tag{ color:var(--tx3); }
+.ttry-note{ margin-top:8px; font-size:.8rem; color:var(--tx3); }
+/* the fictional practice report folds away so the page stays short */
+.prep summary{ cursor:pointer; font-family:var(--cond); font-weight:700; font-size:.72rem; letter-spacing:.05em;
+  text-transform:uppercase; color:var(--eyebrow); padding:4px 0; }
+.prep summary:hover{ color:var(--tx); }
+.prep[open] summary{ margin-bottom:8px; }
+.prep .pcode{ max-height:320px; overflow-y:auto; }
+#cfNote{ margin-top:10px; }
+/* keep learning: the Oracle Learning shelf */
+.keepl{ margin-top:26px; max-width:720px; border:1px solid var(--bd); border-radius:var(--r); background:var(--card); padding:18px 22px; }
+.keepl p{ color:var(--tx2); font-size:.9375rem; margin-top:8px; }
+.keepl ul{ list-style:none; margin:10px 0 0; padding:0; display:flex; flex-direction:column; gap:7px; }
+.keepl li{ font-size:.9375rem; }
+.keepl a{ color:var(--link); text-decoration:underline; text-decoration-color:var(--acc);
+  text-decoration-thickness:1px; text-underline-offset:3px; }
+.keepl a:hover{ color:var(--tx); text-decoration-thickness:2px; }
+.keepl li a::after{ content:"\2197"; font-size:.75em; margin-left:4px; color:var(--link); }
+.keepl li .mono{ font-size:.7rem; color:var(--tx2); margin-left:8px; letter-spacing:.04em; }
+/* knowledge check: pick an answer, see how you did, nothing leaves the page */
+.qz{ max-width:760px; border:1px solid var(--bd); border-radius:var(--r); background:var(--card); padding:18px 22px; margin-top:16px; }
+.qz-q{ font-size:.9375rem; color:var(--tx); }
+.qopt{ display:block; width:100%; text-align:left; font:inherit; font-size:.9rem; color:var(--tx2);
+  background:var(--card2); border:1px solid var(--bd); border-radius:var(--r); padding:10px 14px; margin-top:9px; cursor:pointer;
+  transition:border-color .15s ease-out; }
+.qopt:hover{ border-color:var(--bdg); }
+.qopt.ok{ border-color:var(--acc); box-shadow:inset 0 0 0 1px var(--acc); color:var(--tx); }
+.th-dark .qopt.ok{ background:rgba(207,174,112,.14); }
+.qopt.no{ border-color:var(--tx3); border-style:dashed; }
+.qz-x{ margin-top:12px; font-size:.9rem; color:var(--tx2); border-left:3px solid var(--acc); padding-left:12px; }
+/* recap: the three next steps */
+.next-steps{ margin-top:26px; max-width:760px; border:1px solid var(--bdg); border-left:3px solid var(--acc); border-radius:var(--r); background:var(--card2); padding:18px 22px; }
+.next-steps ol{ margin:10px 0 0 18px; padding:0; display:flex; flex-direction:column; gap:8px; font-size:.9375rem; color:var(--tx2); }
+.next-steps li b{ color:var(--tx); }
+
+/* the one rule */
+.rule-strip{ margin-top:28px; border-radius:var(--r); border:2px solid var(--acc); padding:20px 26px; display:flex; flex-wrap:wrap; gap:14px 34px;
+  align-items:center; justify-content:center; background:var(--card2); text-align:center; }
+.rule-strip .r{ font-family:var(--serif); font-size:clamp(1.1rem,2.4vw,1.5rem); color:var(--tx); max-width:none; }
+.rule-strip .r b{ font-weight:400; color:var(--strong); font-family:var(--serif-i); font-style:italic; }
+
+/* ═══════════════════ WORKED EXAMPLES ═══════════════════ */
+.ex-grid{ display:grid; grid-template-columns:1.1fr .9fr; gap:clamp(22px,4vw,44px); align-items:start; }
+.pcard{ border:1px solid var(--bdg); border-radius:var(--r); background:var(--card2); padding:clamp(18px,3vw,26px); }
+.pc-head{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:12px; flex-wrap:wrap; }
+.pcode{ display:block; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:.84rem; line-height:1.75; color:var(--tx);
+  background:var(--field); border:1px solid var(--field-bd); border-radius:var(--r); padding:14px 18px; white-space:pre-wrap; word-break:break-word; overflow-x:auto; }
+.pcard .hinttxt{ margin-top:12px; }
+.ret{ padding:2px 0 2px 20px; border-left:3px solid var(--acc); }
+.ret .c-label,.edit .c-label{ display:block; font-family:var(--cond); font-weight:700; font-size:.72rem; letter-spacing:.07em; text-transform:uppercase; color:var(--eyebrow); margin-bottom:8px; }
+.ret p{ color:var(--tx2); font-size:.9575rem; line-height:1.75; max-width:68ch; }
+.ret p b{ color:var(--tx); font-weight:600; }
+.edit{ margin-top:24px; border:1px solid var(--bd); border-radius:var(--r); background:var(--card); padding:20px 22px; }
+.edit ul{ list-style:none; display:flex; flex-direction:column; gap:10px; }
+.edit li{ display:flex; gap:10px; align-items:flex-start; color:var(--tx2); font-size:.9375rem; }
+.edit li svg{ width:15px; height:15px; flex-shrink:0; color:var(--eyebrow); margin-top:4px; }
+.edit li b{ color:var(--tx); font-weight:600; }
+.launch-row{ display:flex; flex-wrap:wrap; gap:10px; margin-top:20px; }
+
+/* ═══════════════════ SOURCES ═══════════════════ */
+.src-list{ list-style:none; display:flex; flex-direction:column; gap:12px; max-width:900px; counter-reset:src; }
+.src{ counter-increment:src; display:grid; grid-template-columns:40px 1fr; gap:16px; align-items:start; border:1px solid var(--bd);
+  border-radius:var(--r); padding:18px 20px; background:var(--card); }
+.src::before{ content:counter(src); font-family:var(--cond); font-weight:700; font-size:.85rem; color:#1C1C1C; background:var(--vu-gold);
+  width:30px; height:30px; border-radius:2px; display:grid; place-items:center; margin-top:2px; }
+.src p{ color:var(--tx2); font-size:.9375rem; line-height:1.7; max-width:none; }
+.src p em{ font-family:var(--serif-i); font-style:italic; }
+.src .e-src{ display:block; margin-top:8px; font-size:.83rem; color:var(--tx3); }
+.prov{ margin-top:22px; padding-top:16px; border-top:1px solid var(--bd); font-size:.9rem; color:var(--tx2); max-width:900px; }
+.prov em{ font-family:var(--serif-i); font-style:italic; }
+
+/* ═══════════════════ FOOTER ═══════════════════ */
+footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,174,112,.2); padding:clamp(36px,5vw,52px) 0 36px;
+  --tx:#fff; --tx2:rgba(255,255,255,.7); --tx3:rgba(255,255,255,.64); --link:#CFAE70; --strong:#ECB748; --focus:#ECB748; --bdg:rgba(207,174,112,.35); }
+.fcenter{ text-align:center; }
+.fcenter img{ margin:0 auto; }
+.fprogram{ font-family:var(--cond); font-weight:700; font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; color:var(--vu-gold); margin-top:18px; max-width:none; }
+.flegal{ color:rgba(255,255,255,.55); font-size:.83rem; margin:18px auto 0; max-width:640px; }
+.flegal a{ color:var(--vu-gold); border-bottom:1px solid rgba(207,174,112,.4); }
+.flegal b{ color:rgba(255,255,255,.8); }
+.preset{ display:inline-flex; align-items:center; gap:8px; margin:18px 0 0; min-height:44px; background:none; border:0; cursor:pointer;
+  color:rgba(255,255,255,.55); font-family:var(--cond); font-weight:700; font-size:.72rem; letter-spacing:.06em; text-transform:uppercase;
+  transition:color .2s ease-out; }
+.preset:hover{ color:#fff; }
+.preset svg{ width:14px; height:14px; }
+.fcenter > span{ display:inline-flex; flex-wrap:wrap; justify-content:center; gap:0 22px; }
+
+/* ═══════════════════ BOOK MODE: STAGE + PAGES ═══════════════════
+   One .page visible in a fixed stage, pages turning right-to-left.
+   Scoped under html.paged so the scroll layout remains the no-JS fallback. */
+html.paged{ --nav-h:96px; --bar-h:64px; }
+@media (max-width:960px){ html.paged{ --nav-h:72px; --bar-h:56px; } }
+html.paged, html.paged body{ height:100%; overflow:hidden; overscroll-behavior:none; }
+html.paged main#main{ position:fixed; top:var(--nav-h); bottom:var(--bar-h); left:0; right:0;
+  overflow:hidden; background:var(--vu-black); z-index:1; }
+.page{ position:absolute; inset:0; overflow-y:auto; overflow-x:hidden; visibility:hidden; z-index:1;
+  display:flex; flex-direction:column; -webkit-overflow-scrolling:touch; outline:none; }
+.page.cur{ visibility:visible; z-index:2; }
+.page > section{ flex:1 0 auto; width:100%; }
+.page > footer{ flex:0 0 auto; width:100%; }
+.page.pg-in-r{ animation:pgInR .35s var(--ease) both; }
+.page.pg-in-l{ animation:pgInL .35s var(--ease) both; }
+.page.pg-out{ visibility:visible; z-index:1; }
+.page.pg-out-l{ animation:pgOutL .35s var(--ease) both; }
+.page.pg-out-r{ animation:pgOutR .35s var(--ease) both; }
+@keyframes pgInR{ from{ transform:translateX(100%); } }
+@keyframes pgInL{ from{ transform:translateX(-100%); } }
+@keyframes pgOutL{ to{ transform:translateX(-100%); } }
+@keyframes pgOutR{ to{ transform:translateX(100%); } }
+/* fit-the-viewport rhythm: tighter vertical spacing inside pages */
+html.paged section{ padding:clamp(24px,4vh,48px) 0; }
+html.paged .hero{ min-height:100%; padding:clamp(8px,1.6vh,24px) 0; }
+html.paged .hero h1{ font-size:clamp(1.9rem,3.6vh + 1rem,3.6rem); margin-top:14px; }
+html.paged .hero .lead{ margin-top:12px; }
+html.paged .hero .meta-line{ margin-top:12px; }
+html.paged .hero .lframe{ margin-top:12px; }
+html.paged .qr-card__code{ width:clamp(150px,20vh,230px); }
+html.paged .sec-head{ margin-bottom:clamp(16px,2.8vh,32px); }
+html.paged .sec-head h2{ font-size:clamp(1.65rem,2.2vh + 1rem,2.7rem); }
+html.paged .concept{ margin-bottom:18px; }
+html.paged .bridge{ margin-top:clamp(18px,3vh,32px); padding-top:16px; }
+html.paged .evidence{ padding:15px 18px; }
+html.paged .ev-grid{ margin-top:18px; }
+html.paged .rstep{ padding:18px 16px; }
+html.paged .rule-strip{ margin-top:18px; padding:16px 20px; }
+html.paged .pcard{ padding:16px 18px; }
+html.paged .edit{ margin-top:16px; padding:16px 18px; }
+html.paged .src{ padding:13px 16px; }
+html.paged .lframe{ margin-top:12px; }
+html.paged footer{ padding:clamp(10px,1.8vh,18px) 0; }
+html.paged .flegal{ font-size:.8rem; }
+/* the condensed strip runs horizontal inside the last page so the send-off fits the stage */
+html.paged .fcenter{ display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:2px 20px; text-align:left; }
+html.paged .fcenter img{ width:56px; height:59px; margin:0; grid-row:1 / span 2; }
+html.paged .fprogram{ grid-column:2; margin:0; }
+html.paged .flegal{ grid-column:2; margin:4px 0 0; max-width:none; }
+html.paged .fcenter > span{ grid-column:3; grid-row:1 / span 2; display:flex; flex-direction:column; align-items:flex-end; gap:0; }
+html.paged .preset{ margin:0; min-height:36px; }
+@media (max-width:760px){
+  html.paged .fcenter{ display:block; text-align:center; }
+  html.paged .fcenter img{ margin:0 auto; }
+  html.paged .fprogram{ margin-top:10px; }
+  html.paged .flegal{ margin-top:8px; }
+  html.paged .fcenter > span{ display:inline-flex; flex-direction:row; gap:0 22px; margin-top:6px; }
+  html.paged .preset{ margin-top:0; }
+}
+/* "more below" affordance: floats over the stage when the page scrolls internally */
+#pgMore{ position:absolute; z-index:6; right:clamp(10px,2vw,22px); bottom:10px; display:none; align-items:center; gap:7px;
+  pointer-events:none; font-family:var(--cond); font-weight:700; font-size:.68rem; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--vu-gold); background:rgba(28,28,28,.85); border:1px solid rgba(207,174,112,.45); border-radius:var(--r); padding:7px 11px; }
+#pgMore svg{ width:12px; height:12px; }
+html.paged main#main.more #pgMore{ display:inline-flex; }
+
+/* ═══════════════════ BOTTOM BOOK BAR ═══════════════════ */
+.book-bar{ position:fixed; left:0; right:0; bottom:0; height:var(--bar-h,64px); z-index:210; background:var(--vu-black);
+  border-top:1px solid rgba(207,174,112,.25); display:none; align-items:center; gap:clamp(8px,2vw,26px);
+  padding:0 clamp(8px,2.5vw,28px); }
+html.paged .book-bar{ display:flex; }
+.bb-left{ flex:1 1 0; min-width:0; display:flex; align-items:center; gap:clamp(8px,1.4vw,16px); }
+.bb-sec{ flex:0 1 auto; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+  font-family:var(--cond); font-weight:700; font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; color:var(--vu-gold); }
+.bb-done{ display:inline-flex; align-items:center; justify-content:center; gap:7px; height:44px; padding:0 13px; flex-shrink:0;
+  border:1px solid rgba(255,255,255,.25); border-radius:var(--r); background:transparent; color:#fff; cursor:pointer;
+  font-family:var(--cond); font-weight:700; font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; white-space:nowrap;
+  transition:border-color .2s ease-out, color .2s ease-out, background-color .2s ease-out; }
+.bb-done:hover{ border-color:var(--vu-gold); color:var(--vu-gold); }
+.bb-done[aria-pressed="true"]{ border-color:var(--vu-gold); background:var(--vu-gold); color:var(--vu-black); }
+.bb-done[aria-pressed="true"]:hover{ background:var(--vu-highlight); border-color:var(--vu-highlight); color:var(--vu-black); }
+.bb-done:focus-visible{ outline:2px solid var(--vu-highlight); outline-offset:1px; }
+.bb-done svg{ width:14px; height:14px; flex-shrink:0; }
+.bb-done svg[hidden]{ display:none; } /* [hidden] has no UA default on inline SVG; the mode switch swaps its two icons with it */
+.bb-done[hidden]{ display:none; }
+.bb-dots{ display:flex; align-items:center; justify-content:center; gap:2px; flex-shrink:0; }
+a.bb-dot{ display:grid; place-items:center; width:22px; height:44px; border-radius:2px; }
+a.bb-dot .dot{ display:block; width:9px; height:9px; border-radius:50%; border:1.5px solid var(--vu-gold); background:transparent;
+  transition:background-color .2s ease-out, transform .2s ease-out, box-shadow .2s ease-out; }
+a.bb-dot.done .dot{ background:var(--acc); }
+a.bb-dot.cur .dot{ transform:scale(1.35); box-shadow:0 0 0 2px rgba(236,183,72,.55); }
+a.bb-dot:hover .dot{ background:rgba(207,174,112,.5); }
+a.bb-dot.done:hover .dot{ background:var(--vu-highlight); }
+a.bb-dot:focus-visible{ outline:2px solid var(--vu-highlight); outline-offset:1px; }
+.bb-ctl{ flex:1 1 0; display:flex; align-items:center; justify-content:flex-end; gap:clamp(6px,1vw,12px); }
+.bb-count{ font-family:var(--cond); font-weight:700; font-size:.78rem; letter-spacing:.05em; color:rgba(255,255,255,.72); white-space:nowrap; }
+.bb-btn{ display:grid; place-items:center; width:44px; height:44px; flex-shrink:0; border:1px solid rgba(255,255,255,.25); border-radius:var(--r);
+  background:transparent; color:#fff; cursor:pointer; transition:border-color .2s ease-out,color .2s ease-out; }
+.bb-btn:hover{ border-color:var(--vu-gold); color:var(--vu-gold); }
+.bb-btn[disabled]{ opacity:.35; cursor:default; }
+.bb-btn[disabled]:hover{ border-color:rgba(255,255,255,.25); color:#fff; }
+.bb-btn svg{ width:16px; height:16px; }
+@media (max-width:1000px){ .bb-done .bb-done-t{ display:none; } .bb-done{ width:44px; padding:0; } }
+@media (max-width:760px){ .bb-sec{ display:none; } .bb-left{ flex:0 0 auto; } .bb-dots{ flex:1; } .bb-ctl{ flex:0 0 auto; } }
+@media (max-width:620px){
+  /* thirteen dots cannot each hold a 24px target in a 320px bar, so the rail
+     steps aside and navigation runs through prev/next and the menu, both of
+     which are full size. The count keeps the sense of place. */
+  .bb-dots{ display:none; }
+  .bb-ctl{ margin-left:auto; }
+}
+@media (max-width:420px){ .bb-btn{ width:40px; } .bb-done{ width:40px; height:44px; } .bb-count{ font-size:.72rem; } .book-bar{ gap:6px; } }
+
+/* ═══════════════════ RESPONSIVE ═══════════════════ */
+@media (max-width:1280px){
+  .logo img{ height:42px; }
+  nav.links a{ font-size:.86rem; letter-spacing:.01em; }
+  nav.links a.nav-cta{ font-size:.875rem; min-height:46px; padding:11px 20px; }
+}
+@media (max-width:1099px){
+  nav.links{ display:none; } .menu-btn{ display:grid; }
+}
+@media (max-width:1024px){
+  .ev-grid{ grid-template-columns:1fr; }
+  .roadmap.three{ grid-template-columns:1fr; }
+}
+@media (max-width:960px){
+  header.nav .bar{ height:72px; }
+  .logo img{ height:36px; }
+  html{ scroll-padding-top:92px; }
+  .hero-grid{ grid-template-columns:1fr; }
+  .qr-side{ justify-self:start; text-align:left; }
+  .qr-side .qr-sub{ margin-inline:0; }
+  .ex-grid{ grid-template-columns:1fr; }
+}
+@media (max-width:640px){
+  .src{ grid-template-columns:1fr; } .src::before{ margin-top:0; }
+  .logo img{ height:30px; }
+}
+@media (max-width:480px){
+  .launch-row .btn{ flex:1; }
+}
+
+/* ═══════════════════ PRINT TAKEAWAY ═══════════════════
+   #printSummary is display:none on screen; @media print swaps the whole
+   app out for it: one clean black-on-white page. The mode rules above
+   still apply in print, so the notes block matches the chosen mode. */
+#printSummary{ display:none; }
+@media print{
+  html, body{ height:auto !important; overflow:visible !important; background:#fff !important; }
+  body > *:not(#printSummary){ display:none !important; }
+  #printSummary{ display:block !important; color:#000; background:#fff;
+    font-family:-apple-system, "Segoe UI", Helvetica, Arial, sans-serif; font-size:9.5pt; line-height:1.45; }
+  #printSummary .ps-head{ border-bottom:2pt solid #000; padding-bottom:6pt; }
+  #printSummary .ps-title{ font-family:Georgia, "Times New Roman", serif; font-size:15pt; margin:0; color:#000; }
+  #printSummary .ps-meta{ margin:2pt 0 0; font-size:8pt; color:#333; max-width:none; }
+  #printSummary h2{ font-family:Georgia, "Times New Roman", serif; font-weight:700; color:#000; font-size:10.5pt; margin:9pt 0 3pt;
+    border-bottom:.75pt solid #999; padding-bottom:1pt; break-after:avoid; page-break-after:avoid; }
+  #printSummary p{ margin:2pt 0; max-width:none; }
+  #printSummary ol{ margin:2pt 0 2pt 14pt; padding:0; }
+  #printSummary li{ margin:1pt 0; break-inside:avoid; page-break-inside:avoid; }
+  #printSummary .ps-rule{ font-family:Georgia, "Times New Roman", serif; font-style:italic; font-size:10pt; margin:4pt 0; }
+  #printSummary .ps-pre{ white-space:pre-wrap; font-family:"Courier New", monospace; font-size:7.5pt; line-height:1.4;
+    border:.75pt solid #999; padding:4pt 6pt; margin:3pt 0; break-inside:avoid; page-break-inside:avoid; }
+  #printSummary .ps-plabel{ font-size:8pt; font-weight:700; margin:5pt 0 1pt; }
+  #printSummary .ps-block{ break-inside:avoid; page-break-inside:avoid; }
+  #printSummary .ps-line{ height:16pt; border-bottom:.75pt solid #999; }
+  #printSummary .ps-fine{ font-size:7.5pt; color:#444; margin-top:8pt; border-top:.75pt solid #999; padding-top:4pt; max-width:none; }
+}
+
+/* ═══════════════════ REDUCED MOTION ═══════════════════ */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{ animation:none !important; transition:none !important; }
+  html{ scroll-behavior:auto !important; }
+}
+
+/* ═══════════════════ LEADING WITH AI · COURSE COMPONENTS ═══════════════════
+   Everything below reads theme-scope variables (--tx, --acc, --eyebrow, --bd,
+   --card, --field), never a raw brand token, so each block keeps its contrast
+   when it moves between a black section and a white one. */
+
+/* A drill verdict, injected as real text by the script rather than left to
+   color alone. There is no approved red in the palette, and a learner who
+   cannot see the border still hears and reads the result. */
+.qmark{ display:block; margin-top:6px; font-family:var(--cond); font-weight:700;
+  font-size:.68rem; letter-spacing:.07em; text-transform:uppercase; color:var(--tx); }
+.qopt.no .qmark{ color:var(--tx2); }
+.qz-x b{ color:var(--tx); font-weight:600; }
+.qz-x em{ font-family:var(--serif-i); font-style:italic; }
+/* the drill's running score, announced politely as it changes */
+.qscore{ display:block; margin-top:14px; font-family:var(--cond); font-weight:700;
+  font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; color:var(--eyebrow); }
+
+/* Module 05: pick the habit you will actually install this week. The choice is
+   a toggle-button group, one pressed at a time, and it prints on the takeaway. */
+.habs{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:20px; }
+@media (max-width:820px){ .habs{ grid-template-columns:1fr; } }
+.hab{ display:flex; flex-direction:column; gap:7px; text-align:left; cursor:pointer;
+  border:1px solid var(--bd); border-radius:var(--r); background:var(--card);
+  padding:16px 18px; transition:border-color .2s var(--ease), background-color .2s var(--ease); }
+.hab:hover{ border-color:var(--bdg); }
+.hab .h-no{ font-family:var(--cond); font-weight:700; font-size:.72rem; letter-spacing:.06em;
+  text-transform:uppercase; color:var(--eyebrow); }
+.hab .h-name{ font-family:var(--serif); font-size:1.2rem; line-height:1.25; color:var(--tx); }
+.hab .h-tool{ font-family:var(--cond); font-weight:700; font-size:.64rem; letter-spacing:.06em;
+  text-transform:uppercase; color:var(--tx3); }
+.hab .h-what{ font-size:.86rem; color:var(--tx2); line-height:1.6; }
+.hab .h-state{ margin-top:auto; padding-top:10px; font-family:var(--cond); font-weight:700;
+  font-size:.66rem; letter-spacing:.07em; text-transform:uppercase; color:var(--tx3); }
+.hab[aria-pressed="true"]{ border-color:var(--acc); box-shadow:inset 0 0 0 1px var(--acc); }
+.hab[aria-pressed="true"] .h-state{ color:var(--eyebrow); }
+.hab-note{ margin-top:12px; font-size:.86rem; color:var(--tx2); }
+.hab-note b{ color:var(--tx); font-weight:600; }
+
+/* The prompt builder: five labelled fields, a live preview, and three presets
+   that fill the fields from the worked scenarios. Shares the .crit-form skin. */
+.pb-presets{ display:flex; flex-wrap:wrap; gap:8px; margin:4px 0 14px; }
+.pb-preset{ font-family:var(--cond); font-weight:700; font-size:.7rem; letter-spacing:.05em;
+  text-transform:uppercase; color:var(--tx2); background:var(--card); cursor:pointer;
+  border:1px solid var(--bd); border-radius:var(--r); padding:7px 12px;
+  transition:border-color .2s var(--ease), color .2s var(--ease); }
+.pb-preset:hover{ border-color:var(--bdg); color:var(--tx); }
+.pb-preset[aria-pressed="true"]{ border-color:var(--acc); box-shadow:inset 0 0 0 1px var(--acc); color:var(--tx); }
+
+/* The five-part pattern, shown as a spine above the builder. */
+.pattern{ display:flex; flex-wrap:wrap; gap:8px; margin:18px 0 6px; padding:0; list-style:none; }
+.pattern li{ display:flex; flex-direction:column; gap:3px; flex:1 1 168px;
+  border:1px solid var(--bd); border-left:3px solid var(--acc); border-radius:var(--r);
+  background:var(--card); padding:11px 14px; }
+.pattern .p-k{ font-family:var(--cond); font-weight:700; font-size:.7rem; letter-spacing:.07em;
+  text-transform:uppercase; color:var(--eyebrow); }
+.pattern .p-v{ font-size:.83rem; color:var(--tx2); line-height:1.55; }
+
+/* The four anchors, as a labelled set the learner can walk. */
+.anchor-q{ margin-top:12px; font-size:.86rem; color:var(--tx2); font-style:normal; }
+.anchor-q b{ color:var(--tx); font-weight:600; }
+
+/* The tool-choice table, rebuilt as cards so it reflows at 320px with no
+   horizontal scroll and no lost header association. */
+.tool-card .tc-row{ display:flex; flex-direction:column; gap:3px; margin-top:12px; }
+.tool-card .tc-k{ font-family:var(--cond); font-weight:700; font-size:.66rem; letter-spacing:.07em;
+  text-transform:uppercase; color:var(--eyebrow); }
+.tool-card .tc-v{ font-size:.86rem; color:var(--tx2); line-height:1.6; }
+.tool-card .tc-v b{ color:var(--tx); font-weight:600; }
+
+/* Wide blocks scroll inside themselves; the page body never scrolls sideways. */
+.scroll-x{ overflow-x:auto; }
+
+</style>
+</head>
+<body>
+<a href="#main" class="skip">Skip to content</a>
+
+<!-- ═══════════════════ NAV ═══════════════════ -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <div class="bar">
+      <a class="logo" href="#top" aria-label="Vanderbilt University, Leading with AI home">
+        <img src="../assets/img/v-lockup-white@2x.png" alt="Vanderbilt University" width="166" height="36" decoding="async" />
+      </a>
+      <div class="bar-r">
+        <nav class="links" aria-label="Primary">
+          <a href="#tools">Tools</a>
+          <a href="#anchors">Anchors</a>
+          <a href="#clarity">Clarity</a>
+          <a href="#coach">Coaching</a>
+          <a href="#decide">Decisions</a>
+          <a href="#hours">Habits</a>
+          <a href="#practice">Practice</a>
+          <a href="#sources">Appendix</a>
+        </nav>
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+          <span class="b b1" aria-hidden="true"></span><span class="b b2" aria-hidden="true"></span><span class="b b3" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- mobile overlay menu -->
+<nav class="mobile-menu" id="mobileMenu" aria-label="Mobile">
+  <a class="mlink" href="#top"><span class="mono">01</span>Welcome</a>
+  <a class="mlink" href="#mission"><span class="mono">02</span>The Chancellor&rsquo;s charge</a>
+  <a class="mlink" href="#tools"><span class="mono">03</span>Which tool, which moment</a>
+  <a class="mlink" href="#anchors"><span class="mono">04</span>Module 01: the four anchors</a>
+  <a class="mlink" href="#clarity"><span class="mono">05</span>Module 02: clear communication</a>
+  <a class="mlink" href="#coach"><span class="mono">06</span>Module 03: coaching prep</a>
+  <a class="mlink" href="#decide"><span class="mono">07</span>Module 04: sharper decisions</a>
+  <a class="mlink" href="#hours"><span class="mono">08</span>Module 05: three habits</a>
+  <a class="mlink" href="#guardrails"><span class="mono">09</span>Guardrails</a>
+  <a class="mlink" href="#practice"><span class="mono">10</span>Practice now</a>
+  <a class="mlink" href="#check"><span class="mono">11</span>Knowledge check</a>
+  <a class="mlink" href="#recap"><span class="mono">12</span>Recap</a>
+  <a class="mlink" href="#sources"><span class="mono">13</span>Appendix</a>
+  <a class="mlink" href="../"><span class="mono" aria-hidden="true">&rarr;</span>Use the self-paced edition</a>
+  <div class="mfoot">matthew.estes@vanderbilt.edu</div>
+</nav>
+
+<main id="main"><span id="top"></span>
+
+<!-- ═══════════ 01 · WELCOME ═══════════ -->
+<section class="hero th-dark" aria-label="Welcome">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="mono">Vanderbilt University &middot; The CHART Program &middot; A Managers Voyage course</span>
+        <h1 class="metal">Leading with <em>AI</em>.</h1>
+        <p class="hero-state">Five short moves, one frame, three tools. Your judgment stays loud and your team stays at the center.</p>
+        <p class="lead">This course is for every Vanderbilt manager, whatever your department and whatever you have tried so far.
+          In about fifteen minutes you will learn how to <b>pick the right tool for the moment</b>, write clearer messages in half the time,
+          walk into a coaching conversation better prepared, pressure-test a decision before you make it, and install three small habits
+          that give you back real time each week. Every technical word gets explained the first time it appears, and every prompt here
+          copies straight into the tool you already have.</p>
+        <p class="meta-line">Part of CHART: Cultivating Human-AI Readiness and Thinking &middot; Works in Vanderbilt Amplify, Microsoft Copilot, and ChatGPT EDU</p>
+        <div class="lframe">
+          <span class="lf-chip"><b>Time</b>A live session, guided by your instructor</span>
+          <span class="lf-chip"><b>You&rsquo;ll leave with</b>One prompt pattern, four anchors, and a habit you have chosen</span>
+          <span class="lf-chip"><b>By the end you can</b>Choose a tool, draft a message, prepare a 1:1, test a decision, and install a habit</span>
+        </div>
+        <ol class="hw-mini mode-web" aria-label="How this course works, self-paced">
+          <li>Turn pages with the arrows below, your keyboard arrows, or a swipe</li>
+          <li>Keep your AI tool open in another tab; every prompt here copies straight into it</li>
+          <li>Mark pages done in the bottom bar; progress stays in this browser</li>
+        </ol>
+        <ol class="hw-mini mode-class" aria-label="How this course works, in a classroom">
+          <li>Your instructor leads the pages up front; scan the QR to follow along on your phone</li>
+          <li>The gold Together cards are for the room: discuss, pair up, share</li>
+          <li>You&rsquo;ll leave with a one-page takeaway; print it or save it at the end</li>
+        </ol>
+      </div>
+      <div class="qr-side mode-class">
+        <span class="mono qr-label">Scan to open this course on your phone</span>
+        <!-- [EDIT · SCORM] repoint data-url to the LMS link before packaging; the QR renders from it -->
+        <div class="qr-card" id="qrCard">
+          <div class="qr-card__code" id="qrBox" role="img" aria-label="QR code linking to this course"></div>
+          <p class="qr-card__url" id="qrUrl"></p>
+        </div>
+        <p class="qr-sub">The course runs in your browser. Nothing you type or do here is tracked or sent anywhere.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 02 · THE CHANCELLOR'S CHARGE ═══════════ -->
+<section id="mission" class="th-dark" aria-label="The Chancellor's charge">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="you-are">Why the university is asking managers to lead this way.</span>
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">The institutional why &middot; Crescere aude</span></span>
+      <h2>Vanderbilt will define the great university of the 21st Century and <em class="s">be it.</em></h2>
+      <p>That is Chancellor Diermeier&rsquo;s institutional vision, one sentence with no hedge in it. The how is equally blunt: operate at <b>uncommon speed, agility, and scale</b> to address society&rsquo;s challenges through education and research, and help <b>reclaim the essential role of leading research universities in driving American prosperity</b><sup class="cite"><a href="#src9" aria-label="Source 9">9</a></sup>. Our motto has always been the dare, <em>Crescere aude</em>, dare to grow, and the dare lands on managers like you, one ordinary week at a time.</p>
+    </div>
+    <span class="eyebrow" style="margin-bottom:10px"><span class="tick" aria-hidden="true"></span><span class="mono">Areas of Focus</span></span>
+    <h3 style="font-size:1.35rem;margin:10px 0 18px">Three ways Vanderbilt delivers on the vision</h3>
+    <div class="roadmap three">
+      <div class="rstep">
+        <span class="rno">1</span>
+        <h3>Exceptional Core Operations</h3>
+        <p>With speed, agility and scale, Vanderbilt will distinguish itself with innovative and impactful capabilities to ensure that we have the talent, resources and reputation necessary to deliver on our vision.</p>
+      </div>
+      <div class="rstep">
+        <span class="rno">2</span>
+        <h3>Bold Strategic Initiatives</h3>
+        <p>With &ldquo;exceptional core operations&rdquo; as our fuel, Vanderbilt will pursue increasingly bold initiatives that enable and enhance the reach and impact of our education and research mission.</p>
+      </div>
+      <div class="rstep">
+        <span class="rno">3</span>
+        <h3>Values Leadership</h3>
+        <p>Through strategic advocacy efforts and modeling the role of an essential research university, Vanderbilt will stimulate industry change and combat existential threats to our education and research mission.</p>
+      </div>
+    </div>
+    <div class="rstep" style="margin-top:14px;border-color:rgba(207,174,112,.5)">
+      <span class="rno">How this course delivers</span>
+      <p>Leading with AI puts Exceptional Core Operations inside the manager&rsquo;s week. The hours these habits give back are hours you spend on the people and the work only you can do, and the four anchors keep the speed from costing us judgment.</p>
+    </div>
+    <div class="rstep" style="margin-top:14px;border-color:rgba(207,174,112,.5)">
+      <span class="rno">The reputation flywheel</span>
+      <p>Reputation and resources feed each other in a loop. Reputation attracts <b>talent, funding, partnerships, and access</b>, which build the reputation. The university spins that flywheel with <b>execution with ambition, values-driven leadership, and athletics momentum</b>. Here is your place in it: values-driven leadership shows up in how a manager writes, coaches, and decides. A manager who edits the draft into their own voice, prepares before the 1:1, and owns the call is what it looks like on an ordinary Tuesday.</p>
+    </div>
+    <div class="bridge"><span class="b-label">Next</span><p>Sixty seconds on the three tools, and the one rule that decides <em>between them</em>.</p></div>
+  </div>
+</section>
+
+<!-- ═══════════ 03 · WHICH TOOL, WHICH MOMENT ═══════════ -->
+<section id="tools" class="th-light" aria-label="Before the modules: which tool for which moment">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="you-are">Before the modules. Sixty seconds.</span>
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Before the modules / 60 seconds</span></span>
+      <h2>Which tool, for which <em class="s">moment</em>.</h2>
+      <p>Vanderbilt gives you three approved tools, and managers lose more time choosing between them than using them.
+        You do not need to compare features. One question sorts almost every case: <b>how sensitive is the material you are about to paste in?</b>
+        Read the three cards, then try the drill underneath.</p>
+    </div>
+
+    <div class="roadmap three">
+      <article class="rstep tool-card">
+        <span class="rno">Tool 01</span>
+        <h3>Vanderbilt Amplify</h3>
+        <div class="tc-row"><span class="tc-k">Use when</span><span class="tc-v">The content involves internal Vanderbilt information at <b>Data Levels 1 to 3</b>. You sign in with your VU account, and your data is not used to train the models<sup class="cite"><a href="#src2" aria-label="Source 2">2</a></sup>.</span></div>
+        <div class="tc-row"><span class="tc-k">Best for</span><span class="tc-v">Summarizing internal documents, policy-adjacent memos, custom assistants, and the email, scheduling, and note-taker features in Amplify 2.0<sup class="cite"><a href="#src1" aria-label="Source 1">1</a></sup>.</span></div>
+        <div class="tc-row"><span class="tc-k">Watch out</span><span class="tc-v">Never upload <b>Level 4, PHI, or HIPAA</b> data. Amplify being approved for internal work does not make it approved for everything.</span></div>
+        <div class="rs-ev">
+          <span class="rs-stat"><span class="rs-num">1 to 3</span><span class="rs-lab">data levels covered</span></span>
+          <p>This is the when-in-doubt choice. If you cannot classify what you are holding, it belongs here or nowhere.</p>
+        </div>
+      </article>
+      <article class="rstep tool-card">
+        <span class="rno">Tool 02</span>
+        <h3>Microsoft Copilot</h3>
+        <div class="tc-row"><span class="tc-k">Use when</span><span class="tc-v">The source material <b>already lives in your VU Microsoft 365 workspace</b>: a Teams meeting, an Outlook thread, an Excel file.</span></div>
+        <div class="tc-row"><span class="tc-k">Best for</span><span class="tc-v">Meeting recaps in Teams, pulling action items out of a transcript, replying to an email thread in Outlook, cleaning up a spreadsheet<sup class="cite"><a href="#src5" aria-label="Source 5">5</a></sup>.</span></div>
+        <div class="tc-row"><span class="tc-k">Watch out</span><span class="tc-v">Copilot inherits your permissions. If a sensitive file is over-shared in SharePoint, Copilot can surface it. Confirm the sharing before you ask.</span></div>
+        <div class="rs-ev">
+          <span class="rs-stat"><span class="rs-num">M365</span><span class="rs-lab">where the source already is</span></span>
+          <p>The advantage is proximity. You are not pasting anything; the material is already inside the tool.</p>
+        </div>
+      </article>
+      <article class="rstep tool-card">
+        <span class="rno">Tool 03</span>
+        <h3>ChatGPT EDU</h3>
+        <div class="tc-row"><span class="tc-k">Use when</span><span class="tc-v">You want the strongest general-purpose model for reasoning and long-form drafting, and <b>nothing internal or personal is involved</b>. Conversations are not used to train OpenAI&rsquo;s models<sup class="cite"><a href="#src4" aria-label="Source 4">4</a></sup>.</span></div>
+        <div class="tc-row"><span class="tc-k">Best for</span><span class="tc-v">Brainstorming, long drafts on public or generic material, non-sensitive analysis, custom GPTs.</span></div>
+        <div class="tc-row"><span class="tc-k">Watch out</span><span class="tc-v">Do not paste confidential Vanderbilt data here. Those prompts go to Amplify<sup class="cite"><a href="#src3" aria-label="Source 3">3</a></sup>.</span></div>
+        <div class="rs-ev">
+          <span class="rs-stat"><span class="rs-num">0</span><span class="rs-lab">internal records that belong here</span></span>
+          <p>Approved to a lower level than the other two. That is the whole distinction worth remembering.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="rule-strip" role="note">
+      <p class="r">Data classification decides. <b>Level 4, PHI, and HIPAA data go into none of these tools</b>, information about children goes into none of them either, and when you are unsure, it goes to Amplify.</p>
+    </div>
+
+    <div class="honest">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <span><b>Plain English:</b> a <b>data level</b> is Vanderbilt&rsquo;s label for how sensitive a piece of information is, from 1 (public) to 4 (the most restricted). <b>PHI</b> is protected health information. <b>HIPAA</b> is the federal law that governs it. Every term this course uses is listed again in the appendix.</span>
+    </div>
+
+    <!-- ── the drill: pick the tool, three cases ────────────────────────── -->
+    <div class="sec-head" style="margin-top:clamp(40px,6vw,64px);margin-bottom:18px">
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Try it &middot; 45 seconds</span></span>
+      <h3 style="font-family:var(--serif);font-weight:400;font-size:1.6rem">Three cases. Pick the tool.</h3>
+      <p style="font-size:1rem">Nothing is scored or sent anywhere. Pick an answer and the reasoning appears underneath.</p>
+    </div>
+    <div class="qz" data-q data-drill="tools">
+      <p class="qz-q"><b>Case 1.</b> A Teams meeting just ended and you want a recap with owners and due dates. The transcript is sitting in Teams.</p>
+      <button type="button" class="qopt" data-ok="0">Vanderbilt Amplify</button>
+      <button type="button" class="qopt" data-ok="1">Microsoft Copilot</button>
+      <button type="button" class="qopt" data-ok="0">ChatGPT EDU</button>
+      <p class="qz-x" role="status" hidden>Copilot. The transcript already lives in your Microsoft 365 workspace, so nothing has to be pasted anywhere. Amplify would also be safe, and it is the right call if the note-taker is where your transcript actually lives. ChatGPT EDU is the wrong home for an internal meeting.</p>
+    </div>
+    <div class="qz" data-q data-drill="tools">
+      <p class="qz-q"><b>Case 2.</b> You want to sharpen an opening paragraph for a talk about leadership. No Vanderbilt specifics, no names, nothing internal.</p>
+      <button type="button" class="qopt" data-ok="0">Vanderbilt Amplify</button>
+      <button type="button" class="qopt" data-ok="0">Microsoft Copilot</button>
+      <button type="button" class="qopt" data-ok="1">ChatGPT EDU</button>
+      <p class="qz-x" role="status" hidden>ChatGPT EDU. Nothing internal or personal is involved, so the strongest general-purpose model is a fair choice. Amplify would work too and costs you nothing to prefer. The point of this case is that the lower-level tool is genuinely fine when the material is generic.</p>
+    </div>
+    <div class="qz" data-q data-drill="tools">
+      <p class="qz-q"><b>Case 3.</b> A team member disclosed a medical condition and you want help thinking through a schedule accommodation.</p>
+      <button type="button" class="qopt" data-ok="0">Vanderbilt Amplify, because it is approved for internal data</button>
+      <button type="button" class="qopt" data-ok="0">Microsoft Copilot, because the schedule is already in Outlook</button>
+      <button type="button" class="qopt" data-ok="1">None of them. This goes to HR and your HR business partner</button>
+      <button type="button" class="qopt" data-ok="0">ChatGPT EDU, as long as you leave the name out</button>
+      <p class="qz-x" role="status" hidden>None of them. Health information about a person is protected health information, and no approved tool takes it. Take the accommodation to HR and your HR business partner. If you use AI at all here, it is to think about a <em>generic</em> scheduling question with no person attached, no condition named, and no detail that could identify anyone.</p>
+    </div>
+    <p class="qscore" id="toolScore" role="status" aria-live="polite" hidden></p>
+
+    <div class="moment mode-class">
+      <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+      <div><span class="m-label">Together</span>
+      <p>Run the three cases as a room, hands up for each tool before the answer shows. Then take one case from the floor: somebody names a real thing they were about to paste somewhere, and the room sorts it.</p></div>
+    </div>
+    <div class="moment mode-web">
+      <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>
+      <div><span class="m-label">Pause + reflect</span>
+      <p>Think of the last thing you pasted into an AI tool. Would it pass Case 3? If you are not sure how it was classified, that uncertainty is the answer: it belonged in Amplify.</p></div>
+    </div>
+    <div class="bridge"><span class="b-label">Module 01</span><p>Now the frame that goes around every one of these tools, in <em>four words</em>.</p></div>
+  </div>
+</section>
+
+<!-- ═══════════ 04 · MODULE 01 · THE FOUR ANCHORS ═══════════ -->
+<section id="anchors" class="th-dark" aria-label="Module 01: the four anchors">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="you-are">Module 01 of 5. About two minutes.</span>
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Module 01 &middot; Ethical and inclusive practice</span></span>
+      <h2>Four anchors hold the <em class="s">frame</em>.</h2>
+      <p>AI drafts fast and it sounds certain, which is exactly the problem. Certainty is the model&rsquo;s writing style, not evidence that it is right.
+        The leader holds the frame, and four questions from <cite>Harvard Business Review</cite>&rsquo;s AI leadership guidance hold it for you<sup class="cite"><a href="#src6" aria-label="Source 6">6</a></sup>.
+        Run any output through these before you act on it. It takes about fifteen seconds once you know them.</p>
+    </div>
+
+    <div class="roadmap">
+      <article class="rstep">
+        <span class="rno">Anchor 01</span>
+        <h5>Authority</h5>
+        <p>You own the final draft, not the tool. <b>Edit it into your voice before it leaves you.</b> If a message goes out sounding like nobody wrote it, your team will notice, and what they will conclude is that you did not think about them.</p>
+        <p class="anchor-q"><b>Ask:</b> am I editing this in my voice?</p>
+      </article>
+      <article class="rstep">
+        <span class="rno">Anchor 02</span>
+        <h5>Purpose</h5>
+        <p>Tie the output to a goal you can name, near-term or long-term. <b>If it does not advance the goal, it is noise</b>, and polished noise takes up more of your team&rsquo;s attention than rough signal does.</p>
+        <p class="anchor-q"><b>Ask:</b> which goal does this serve?</p>
+      </article>
+      <article class="rstep">
+        <span class="rno">Anchor 03</span>
+        <h5>Accountability</h5>
+        <p>You bear the consequences. <b>Own the call, not the model.</b> No one on the receiving end of a bad decision has ever been comforted by hearing which tool helped make it.</p>
+        <p class="anchor-q"><b>Ask:</b> if this fails, whose name is on it?</p>
+      </article>
+      <article class="rstep">
+        <span class="rno">Anchor 04</span>
+        <h5>Truth</h5>
+        <p>Verify the facts, ask for alternatives, and test what could be wrong before you act. <b>Check any number, quote, or policy</b> the model hands you, especially the ones that sound most quotable.</p>
+        <p class="anchor-q"><b>Ask:</b> what could this be wrong about, and how would I know?</p>
+      </article>
+    </div>
+
+    <div class="rule-strip" role="note">
+      <p class="r">Authority, Purpose, Accountability, Truth. <b>Four questions, fifteen seconds, every time.</b></p>
+    </div>
+
+    <!-- ── the drill: which anchor is missing ───────────────────────────── -->
+    <div class="sec-head" style="margin-top:clamp(40px,6vw,64px);margin-bottom:18px">
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Try it &middot; 45 seconds</span></span>
+      <h3 style="font-family:var(--serif);font-weight:400;font-size:1.6rem">Which anchor did they skip?</h3>
+      <p style="font-size:1rem">Three managers, three near misses. Name the anchor that would have caught it.</p>
+    </div>
+    <div class="qz" data-q data-drill="anchors">
+      <p class="qz-q"><b>1.</b> A manager sends the AI&rsquo;s draft announcement to the whole team without changing a word. Two people reply asking whether a human wrote it.</p>
+      <button type="button" class="qopt" data-ok="1">Authority</button>
+      <button type="button" class="qopt" data-ok="0">Purpose</button>
+      <button type="button" class="qopt" data-ok="0">Accountability</button>
+      <button type="button" class="qopt" data-ok="0">Truth</button>
+      <p class="qz-x" role="status" hidden>Authority. The draft left the building in the model&rsquo;s voice instead of the manager&rsquo;s. One editing pass would have fixed it, and the team would have heard their manager instead of a template.</p>
+    </div>
+    <div class="qz" data-q data-drill="anchors">
+      <p class="qz-q"><b>2.</b> A manager quotes a policy detail from an AI summary in a memo to their director. The policy changed last year and the summary was describing the old version.</p>
+      <button type="button" class="qopt" data-ok="0">Authority</button>
+      <button type="button" class="qopt" data-ok="0">Purpose</button>
+      <button type="button" class="qopt" data-ok="0">Accountability</button>
+      <button type="button" class="qopt" data-ok="1">Truth</button>
+      <p class="qz-x" role="status" hidden>Truth. A confident sentence about policy is exactly the kind of claim to check before it appears in a memo with your name on it. Confidence is the model&rsquo;s style, not its evidence.</p>
+    </div>
+    <div class="qz" data-q data-drill="anchors">
+      <p class="qz-q"><b>3.</b> A manager runs a weekly report through AI, sends it out every Friday, and cannot say what anyone does with it. It has gone out for four months.</p>
+      <button type="button" class="qopt" data-ok="0">Authority</button>
+      <button type="button" class="qopt" data-ok="1">Purpose</button>
+      <button type="button" class="qopt" data-ok="0">Accountability</button>
+      <button type="button" class="qopt" data-ok="0">Truth</button>
+      <p class="qz-x" role="status" hidden>Purpose. Faster production of something nobody reads is not a win, it is the same waste at higher speed. If it does not advance a goal you can name, the right move is to stop sending it.</p>
+    </div>
+    <p class="qscore" id="anchorScore" role="status" aria-live="polite" hidden></p>
+
+    <div class="moment mode-class">
+      <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+      <div><span class="m-label">Together</span>
+      <p>Forty-five seconds, out loud, in pairs. Each person picks one AI output they generated this week and answers all four questions to their partner. The partner&rsquo;s only job is to notice which answer came hardest.</p></div>
+    </div>
+    <div class="moment mode-web">
+      <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>
+      <div><span class="m-label">Do it now &middot; 45 seconds</span>
+      <p>Pick any AI output you generated this week and answer these out loud: Am I editing this in my voice? Which goal does this serve? If it fails, whose name is on it? What could this be wrong about, and how would I know? The one that is hardest to answer is the one worth your next five minutes.</p></div>
+    </div>
+    <div class="bridge"><span class="b-label">Module 02</span><p>One prompt pattern that handles almost everything a manager <em>writes</em>.</p></div>
+  </div>
+</section>
+
+<!-- ═══════════ 05 · MODULE 02 · CLEAR COMMUNICATION ═══════════ -->
+<section id="clarity" class="th-light" aria-label="Module 02: communicate with clarity">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="you-are">Module 02 of 5. About three minutes.</span>
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Module 02 &middot; Direction and delivery &middot; Connection and advocacy</span></span>
+      <h2>One pattern writes <em class="s">anything</em>.</h2>
+      <p>Almost everything a manager writes is one of three things: an announcement, an ask, or the opening of a hard conversation.
+        You do not need three techniques for that. You need one pattern, five parts, and it works the same in all three tools.</p>
+    </div>
+
+    <div class="concept">
+      <span class="c-label">The pattern</span>
+      <p>Give the model the same five things you would give a capable new hire before handing them a draft: who they are being, who is on the other end, what you want, what the limits are, and what shape it should come back in. Then add one line that changes everything: <b>ask me one clarifying question before you draft.</b></p>
+      <p>That last line is the difference between a generic draft and a useful one. A model that asks first writes second, and the question it asks is often the thing you had not decided yet.</p>
+    </div>
+
+    <ul class="pattern">
+      <li><span class="p-k">Role</span><span class="p-v">Who the model is being while it helps you.</span></li>
+      <li><span class="p-k">Context</span><span class="p-v">Who receives this, what they already know, how they might feel.</span></li>
+      <li><span class="p-k">Task</span><span class="p-v">The specific thing you want written, and what it has to achieve.</span></li>
+      <li><span class="p-k">Constraints</span><span class="p-v">Tone, length, vocabulary, and what it must not do.</span></li>
+      <li><span class="p-k">Format</span><span class="p-v">The shape it comes back in: email with a subject line, bullets, two paragraphs.</span></li>
+    </ul>
+
+    <div class="ex-grid">
+      <div class="pcard">
+        <div class="pc-head">
+          <span class="mono">The universal pattern</span>
+          <button type="button" class="btn btn-ghost btn-sm copy-btn" data-copy="patcode">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy pattern</span></button>
+        </div>
+        <pre class="pcode" id="patcode">Role: You are helping a manager at a large research university.
+Context: [Who receives this, what they already know, how they might feel.]
+Task: Draft a [message / agenda / feedback / talking points] that [specific goal].
+Constraints: Warm but direct. Under [X] words. No jargon. Do not invent policy.
+Format: [Email with subject line / bullets / two paragraphs and a closing question.]
+
+Ask me one clarifying question before you draft.</pre>
+        <div class="ttry">
+          <span class="c-label">Try it in</span>
+          <div class="ttry-row">
+            <a class="ttry-card rec" href="https://www.vanderbilt.ai/" target="_blank" rel="noopener">
+              <span class="tt-name">Amplify <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+              <span class="tt-tag">Recommended</span>
+              <span class="tt-why">Manager messages usually carry internal context about your own team. Amplify is the right home, and the when-in-doubt choice.</span>
+            </a>
+            <a class="ttry-card" href="https://copilot.microsoft.com" target="_blank" rel="noopener">
+              <span class="tt-name">Copilot <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+              <span class="tt-tag">Also fine</span>
+              <span class="tt-why">The better choice when you are replying inside an Outlook thread that is already open.</span>
+            </a>
+            <a class="ttry-card" href="https://chat.openai.com" target="_blank" rel="noopener">
+              <span class="tt-name">ChatGPT EDU <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+              <span class="tt-tag">Only if generic</span>
+              <span class="tt-why">Fine when the message names no person, no team, and nothing internal. Strip the specifics or use Amplify instead.</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="ret">
+          <span class="c-label">What comes back</span>
+          <p>A question first, then a draft that is close. It will be a little too smooth and a little too long, and it will use one word you would never say. <b>That is the expected result, not a failure.</b> The draft is the raw material; the next block is where it becomes yours.</p>
+        </div>
+        <div class="edit">
+          <span class="c-label">The rewrite move</span>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span><b>Paste the draft back with your voice in it.</b> &ldquo;Rewrite this in my voice. I tend to be direct, warm, and a little informal. Keep the structure.&rdquo;</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span><b>Two rounds is usually enough.</b> If the third round is not better than the second, the remaining work is yours to do by hand.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span><b>Read the last line out loud before you send.</b> Whatever your team remembers, it will be that one.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── the builder ──────────────────────────────────────────────────── -->
+    <div class="sec-head" style="margin-top:clamp(40px,6vw,64px);margin-bottom:18px">
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Build one &middot; 90 seconds</span></span>
+      <h3 style="font-family:var(--serif);font-weight:400;font-size:1.6rem">Three scenarios, one builder.</h3>
+      <p style="font-size:1rem">Load a scenario to see the pattern filled in, then change the fields to match something you actually have to write.
+        The prompt below updates as you type, and the Copy button takes it to your tool.</p>
+    </div>
+    <div class="pcard" style="max-width:880px">
+      <div class="pc-head">
+        <span class="mono">Load a scenario</span>
+        <button type="button" class="btn btn-ghost btn-sm copy-btn" data-copy="pbcode">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy prompt</span></button>
+      </div>
+      <div class="pb-presets" role="group" aria-label="Load a worked scenario into the builder">
+        <button type="button" class="pb-preset" data-preset="workflow" aria-pressed="false">01 &middot; Workflow change</button>
+        <button type="button" class="pb-preset" data-preset="hard" aria-pressed="false">02 &middot; Hard conversation prep</button>
+        <button type="button" class="pb-preset" data-preset="upward" aria-pressed="false">03 &middot; Decision upward</button>
+        <button type="button" class="pb-preset" data-preset="clear" aria-pressed="false">Clear the fields</button>
+      </div>
+      <div class="crit-form">
+        <label><span class="cf-l">Role</span>
+          <input id="pbRole" type="text" placeholder="You are helping a manager at a large research university." /></label>
+        <label><span class="cf-l">Context</span>
+          <textarea id="pbContext" rows="2" placeholder="Who receives this, what they already know, how they might feel. Describe people by role, never by name."></textarea></label>
+        <label><span class="cf-l">Task</span>
+          <textarea id="pbTask" rows="2" placeholder="Draft a message that announces the change and says what it means for each person's week."></textarea></label>
+        <label><span class="cf-l">Constraints</span>
+          <input id="pbConstraints" type="text" placeholder="Warm but direct. Under 120 words. No jargon. Do not invent policy." /></label>
+        <label><span class="cf-l">Format</span>
+          <input id="pbFormat" type="text" placeholder="Email with a subject line." /></label>
+        <p class="cf-fixed"><span class="cf-l">The clarifying line</span>Ask me one clarifying question before you draft. <span class="cf-note">(built in)</span></p>
+      </div>
+      <pre class="pcode" id="pbcode" aria-live="polite" aria-label="Your prompt, updating as you type">Role: ___
+Context: ___
+Task: ___
+Constraints: ___
+Format: ___
+
+Ask me one clarifying question before you draft.</pre>
+      <p class="hinttxt">Roles, never names. What you type stays in this browser, appears on your printed takeaway, and is never sent anywhere. Reset in the footer clears it.</p>
+      <div class="launch-row">
+        <a class="btn btn-ghost btn-sm" href="https://www.vanderbilt.ai/" target="_blank" rel="noopener">Open Amplify
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+        <a class="btn btn-ghost btn-sm" href="https://copilot.microsoft.com" target="_blank" rel="noopener">Open Copilot
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+        <a class="btn btn-ghost btn-sm" href="https://chat.openai.com" target="_blank" rel="noopener">Open ChatGPT EDU
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+      </div>
+    </div>
+
+    <div class="moment mode-class">
+      <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+      <div><span class="m-label">Together</span>
+      <p>The instructor loads scenario 01 and runs it live on the screen. Then the room supplies the Constraints line out loud, one word at a time, and watches the second draft change. Tables compare which constraint moved the draft most.</p></div>
+    </div>
+    <div class="moment mode-web">
+      <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>
+      <div><span class="m-label">Pause + reflect</span>
+      <p>Load scenario 01, then replace the Context with a real change you have to announce this month. Copy it, run it, and read the clarifying question it asks you. That question is usually the part of the announcement you had not settled yet.</p></div>
+    </div>
+    <div class="bridge"><span class="b-label">Module 03</span><p>The same discipline, aimed at the conversation you are about to <em>have</em>.</p></div>
+  </div>
+</section>
+
+<!-- ═══════════ 06 · MODULE 03 · COACHING PREP ═══════════ -->
+<section id="coach" class="th-dark" aria-label="Module 03: coach better">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="you-are">Module 03 of 5. About three minutes.</span>
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Module 03 &middot; Growth and recognition &middot; Support and empowerment</span></span>
+      <h2>Prepare the conversation you are about to <em class="s">have</em>.</h2>
+      <p>A 2026 scoping review of AI coaching research found that these tools are genuinely useful for the structured parts of coaching:
+        goal setting, reflection prompts, and preparing feedback. The same review is clear about the limits. The model cannot read a room,
+        and it misses cultural nuance that a human coach would catch<sup class="cite"><a href="#src7" aria-label="Source 7">7</a></sup>.
+        So use it as your prep partner and keep the conversation yours.</p>
+    </div>
+
+    <div class="concept">
+      <span class="c-label">The line that matters</span>
+      <p>There is a real difference between <b>preparing</b> a conversation and <b>scripting</b> one. Preparation gives you better questions and a clearer sense of what you are trying to do. A script gives you a performance, and the person across from you can tell.</p>
+      <p>Every prompt in this module ends with a version of the same instruction: <em>do not write scripts.</em> Keep it there. It is the difference between walking in ready and walking in reading.</p>
+    </div>
+
+    <div class="ex-grid">
+      <div class="pcard">
+        <div class="pc-head">
+          <span class="mono">Prompt &middot; 1:1 preparation</span>
+          <button type="button" class="btn btn-ghost btn-sm copy-btn" data-copy="c1code">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy prompt</span></button>
+        </div>
+        <pre class="pcode" id="c1code">I have a 1:1 tomorrow with a direct report. Refer to them only by role, not by name.
+Here are my rough notes from the last two weeks: [paste your notes].
+Their current stretch goal is: [goal].
+
+Give me:
+1. Three open questions that invite reflection, not yes or no answers.
+2. One thing worth recognizing specifically, tied to something in the notes.
+3. One growth edge to explore, phrased as a question rather than a verdict.
+4. A soft closing that hands the next step to them.
+
+Do not write scripts. I want prompts I can adapt in the moment.</pre>
+        <div class="ttry">
+          <span class="c-label">Try it in</span>
+          <div class="ttry-row">
+            <a class="ttry-card rec" href="https://www.vanderbilt.ai/" target="_blank" rel="noopener">
+              <span class="tt-name">Amplify <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+              <span class="tt-tag">Recommended</span>
+              <span class="tt-why">Your notes describe a real person&rsquo;s work. Keep them inside a Vanderbilt tool, with the person described by role only.</span>
+            </a>
+            <a class="ttry-card" href="https://copilot.microsoft.com" target="_blank" rel="noopener">
+              <span class="tt-name">Copilot <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+              <span class="tt-tag">Also fine</span>
+              <span class="tt-why">Approved through your Vanderbilt account, and convenient if your notes already live in OneNote or Word.</span>
+            </a>
+            <span class="ttry-card off" role="note" aria-label="ChatGPT EDU sits this one out">
+              <span class="tt-name">ChatGPT EDU</span>
+              <span class="tt-tag">Sits this one out</span>
+              <span class="tt-why">Notes about a specific employee&rsquo;s performance are internal. They stay in Amplify or Copilot.</span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="pcard">
+        <div class="pc-head">
+          <span class="mono">Prompt &middot; feedback drafting</span>
+          <button type="button" class="btn btn-ghost btn-sm copy-btn" data-copy="c2code">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy prompt</span></button>
+        </div>
+        <pre class="pcode" id="c2code">Help me draft feedback for a team member, described by role only.
+Situation: [what happened, when, who was affected].
+Behavior: [specifically what they did or did not do].
+Impact: [on the team, the project, or our partners].
+
+Give me two versions:
+A) Reinforcing feedback, if the behavior was strong.
+B) Redirecting feedback, if it needs to change.
+
+Both under 90 words, second person, ending with an invitation to respond.
+Do not use the word "just." Do not soften with "great job, but."</pre>
+        <p class="hinttxt" style="margin-top:12px">Situation, Behavior, Impact is a standard feedback structure. Naming all three keeps feedback about what happened rather than about who someone is.</p>
+      </div>
+    </div>
+
+    <!-- ── the drill: spot the weak feedback ────────────────────────────── -->
+    <div class="sec-head" style="margin-top:clamp(40px,6vw,64px);margin-bottom:18px">
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Try it &middot; 45 seconds</span></span>
+      <h3 style="font-family:var(--serif);font-weight:400;font-size:1.6rem">Two drafts came back. Which one do you send?</h3>
+    </div>
+    <div class="qz" data-q data-drill="coach">
+      <p class="qz-q"><b>1.</b> You asked for redirecting feedback about missed handoffs. Which draft goes out?</p>
+      <button type="button" class="qopt" data-ok="0">&ldquo;Great job on the project overall, but I just need you to be more reliable with handoffs going forward.&rdquo;</button>
+      <button type="button" class="qopt" data-ok="1">&ldquo;In the last two sprints, the handoff notes arrived after the receiving team had already started. That cost them about a day of rework each time. What is getting in the way, and what would help?&rdquo;</button>
+      <p class="qz-x" role="status" hidden>The second. It names the situation, the behavior, and the impact, and it ends by inviting a response instead of closing the topic. The first buries the message under praise, uses <em>just</em> to shrink it, and gives the person nothing specific to change.</p>
+    </div>
+    <div class="qz" data-q data-drill="coach">
+      <p class="qz-q"><b>2.</b> The AI hands you a full script for the whole 1:1, opening line to closing line. What do you do with it?</p>
+      <button type="button" class="qopt" data-ok="0">Use it. A prepared script means you will not lose your nerve halfway through.</button>
+      <button type="button" class="qopt" data-ok="1">Keep the two or three questions that feel alive, drop the rest, and walk in with those.</button>
+      <button type="button" class="qopt" data-ok="0">Send it to the team member in advance so they can prepare too.</button>
+      <p class="qz-x" role="status" hidden>Keep the questions, drop the script. The review that grounds this module is direct about it: the model cannot read the room<sup class="cite"><a href="#src7" aria-label="Source 7">7</a></sup>. Questions travel into a live conversation; a script only survives if the other person says their lines.</p>
+    </div>
+    <p class="qscore" id="coachScore" role="status" aria-live="polite" hidden></p>
+
+    <div class="rule-strip" role="note">
+      <p class="r">The five-minute pre-1:1 ritual: notes into Amplify, run the prep prompt, <b>pick the two questions that feel most alive</b>, bring paper, close the laptop, ask.</p>
+    </div>
+
+    <div class="moment mode-class">
+      <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+      <div><span class="m-label">Together</span>
+      <p>In pairs, three minutes each way. One person describes a 1:1 they have coming up, by role only. The partner asks the three open questions from the prompt as if they were the manager. Then swap, and each person names the one question they want to keep.</p></div>
+    </div>
+    <div class="moment mode-web">
+      <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>
+      <div><span class="m-label">Pause + reflect</span>
+      <p>Look at your next 1:1 on the calendar. Copy the prep prompt, paste your last two weeks of notes with the name removed, and run it before that meeting. Five minutes of prep changes what the half hour is worth.</p></div>
+    </div>
+    <div class="bridge"><span class="b-label">Module 04</span><p>Same tools, aimed at the call everyone is <em>waiting on</em>.</p></div>
+  </div>
+</section>
+
+<!-- ═══════════ 07 · MODULE 04 · SHARPER DECISIONS ═══════════ -->
+<section id="decide" class="th-light" aria-label="Module 04: decide with sharper thinking">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="you-are">Module 04 of 5. About three minutes.</span>
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Module 04 &middot; Change and collective learning</span></span>
+      <h2>Wider options before the <em class="s">call</em>.</h2>
+      <p>AI is an extremely persuasive summarizer, and that is the risk. It can argue any side well, which means a strong case for
+        the option you already liked tells you almost nothing. Use it to widen what you can see and to attack your own plan.
+        Then apply judgment, because the judgment is the part that was always yours.</p>
+    </div>
+
+    <div class="concept">
+      <span class="c-label">Two prompts, in this order</span>
+      <p>The first prompt widens: it asks for options that are genuinely different from each other, not three shades of the same idea, plus an early signal you could watch for to tell whether each one is working.</p>
+      <p>The second prompt attacks: it assumes your decision already failed and asks for the retrospective. This is called a <b>premortem</b>, and it works because it is far easier to explain a failure that has happened than to imagine one that has not.</p>
+    </div>
+
+    <div class="ex-grid">
+      <div class="pcard">
+        <div class="pc-head">
+          <span class="mono">Prompt 01 &middot; options and tradeoffs</span>
+          <button type="button" class="btn btn-ghost btn-sm copy-btn" data-copy="d1code">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy prompt</span></button>
+        </div>
+        <pre class="pcode" id="d1code">I am deciding whether to [decision]. Here is what I know: [context].
+The stakeholders are: [list them by role]. Constraints: [budget, timeline, policy].
+
+Give me:
+1. Three distinct options. Not variations on one idea.
+2. For each: the strongest case, the biggest risk, and one signal
+   I could look for in the next 30 days to know if it is working.
+3. One option I probably have not considered.
+
+End with the three questions I should be able to answer before I decide.</pre>
+      </div>
+      <div class="pcard">
+        <div class="pc-head">
+          <span class="mono">Prompt 02 &middot; the premortem</span>
+          <button type="button" class="btn btn-ghost btn-sm copy-btn" data-copy="d2code">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy prompt</span></button>
+        </div>
+        <pre class="pcode" id="d2code">Assume the decision I just described failed badly, six months from now.
+Write the memo my leadership would send explaining what went wrong.
+
+Then work backward: what were the three earliest warning signs we ignored?
+What would a version of me who saw them coming have done differently?</pre>
+        <p class="hinttxt" style="margin-top:12px">Run this one second, on the option you are leaning toward. Read it twice. It is the part managers skip, and it is the part that pays.</p>
+      </div>
+    </div>
+
+    <div class="ttry">
+      <span class="c-label">Try these in</span>
+      <div class="ttry-row">
+        <a class="ttry-card rec" href="https://www.vanderbilt.ai/" target="_blank" rel="noopener">
+          <span class="tt-name">Amplify <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+          <span class="tt-tag">Recommended</span>
+          <span class="tt-why">Real decisions carry budget, staffing, and operational detail about your own unit. That is Levels 1 to 3, and it belongs here.</span>
+        </a>
+        <a class="ttry-card" href="https://copilot.microsoft.com" target="_blank" rel="noopener">
+          <span class="tt-name">Copilot <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+          <span class="tt-tag">Also fine</span>
+          <span class="tt-why">Useful when the numbers behind the decision are already sitting in an Excel file.</span>
+        </a>
+        <span class="ttry-card off" role="note" aria-label="ChatGPT EDU sits this one out">
+          <span class="tt-name">ChatGPT EDU</span>
+          <span class="tt-tag">Sits this one out</span>
+          <span class="tt-why">Budget and staffing detail about your own operation is internal. Send it to Amplify.</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="rule-strip" role="note">
+      <p class="r">The one thing AI cannot do for you: <b>own the decision.</b> Run the four anchors again before you commit, and lean hardest on Truth.</p>
+    </div>
+
+    <!-- ── the drill ────────────────────────────────────────────────────── -->
+    <div class="sec-head" style="margin-top:clamp(40px,6vw,64px);margin-bottom:18px">
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Try it &middot; 30 seconds</span></span>
+      <h3 style="font-family:var(--serif);font-weight:400;font-size:1.6rem">The output is in. What is your next move?</h3>
+    </div>
+    <div class="qz" data-q data-drill="decide">
+      <p class="qz-q"><b>1.</b> You asked for three options and the model came back strongly recommending option A, with a confident case.</p>
+      <button type="button" class="qopt" data-ok="0">Go with A. A clear recommendation is what decision support is for.</button>
+      <button type="button" class="qopt" data-ok="1">Ask for the strongest case against A and what information would change the answer, then decide yourself.</button>
+      <button type="button" class="qopt" data-ok="0">Ask it to confirm A once more in a fresh chat.</button>
+      <p class="qz-x" role="status" hidden>Ask for the counter-case. The model can argue any side persuasively, so a strong case for A tells you little until you have read the strongest case against it. Once you have both, the call is yours to make and yours to own.</p>
+    </div>
+    <div class="qz" data-q data-drill="decide">
+      <p class="qz-q"><b>2.</b> The premortem names a failure you cannot rule out. What does that finding become?</p>
+      <button type="button" class="qopt" data-ok="0">A reason to abandon the decision.</button>
+      <button type="button" class="qopt" data-ok="1">A question to answer before you commit, and a signal to watch for after you do.</button>
+      <button type="button" class="qopt" data-ok="0">A footnote in the memo, so nobody can say you were not warned.</button>
+      <p class="qz-x" role="status" hidden>It becomes a to-check item. A premortem finding is not a veto and it is not paperwork. Every failure reason you cannot rule out is either a question to answer now or a signal to put on your calendar for later.</p>
+    </div>
+    <p class="qscore" id="decideScore" role="status" aria-live="polite" hidden></p>
+
+    <div class="moment mode-class">
+      <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+      <div><span class="m-label">Together</span>
+      <p>Take one real open decision from the room, described by role only. The instructor runs the options prompt live, then the premortem. Tables split the output: one takes the warning signs, one takes the option nobody considered, one takes the three questions. Each reports back in a sentence.</p></div>
+    </div>
+    <div class="moment mode-web">
+      <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>
+      <div><span class="m-label">Pause + reflect</span>
+      <p>Name the decision that has been sitting on your desk longest. Then answer one question honestly: are you waiting because it is genuinely hard, or because you have not yet seen the option that makes it easy? The first prompt is for the second case.</p></div>
+    </div>
+    <div class="bridge"><span class="b-label">Module 05</span><p>Three habits, and the hours they <em>return</em>.</p></div>
+  </div>
+</section>
+
+<!-- ═══════════ 08 · MODULE 05 · THREE HABITS ═══════════ -->
+<section id="hours" class="th-dark" aria-label="Module 05: reclaim time with three habits">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="you-are">Module 05 of 5. About three minutes.</span>
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Module 05 &middot; Direction and delivery</span></span>
+      <h2>Three habits, two hours <em class="s">back</em>.</h2>
+      <p>Small moves that repeat beat big moves that do not. Each habit below attaches to something already on your calendar,
+        so there is nothing new to remember and nothing new to schedule. <b>Pick one to start.</b> Add the next when the first has
+        stopped requiring a decision.</p>
+    </div>
+
+    <div class="habs" role="group" aria-label="Choose the habit you will install first">
+      <button type="button" class="hab" data-habit="recap" aria-pressed="false">
+        <span class="h-no">Habit 01</span>
+        <span class="h-name">The ten-minute meeting recap</span>
+        <span class="h-tool">Copilot in Teams &middot; Amplify note-taker</span>
+        <span class="h-what">After any meeting with a transcript, ask for a five-bullet recap, a decisions list, and an action-item table with owners and due dates. Tell it to flag anything ambiguous as a question rather than inventing an action. Send it within the hour, while people still remember the room.</span>
+        <span class="h-state">Choose this one</span>
+      </button>
+      <button type="button" class="hab" data-habit="triage" aria-pressed="false">
+        <span class="h-no">Habit 02</span>
+        <span class="h-name">The Friday triage</span>
+        <span class="h-tool">Amplify email assistant &middot; Copilot in Outlook</span>
+        <span class="h-what">Take your top ten unresolved threads and ask for them to be clustered three ways: decision needed, information needed, and can be closed. Then ask for a one-line reply for everything in the third pile. Most weeks that pile is bigger than it felt.</span>
+        <span class="h-state">Choose this one</span>
+      </button>
+      <button type="button" class="hab" data-habit="synthesis" aria-pressed="false">
+        <span class="h-no">Habit 03</span>
+        <span class="h-name">The weekly synthesis</span>
+        <span class="h-tool">Amplify &middot; ChatGPT EDU if nothing internal</span>
+        <span class="h-what">Give it your calendar, your notes, and your top three priorities, and ask what you are overspending time on relative to those priorities, and what to cut, delegate, or batch next week. Then decide. The AI does not get a vote on your calendar.</span>
+        <span class="h-state">Choose this one</span>
+      </button>
+    </div>
+    <p class="hab-note" id="habNote" role="status" aria-live="polite">No habit chosen yet. <b>Pick the one that fits the week you actually have</b>, and it will appear on your printed takeaway and in the calendar reminder at the end.</p>
+
+    <div class="pcard" style="max-width:880px;margin-top:24px">
+      <div class="pc-head">
+        <span class="mono" id="habPromptLabel">The prompt for your habit</span>
+        <button type="button" class="btn btn-ghost btn-sm copy-btn" data-copy="habcode">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy prompt</span></button>
+      </div>
+      <pre class="pcode" id="habcode" aria-live="polite">Choose a habit above and its prompt appears here, ready to copy.</pre>
+      <p class="hinttxt">Meeting transcripts, email threads, and your calendar are internal Vanderbilt information. Keep these three habits in Amplify or Copilot through your Vanderbilt account.</p>
+    </div>
+
+    <div class="honest">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <span><b>About the two hours:</b> that is this course&rsquo;s estimate of what these three habits give back in a typical manager&rsquo;s week, not a measured research finding. Treat it as a target to test against your own calendar rather than a number to quote. The honest measure is the one you take yourself: note what the recap habit saves you over two weeks, and you will know your own figure.</span>
+    </div>
+
+    <div class="moment mode-class">
+      <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+      <div><span class="m-label">Together</span>
+      <p>Everyone picks a habit and says it out loud to the table, with the day and time it will happen: &ldquo;Friday triage, 3:30, before I leave.&rdquo; A habit with a slot on the calendar survives; a habit with only good intentions does not. Tables note who picked what, so there is someone to ask in two weeks.</p></div>
+    </div>
+    <div class="moment mode-web">
+      <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>
+      <div><span class="m-label">Pause + reflect</span>
+      <p>Pick your habit above, then put the day and time in your own words below. It prints on your takeaway.</p>
+      <textarea id="cfNote" aria-label="Your commitment: which habit, and when" rows="2" placeholder="My commitment: the Friday triage, 3:30 p.m., before I close the laptop. I'll start this week with&hellip;"></textarea></div>
+    </div>
+    <div class="bridge"><span class="b-label">Next</span><p>The four rules that keep all of this <em>safe</em>.</p></div>
+  </div>
+</section>
+
+<!-- ═══════════ 09 · GUARDRAILS ═══════════ -->
+<section id="guardrails" class="th-light" aria-label="Guardrails">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="you-are">The rules that make the rest of this safe to use.</span>
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Guardrails / 09</span></span>
+      <h2>The four <em class="s">rules</em>.</h2>
+      <p>Managers work with people, money, and records, so this course carries the strictest guardrails in the program.
+        The first rule is the one that matters most, and it is the one people break by accident.</p>
+    </div>
+    <div class="roadmap">
+      <article class="rstep">
+        <span class="rno">Rule 01</span>
+        <h5>Data classification decides</h5>
+        <p><b>Level 4, PHI, and HIPAA data go into none of these tools.</b> Neither does information about children. Levels 1 to 3 belong in Amplify when you are unsure. Describe people by <b>role, never by name</b>. Anything that is really a personnel matter goes to HR and your HR business partner, not a chatbot.</p>
+      </article>
+      <article class="rstep">
+        <span class="rno">Rule 02</span>
+        <h5>The output is a draft, not a decision</h5>
+        <p>The model can inform your thinking and it can propose options. <b>It never makes the call.</b> You design its role for each task, and the judgment stays with you because the consequences do.</p>
+      </article>
+      <article class="rstep">
+        <span class="rno">Rule 03</span>
+        <h5>Interrogate confident answers</h5>
+        <p>Ask what is missing, ask for the counter-case, and check any number, quote, or policy before it moves anything. <b>Confidence is the model&rsquo;s writing style, not a measure of accuracy.</b> Nothing in this course changes that.</p>
+      </article>
+      <article class="rstep">
+        <span class="rno">Rule 04</span>
+        <h5>Own it, in your voice</h5>
+        <p>Edit every draft before it leaves you. <b>Own the message and the call</b>, and disclose substantive AI help to the people who rely on it. If you would be uncomfortable saying how a document was written, that discomfort is information.</p>
+      </article>
+    </div>
+    <div class="launch-row">
+      <a class="btn btn-ghost btn-sm" href="https://www.vanderbilt.ai/" target="_blank" rel="noopener">Open Amplify
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+      <a class="btn btn-ghost btn-sm" href="https://copilot.microsoft.com" target="_blank" rel="noopener">Open Copilot
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+      <a class="btn btn-ghost btn-sm" href="https://chat.openai.com" target="_blank" rel="noopener">Open ChatGPT EDU
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+      <a class="btn btn-ghost btn-sm" href="https://www.vanderbilt.edu/agi/platforms/amplify/" target="_blank" rel="noopener">Read the data policy
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+    </div>
+    <div class="bridge"><span class="b-label">Last step</span><p>Write the thing that is actually on your desk, <em>right now</em>.</p></div>
+  </div>
+</section>
+
+<!-- ═══════════ 10 · PRACTICE NOW ═══════════ -->
+<section id="practice" class="th-dark" aria-label="Practice now">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="you-are">Your turn. One real thing you have to write.</span>
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Practice / 10</span></span>
+      <h2>Write the message on your <em class="s">desk</em>.</h2>
+      <p>Think of something you owe someone this week: an announcement you have been putting off, an agenda,
+        the opening of a conversation you are dreading. Fill in the five fields, roles not names, copy it into your tool,
+        and let the clarifying question do its work. This is the whole habit the course is trying to build,
+        and it is faster to do once than to read about twice.</p>
+    </div>
+
+    <div class="pcard" style="max-width:880px">
+      <div class="pc-head">
+        <span class="mono">Your prompt &middot; type it here</span>
+        <button type="button" class="btn btn-ghost btn-sm copy-btn" data-copy="prcode">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy your prompt</span></button>
+      </div>
+      <div class="crit-form">
+        <label><span class="cf-l">Role</span>
+          <input id="prRole" type="text" placeholder="You are helping a manager at a large research university." /></label>
+        <label><span class="cf-l">Context</span>
+          <textarea id="prContext" rows="2" placeholder="Who receives this, what they already know, how they might feel. People by role, never by name."></textarea></label>
+        <label><span class="cf-l">Task</span>
+          <textarea id="prTask" rows="2" placeholder="The specific thing you want written, and what it has to achieve."></textarea></label>
+        <label><span class="cf-l">Constraints</span>
+          <input id="prConstraints" type="text" placeholder="Warm but direct. Under 150 words. No jargon. Do not invent policy." /></label>
+        <label><span class="cf-l">Format</span>
+          <input id="prFormat" type="text" placeholder="Email with a subject line, then one closing question." /></label>
+        <p class="cf-fixed"><span class="cf-l">The clarifying line</span>Ask me one clarifying question before you draft. <span class="cf-note">(built in)</span></p>
+      </div>
+      <pre class="pcode" id="prcode" aria-live="polite" aria-label="Your prompt, updating as you type">Role: ___
+Context: ___
+Task: ___
+Constraints: ___
+Format: ___
+
+Ask me one clarifying question before you draft.</pre>
+      <p class="hinttxt">Roles, never names. If this is about a specific person, describe the role and leave the name out. What you type stays in this browser, prints on your takeaway, and is never sent anywhere. Reset in the footer clears it.</p>
+      <div class="launch-row">
+        <a class="btn btn-ghost btn-sm" href="https://www.vanderbilt.ai/" target="_blank" rel="noopener">Open Amplify
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+        <a class="btn btn-ghost btn-sm" href="https://copilot.microsoft.com" target="_blank" rel="noopener">Open Copilot
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+        <button type="button" class="btn btn-ghost btn-sm print-btn">Print your takeaway
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 19h16"/></svg></button>
+      </div>
+      <p class="hinttxt" style="margin-top:10px">The takeaway is one page: the four anchors, the pattern, your prompt, the habit you chose, all the module prompts, the guardrails, and the tools. Your browser&rsquo;s print dialog opens; choose Save as PDF to keep it digital.</p>
+    </div>
+
+    <div class="moment mode-class">
+      <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+      <div><span class="m-label">Together</span>
+      <p>In pairs: interview your partner about the message they owe someone and fill in their five fields for them, roles not names. Then swap. When both prompts are written, trade one more thing: each person names the single constraint the other one forgot.</p></div>
+    </div>
+    <div class="bridge"><span class="b-label">Next</span><p>Four quick questions to check that it <em>stuck</em>.</p></div>
+  </div>
+</section>
+
+<!-- ═══════════ 11 · KNOWLEDGE CHECK ═══════════ -->
+<section id="check" class="th-light" aria-label="Knowledge check">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="you-are">Four questions, and none of them are tricks.</span>
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Knowledge check / 11</span></span>
+      <h2>What you&rsquo;ll <em class="s">remember</em>.</h2>
+      <p>Pick an answer on each and you will see right away how you did. Nothing here is scored or sent anywhere.
+        If the version of this course in your learning system includes a graded check, that one replaces this.</p>
+    </div>
+
+    <div class="qz" data-q data-check>
+      <p class="qz-q"><b>1.</b> You are about to paste something into an AI tool and you cannot remember how it is classified. What do you do?</p>
+      <button type="button" class="qopt" data-ok="0">Use ChatGPT EDU, since it is the general-purpose tool</button>
+      <button type="button" class="qopt" data-ok="1">Use Amplify. When you are unsure, Levels 1 to 3 belong there, and if it might be Level 4, PHI, or HIPAA it goes nowhere</button>
+      <button type="button" class="qopt" data-ok="0">Use whichever tool you have open, then delete the chat afterwards</button>
+      <p class="qz-x" role="status" hidden>Amplify, and stop if you suspect it is Level 4, PHI, or HIPAA. Deleting a chat afterwards does not undo the paste, and uncertainty about classification is itself the answer: it goes to the most protected place you have, or nowhere at all.</p>
+    </div>
+
+    <div class="qz" data-q data-check>
+      <p class="qz-q"><b>2.</b> Two prompts for the same announcement. Which one gets the more useful draft?</p>
+      <button type="button" class="qopt" data-ok="0">&ldquo;Write an email announcing that we are moving to weekly stand-ups.&rdquo;</button>
+      <button type="button" class="qopt" data-ok="1">&ldquo;Role: you are helping a manager at a large research university. Context: a team of eight who have asked for fewer meetings, being told there will be one more. Task: announce weekly stand-ups and say what it means for their week. Constraints: warm but direct, under 120 words, no jargon. Format: email with a subject line. Ask me one clarifying question before you draft.&rdquo;</button>
+      <p class="qz-x" role="status" hidden>The second. It carries all five parts of the pattern, and the clarifying line makes the model ask before it writes. The question it asks is usually the part of the announcement you had not decided yet, which is worth more than the draft.</p>
+    </div>
+
+    <div class="qz" data-q data-check>
+      <p class="qz-q"><b>3.</b> A manager pastes a team member&rsquo;s performance review into an AI tool to think through a role change. What went wrong?</p>
+      <button type="button" class="qopt" data-ok="0">Nothing, as long as the tool was Amplify, which is approved for internal data</button>
+      <button type="button" class="qopt" data-ok="1">A named person&rsquo;s performance record went into a chatbot. People are described by role, never by name, and personnel matters go to HR and your HR business partner</button>
+      <button type="button" class="qopt" data-ok="0">The prompt was missing the clarifying line</button>
+      <p class="qz-x" role="status" hidden>Rule one, the strictest in the program. Approved tools are for operational detail, not personal records, and no prompt fix makes a performance review safe to paste. Take the matter to HR. If you use AI to think about the situation at all, describe it as a role with nothing that could identify anyone.</p>
+    </div>
+
+    <div class="qz" data-q data-check>
+      <p class="qz-q"><b>4.</b> The AI hands you a polished draft that reads well and sounds nothing like you. Which anchor is about to be tested?</p>
+      <button type="button" class="qopt" data-ok="1">Authority. You own the final draft, so you edit it into your voice before it leaves you</button>
+      <button type="button" class="qopt" data-ok="0">Purpose. A polished draft has clearly served its purpose</button>
+      <button type="button" class="qopt" data-ok="0">Truth. If it reads well, the facts are probably fine</button>
+      <p class="qz-x" role="status" hidden>Authority. Polish is not the same as ownership, and a team can tell the difference between a message from their manager and a message from a template. One editing pass is the whole fix. Truth still needs its own pass on any number or policy in there.</p>
+    </div>
+
+    <p class="qscore" id="checkScore" role="status" aria-live="polite" hidden></p>
+
+    <div class="honest" style="margin-top:26px">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <span><b>How was this course?</b> One line back is genuinely useful, and it is the only thing here that leaves your browser, because you send it yourself. <a href="mailto:matthew.estes@vanderbilt.edu?subject=Leading%20with%20AI%20feedback">Email the program owner</a> with what worked, what did not, and what you would cut.</span>
+    </div>
+    <div class="bridge"><span class="b-label">Next</span><p>The recap, and the one thing to do <em>this week</em>.</p></div>
+  </div>
+</section>
+
+<!-- ═══════════ 12 · RECAP ═══════════ -->
+<section id="recap" class="th-dark" aria-label="Recap and next steps">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="you-are">The finish line.</span>
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Recap / 12</span></span>
+      <h2>Fifteen minutes, five moves, one <em class="s">frame</em>.</h2>
+      <p>This course is a starting line. The managers who lead best with these tools keep their judgment loud,
+        their voice present, and their team at the center. Everything below fits on one printed page.</p>
+    </div>
+
+    <div class="roadmap three">
+      <div class="rstep">
+        <span class="rno">You learned</span>
+        <h3>One frame</h3>
+        <p><b>Authority, Purpose, Accountability, Truth.</b> Four questions, fifteen seconds, before any output becomes an action. Truth is the one to lean on hardest, because confident writing is the model&rsquo;s default and accuracy is not<sup class="cite"><a href="#src6" aria-label="Source 6">6</a></sup>.</p>
+      </div>
+      <div class="rstep">
+        <span class="rno">You learned</span>
+        <h3>One pattern</h3>
+        <p><b>Role, Context, Task, Constraints, Format</b>, and the line that makes it work: ask me one clarifying question before you draft. It writes announcements, agendas, coaching prep, and the opening of a hard conversation.</p>
+      </div>
+      <div class="rstep">
+        <span class="rno">You learned</span>
+        <h3>One rule about data</h3>
+        <p><b>Data classification decides.</b> Level 4, PHI, HIPAA, and anything about children go into no tool at all. Levels 1 to 3 go to Amplify when you are unsure<sup class="cite"><a href="#src2" aria-label="Source 2">2</a></sup>. People are described by role, never by name.</p>
+      </div>
+    </div>
+
+    <div class="next-steps">
+      <span class="c-label">Do these three things</span>
+      <ol>
+        <li><b>Use your habit three times this week.</b> <span id="recapHabit">Pick one in Module 05 if you have not yet.</span> Three uses is roughly where a habit stops needing a decision.</li>
+        <li><b>Print your takeaway.</b> One page with the anchors, the pattern, your prompt, your habit, every module prompt, and the guardrails.</li>
+        <li><b>Book fifteen minutes with yourself two weeks out.</b> Two questions: did the habit stick, and did every draft still sound like you?</li>
+      </ol>
+      <div class="launch-row" style="margin-top:14px">
+        <button type="button" class="btn btn-primary print-btn">Print your takeaway
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="15" width="12" height="6"/></svg></button>
+        <button type="button" class="btn btn-ghost btn-sm" id="icsBtn">Add the check-in to your calendar
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></button>
+      </div>
+    </div>
+
+    <div class="keepl">
+      <span class="c-label">Keep learning</span>
+      <p>Ready to go deeper? These CHART courses pick up where this one stops, and each is built the same way: about fifteen minutes, one method, one thing you practice.</p>
+      <ul>
+        <li><a href="https://me5231979.github.io/Course_Library/learn/" target="_blank" rel="noopener">Working Smarter</a> <span class="mono">The full AI course for staff</span></li>
+        <li><a href="https://me5231979.github.io/Course_Library/learn/decisions/" target="_blank" rel="noopener">Decisions, sharper</a> <span class="mono">Module 04, in full</span></li>
+        <li><a href="https://me5231979.github.io/Course_Library/learn/drafts/" target="_blank" rel="noopener">First drafts, faster</a> <span class="mono">Module 02, in full</span></li>
+        <li><a href="https://me5231979.github.io/Course_Library/learn/managers/" target="_blank" rel="noopener">Manager Foundations</a> <span class="mono">The Manager Voyage course</span></li>
+      </ul>
+      <p style="margin-top:10px">The whole library lives at <a href="https://me5231979.github.io/Course_Library/" target="_blank" rel="noopener">the CHART program catalog</a>. Want cohorts, workshops, or a community of practice? Write to the program owner.</p>
+    </div>
+
+    <div class="moment mode-class">
+      <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+      <div><span class="m-label">Together</span>
+      <p>Close the room the way you opened it. Around the table, one sentence each: the habit you picked and the day it happens. Then everyone prints the takeaway before they stand up, because nobody prints it later.</p></div>
+    </div>
+    <div class="bridge"><span class="b-label">Appendix</span><p>Every source and every term, <em>in full</em>.</p></div>
+  </div>
+</section>
+
+<!-- ═══════════ 13 · APPENDIX · SOURCES AND GLOSSARY ═══════════ -->
+<section id="sources" class="th-light" aria-label="Appendix: sources and glossary">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="you-are">Every source and every term, cited in full.</span>
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Appendix</span></span>
+      <h2>Where the evidence <em class="s">lives</em>.</h2>
+      <p>Every claim in this course links to a named source with a date. Where a number is this course&rsquo;s own
+        estimate rather than a research finding, it is labelled that way on the page it appears.</p>
+    </div>
+
+    <ol class="src-list">
+      <li class="src" id="src1">
+        <p>Vanderbilt College of Connected Computing, &ldquo;Amplify 2.0 ushers in a new era of AI-powered productivity at Vanderbilt&rdquo; (January 2026).
+          <span class="e-src">Cited for: the Amplify 2.0 feature set available to staff, including the email, scheduling, and note-taker capabilities. <a href="https://computing.vanderbilt.edu/2026/01/06/amplify-2-0-ushers-in-a-new-era-of-ai-powered-productivity-at-vanderbilt/" target="_blank" rel="noopener">computing.vanderbilt.edu/2026/01/06/amplify-2-0-ushers-in-a-new-era-of-ai-powered-productivity-at-vanderbilt</a></span></p>
+      </li>
+      <li class="src" id="src2">
+        <p>Vanderbilt AGI Center, &ldquo;Amplify&rdquo; platform page: data classification and security policy.
+          <span class="e-src">Cited for: which Vanderbilt data levels Amplify accepts, the rule that Level 4, PHI, and HIPAA data go into none of these tools, and the statement that Amplify data is not used to train models. This page is the authority; where this course and that page differ, that page wins. <a href="https://www.vanderbilt.edu/agi/platforms/amplify/" target="_blank" rel="noopener">vanderbilt.edu/agi/platforms/amplify</a></span></p>
+      </li>
+      <li class="src" id="src3">
+        <p>Vanderbilt University, &ldquo;Vanderbilt expands multi-tool AI strategy with ChatGPT Edu, Amplify 2.0 and more,&rdquo; <em>Vanderbilt News</em> (January 2026).
+          <span class="e-src">Cited for: the three-tool strategy this course is built around, and the guidance that confidential Vanderbilt data belongs in Amplify rather than a general-purpose tool. <a href="https://news.vanderbilt.edu/2026/01/12/vanderbilt-expands-multi-tool-ai-strategy-with-chatgpt-edu-amplify-2-0-and-more/" target="_blank" rel="noopener">news.vanderbilt.edu/2026/01/12/vanderbilt-expands-multi-tool-ai-strategy-with-chatgpt-edu-amplify-2-0-and-more</a></span></p>
+      </li>
+      <li class="src" id="src4">
+        <p>OpenAI, &ldquo;Introducing ChatGPT Edu.&rdquo;
+          <span class="e-src">Cited for: the statement that conversations in ChatGPT Edu are not used to train OpenAI&rsquo;s models, and the general-purpose capabilities the tool offers. <a href="https://openai.com/index/introducing-chatgpt-edu/" target="_blank" rel="noopener">openai.com/index/introducing-chatgpt-edu</a></span></p>
+      </li>
+      <li class="src" id="src5">
+        <p>Microsoft, &ldquo;What&rsquo;s new in Microsoft 365 Copilot,&rdquo; Microsoft 365 Copilot Blog (April 2026).
+          <span class="e-src">Cited for: the Copilot capabilities named in Tool 02, including meeting recap and action-item extraction in Teams, email handling in Outlook, and spreadsheet work in Excel. <a href="https://techcommunity.microsoft.com/blog/microsoft365copilotblog/what%E2%80%99s-new-in-microsoft-365-copilot--april-2026/4510935" target="_blank" rel="noopener">techcommunity.microsoft.com/blog/microsoft365copilotblog</a></span></p>
+      </li>
+      <li class="src" id="src6">
+        <p>&ldquo;How to lead when working with AI,&rdquo; summarizing <cite>Harvard Business Review</cite>&rsquo;s four anchors for AI leadership, <em>Business Report</em>.
+          <span class="e-src">Cited for: the four anchors taught in Module 01, Authority, Purpose, Accountability, and Truth, and the framing that the leader rather than the model holds the frame. <a href="https://www.businessreport.com/article/how-to-lead-when-working-with-ai" target="_blank" rel="noopener">businessreport.com/article/how-to-lead-when-working-with-ai</a></span></p>
+      </li>
+      <li class="src" id="src7">
+        <p>&ldquo;Designing AI coaches: a scoping review,&rdquo; <em>Coaching: An International Journal of Theory, Research and Practice</em> (Taylor &amp; Francis, March 2026).
+          <span class="e-src">Cited for: the finding that AI is useful for structured coaching tasks such as goal setting, reflection, and feedback preparation, alongside its documented limits on reading a room and on cultural nuance. <a href="https://www.tandfonline.com/doi/full/10.1080/17521882.2026.2640932" target="_blank" rel="noopener">tandfonline.com/doi/full/10.1080/17521882.2026.2640932</a></span></p>
+      </li>
+      <li class="src" id="src8">
+        <p>Vanderbilt University, &ldquo;Vanderbilt&rsquo;s GenAI tools: what&rsquo;s available and how they&rsquo;re being used,&rdquo; <em>Vanderbilt News</em> (June 2026).
+          <span class="e-src">Cited for: the current picture of which generative AI tools are available to Vanderbilt staff and how colleagues are using them. <a href="https://news.vanderbilt.edu/2026/06/02/vanderbilts-genai-tools-whats-available-and-how-theyre-being-used/" target="_blank" rel="noopener">news.vanderbilt.edu/2026/06/02/vanderbilts-genai-tools-whats-available-and-how-theyre-being-used</a></span></p>
+      </li>
+      <li class="src" id="src9">
+        <p>Chancellor Daniel Diermeier, &ldquo;Daring to Grow,&rdquo; Vanderbilt University (July 2022).
+          <span class="e-src">Cited for: the vision the Chancellor&rsquo;s charge page draws from. Vanderbilt will define the great university of the 21st Century and be it, operating at uncommon speed, agility, and scale; the three areas of focus; and the reputation flywheel. <a href="https://news.vanderbilt.edu/2022/07/01/daring-to-grow-together-we-are-building-the-great-university-of-the-21st-century/" target="_blank" rel="noopener">news.vanderbilt.edu/2022/07/01/daring-to-grow-together-we-are-building-the-great-university-of-the-21st-century</a></span></p>
+      </li>
+    </ol>
+
+    <div class="sec-head" style="margin-top:clamp(40px,6vw,64px);margin-bottom:18px">
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Glossary</span></span>
+      <h3 style="font-family:var(--serif);font-weight:400;font-size:1.6rem">Every technical word this course used.</h3>
+      <p style="font-size:1rem">One line each, in the order you met them.</p>
+    </div>
+    <div class="keepl" style="max-width:900px">
+      <ul>
+        <li><b>AI tool.</b> Software you type an instruction into and get written work back. Amplify, Copilot, and ChatGPT EDU are the three Vanderbilt approves.</li>
+        <li><b>Prompt.</b> The instruction you type. Everything in this course is about writing better ones.</li>
+        <li><b>Model.</b> The system underneath the tool that produces the text. When this course says the model sounds confident, it means the writing style, not a claim about accuracy.</li>
+        <li><b>Data level.</b> Vanderbilt&rsquo;s label for how sensitive information is, from 1 (public) to 4 (most restricted).</li>
+        <li><b>PHI.</b> Protected health information: anything about a person&rsquo;s health that could identify them.</li>
+        <li><b>HIPAA.</b> The federal law governing protected health information.</li>
+        <li><b>SSO.</b> Single sign-on: logging in with your Vanderbilt account rather than a separate password.</li>
+        <li><b>Custom assistant, custom GPT.</b> A saved setup that starts every chat with instructions you wrote once.</li>
+        <li><b>Transcript.</b> The text record a meeting tool makes of what was said.</li>
+        <li><b>Premortem.</b> Assuming a decision has already failed and writing the reasons, so the risks surface before you commit.</li>
+        <li><b>Second-order effect.</b> What happens because of what happens: the consequence of the consequence.</li>
+        <li><b>Situation, Behavior, Impact.</b> A feedback structure: what the moment was, what the person did, what followed.</li>
+        <li><b>Reinforcing and redirecting feedback.</b> Feedback that asks for more of something, and feedback that asks for something different.</li>
+        <li><b>Stretch goal.</b> A goal set slightly beyond current reach, used in development conversations.</li>
+        <li><b>Triage.</b> Sorting a pile by what it needs rather than working through it in order.</li>
+      </ul>
+    </div>
+
+    <p class="prov">Course content assembled from Vanderbilt&rsquo;s published AI guidance and the sources above. Where this course and Vanderbilt&rsquo;s official policy pages differ, <b>the policy pages are correct</b>. Product names (Amplify, Microsoft Copilot, ChatGPT) belong to their respective owners.</p>
+    <p class="prov"><b>Accessibility.</b> This course targets WCAG 2.2 Level AA. Every control works from the keyboard, results and state changes are announced, motion respects your reduced-motion setting, and the page reflows to 320px and to 200% zoom without horizontal scrolling. If anything here is hard to use with your assistive technology, write to <a href="mailto:matthew.estes@vanderbilt.edu">matthew.estes@vanderbilt.edu</a> and it will be fixed.</p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fcenter">
+      <img src="../assets/img/vu-centered-white@2x.png" alt="Vanderbilt University" width="100" height="105" loading="lazy" decoding="async" />
+      <p class="fprogram">Vanderbilt University &middot; The CHART Program &middot; A Managers Voyage course</p>
+      <p class="flegal">&copy; <span id="yr">2026</span> The CHART Program &middot; Vanderbilt. Content reviewed August 2026 &middot; program owner: Matt Estes. Taking it on your own? <a href="../">Use the self-paced edition</a>. An internal training prototype, <b>not an official Vanderbilt University site</b>. Product names (ChatGPT, Amplify, Microsoft Copilot) belong to their respective owners. Accessibility questions or problems: <a href="mailto:matthew.estes@vanderbilt.edu">matthew.estes@vanderbilt.edu</a></p>
+      <p class="flegal"><b>What this course stores:</b> which pages you marked done, the last page you had open, the mode you are in, the habit you picked, and anything you typed into the prompt fields. All of it lives in this browser only and none of it is ever sent anywhere.</p>
+      <span>
+        <button type="button" class="preset" id="progReset">Reset progress<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7M21 3v6h-6"/></svg></button>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════ PRINT-ONLY TAKEAWAY ═══════════════════
+     Hidden on screen; @media print swaps the app for this one page.
+     The mode blocks obey body[data-mode], so a classroom printout carries
+     Discussion notes and a self-paced one carries the commitment block.
+     Nothing here is stored or sent. -->
+<div id="printSummary" aria-hidden="true">
+  <div class="ps-head">
+    <p class="ps-title">Leading with AI</p>
+    <p class="ps-meta">Vanderbilt University &middot; The CHART Program &middot; A Managers Voyage course &middot; me5231979.github.io/AI-Managers/classroom<!-- [EDIT · SCORM] swap for the LMS course link --></p>
+  </div>
+
+  <h2>The frame: four anchors, fifteen seconds</h2>
+  <p><b>Authority:</b> you own the final draft. Edit it in your voice before it leaves you. <b>Ask:</b> am I editing this in my voice?</p>
+  <p><b>Purpose:</b> tie the output to a goal you can name. If it does not advance the goal, it is noise. <b>Ask:</b> which goal does this serve?</p>
+  <p><b>Accountability:</b> you bear the consequences. Own the call, not the model. <b>Ask:</b> if this fails, whose name is on it?</p>
+  <p><b>Truth:</b> verify facts, seek alternatives, test what could be wrong. <b>Ask:</b> what could this be wrong about, and how would I know?</p>
+  <p class="ps-rule">Data classification decides. Level 4, PHI, HIPAA, and information about children go into no tool at all.</p>
+
+  <h2>The pattern that writes almost anything</h2>
+  <div class="ps-pre">Role: You are helping a manager at a large research university.
+Context: [Who receives this, what they already know, how they might feel.]
+Task: Draft a [message / agenda / feedback / talking points] that [specific goal].
+Constraints: Warm but direct. Under [X] words. No jargon. Do not invent policy.
+Format: [Email with subject line / bullets / two paragraphs and a closing question.]
+
+Ask me one clarifying question before you draft.</div>
+  <p><b>The rewrite move:</b> paste the draft back with &ldquo;Rewrite this in my voice. I tend to be [three adjectives]. Keep the structure.&rdquo; Two rounds is usually enough.</p>
+
+  <h2>Your prompt</h2>
+  <div class="ps-pre" id="psPrompt">Role: _________________________________________________________________
+Context: ______________________________________________________________
+Task: _________________________________________________________________
+Constraints: __________________________________________________________
+Format: _______________________________________________________________
+
+Ask me one clarifying question before you draft.</div>
+
+  <h2>The habit you chose</h2>
+  <p id="psHabit">No habit chosen yet. Pick one of the three: the ten-minute meeting recap, the Friday triage, or the weekly synthesis.</p>
+
+  <h2>Prompts you can use this week</h2>
+  <p class="ps-plabel">1 &middot; 1:1 preparation. Amplify or Copilot; describe the person by role only</p>
+  <div class="ps-pre">I have a 1:1 tomorrow with a direct report. Refer to them only by role, not by name.
+Here are my rough notes from the last two weeks: [paste your notes].
+Their current stretch goal is: [goal].
+
+Give me:
+1. Three open questions that invite reflection, not yes or no answers.
+2. One thing worth recognizing specifically, tied to something in the notes.
+3. One growth edge to explore, phrased as a question rather than a verdict.
+4. A soft closing that hands the next step to them.
+
+Do not write scripts. I want prompts I can adapt in the moment.</div>
+  <p class="ps-plabel">2 &middot; Feedback drafting, using Situation, Behavior, Impact</p>
+  <div class="ps-pre">Help me draft feedback for a team member, described by role only.
+Situation: [what happened, when, who was affected].
+Behavior: [specifically what they did or did not do].
+Impact: [on the team, the project, or our partners].
+
+Give me two versions:
+A) Reinforcing feedback, if the behavior was strong.
+B) Redirecting feedback, if it needs to change.
+
+Both under 90 words, second person, ending with an invitation to respond.
+Do not use the word "just." Do not soften with "great job, but."</div>
+  <p class="ps-plabel">3 &middot; Options and tradeoffs, before a decision</p>
+  <div class="ps-pre">I am deciding whether to [decision]. Here is what I know: [context].
+The stakeholders are: [list them by role]. Constraints: [budget, timeline, policy].
+
+Give me:
+1. Three distinct options. Not variations on one idea.
+2. For each: the strongest case, the biggest risk, and one signal
+   I could look for in the next 30 days to know if it is working.
+3. One option I probably have not considered.
+
+End with the three questions I should be able to answer before I decide.</div>
+  <p class="ps-plabel">4 &middot; The premortem, run second, on the option you are leaning toward</p>
+  <div class="ps-pre">Assume the decision I just described failed badly, six months from now.
+Write the memo my leadership would send explaining what went wrong.
+
+Then work backward: what were the three earliest warning signs we ignored?
+What would a version of me who saw them coming have done differently?</div>
+
+  <h2>The guardrails</h2>
+  <ol>
+    <li><b>Data classification decides.</b> Level 4, PHI, HIPAA, and information about children go into no tool at all. Levels 1 to 3 go to Amplify when you are unsure. People are described by ROLE, NEVER BY NAME. Personnel matters go to HR and your HR business partner.</li>
+    <li><b>The output is a draft, not a decision.</b> The model informs and proposes; you make the call.</li>
+    <li><b>Interrogate confident answers.</b> Ask what is missing, ask for the counter-case, check every number, quote, and policy.</li>
+    <li><b>Own it, in your voice.</b> Edit before it leaves you, and disclose substantive AI help to the people who rely on it.</li>
+  </ol>
+
+  <h2>The tools</h2>
+  <p>Vanderbilt Amplify &middot; www.vanderbilt.ai (internal information at Levels 1 to 3; the when-in-doubt choice) &nbsp;&bull;&nbsp; Microsoft Copilot &middot; copilot.microsoft.com (when the source already lives in your VU Microsoft 365 workspace; it inherits your permissions, so check sharing) &nbsp;&bull;&nbsp; ChatGPT EDU &middot; chat.openai.com (only when nothing internal or personal is involved)</p>
+
+  <div class="ps-block mode-class">
+    <h2>Discussion notes</h2>
+    <div class="ps-line"></div><div class="ps-line"></div><div class="ps-line"></div><div class="ps-line"></div>
+  </div>
+  <div class="ps-block mode-web">
+    <h2>My commitment</h2>
+    <p id="psNote" hidden></p>
+    <div class="ps-line"></div><div class="ps-line"></div><div class="ps-line"></div><div class="ps-line"></div>
+  </div>
+
+  <h2>Keep learning</h2>
+  <p class="ps-kl">Working Smarter, the full AI course for staff &middot; me5231979.github.io/Course_Library/learn &nbsp;&bull;&nbsp; Decisions, sharper &middot; /learn/decisions &nbsp;&bull;&nbsp; First drafts, faster &middot; /learn/drafts &nbsp;&bull;&nbsp; Manager Foundations &middot; /learn/managers. This course: me5231979.github.io/AI-Managers/classroom<!-- [EDIT · SCORM] swap the printed URLs for the LMS links --></p>
+  <p class="ps-fine">Sources: 1&nbsp;Amplify 2.0, Vanderbilt College of Connected Computing (Jan 2026) &middot; 2&nbsp;Amplify data classification and security policy, Vanderbilt AGI Center &middot; 3&nbsp;Vanderbilt multi-tool AI strategy, Vanderbilt News (Jan 2026) &middot; 4&nbsp;Introducing ChatGPT Edu, OpenAI &middot; 5&nbsp;What&rsquo;s new in Microsoft 365 Copilot, Microsoft (Apr 2026) &middot; 6&nbsp;How to lead when working with AI, on HBR&rsquo;s four anchors &middot; 7&nbsp;Designing AI coaches: a scoping review, Taylor &amp; Francis (Mar 2026) &middot; 8&nbsp;Vanderbilt&rsquo;s GenAI tools in use, Vanderbilt News (Jun 2026) &middot; 9&nbsp;Chancellor Diermeier, &ldquo;Daring to Grow&rdquo; (2022). The two hours a week is this course&rsquo;s estimate, not a research finding. Internal training prototype; not an official Vanderbilt University site.</p>
+</div>
+
+<!-- ═══════════════════ BOTTOM BOOK BAR ═══════════════════ -->
+<p class="sr" id="pgAnnounce" role="status" aria-live="polite"></p>
+<div class="book-bar" id="bookBar" role="navigation" aria-label="Book controls">
+  <div class="bb-left">
+    <span class="bb-sec" id="bbSec" aria-hidden="true">Welcome</span>
+    <button type="button" class="bb-done" id="bbDone" aria-pressed="false" hidden>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+      <span class="bb-done-t">Mark done</span></button>
+    <!-- the appendix (cited sources) is one tap from every page -->
+    <button type="button" class="bb-done" id="bbAppx" title="Appendix: every source cited in full">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      <span class="bb-done-t">Appendix</span></button>
+  </div>
+  <nav class="bb-dots" id="bbDots" aria-label="Course sections"></nav>
+  <div class="bb-ctl">
+    <span class="bb-count" id="bbCount" aria-live="polite">1 / 1</span>
+    <button type="button" class="bb-btn" id="pgPrev" aria-label="Previous page">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+    <button type="button" class="bb-btn" id="pgNext" aria-label="Next page">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+  </div>
+</div>
+
+<script>
+/* ══════════ THE PAGER: the scroll site becomes a book ══════════
+   Adapted from the Working Smarter course. One section = one page here, so
+   every PLAN entry is whole-mode. If anything fails, the paged class is
+   removed and the original scroll layout stands. Storage: leading-page. */
+(function(){
+'use strict';
+try{
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var main = document.getElementById('main');
+  if(!main) throw new Error('no main');
+  /* section plan: key = hash segment, label = bottom-bar name */
+  var PLAN = [
+    { sel:'section.hero',  key:'home',       label:'Welcome' },
+    { sel:'#mission',      key:'mission',    label:'The Chancellor\u2019s charge' },
+    { sel:'#tools',        key:'tools',      label:'Which tool, which moment' },
+    { sel:'#anchors',      key:'anchors',    label:'Module 01: the four anchors' },
+    { sel:'#clarity',      key:'clarity',    label:'Module 02: clear communication' },
+    { sel:'#coach',        key:'coach',      label:'Module 03: coaching prep' },
+    { sel:'#decide',       key:'decide',     label:'Module 04: sharper decisions' },
+    { sel:'#hours',        key:'hours',      label:'Module 05: three habits' },
+    { sel:'#guardrails',   key:'guardrails', label:'Guardrails' },
+    { sel:'#practice',     key:'practice',   label:'Practice now' },
+    { sel:'#check',        key:'check',      label:'Knowledge check' },
+    { sel:'#recap',        key:'recap',      label:'Recap' },
+    { sel:'#sources',      key:'sources',    label:'Appendix', extras:['footer'] }
+  ];
+  /* dots: the nine pages, in course order (mirrors PROG_SECTIONS below) */
+  var TRACKED = [
+    ['home','01','Welcome'], ['mission','02','The Chancellor\u2019s charge'],
+    ['tools','03','Which tool, which moment'], ['anchors','04','Module 01: the four anchors'],
+    ['clarity','05','Module 02: clear communication'], ['coach','06','Module 03: coaching prep'],
+    ['decide','07','Module 04: sharper decisions'], ['hours','08','Module 05: three habits'],
+    ['guardrails','09','Guardrails'], ['practice','10','Practice now'],
+    ['check','11','Knowledge check'], ['recap','12','Recap'], ['sources','13','Appendix']
+  ];
+  var pages = [];       /* { el, key, secLabel, pgLabel, n } */
+  var secFirst = {};    /* key -> first page index */
+  var topSpan = document.getElementById('top');
+  var frag = document.createDocumentFragment();
+
+  function mkPage(key, secLabel, pgLabel){
+    var art = document.createElement('article');
+    art.className = 'page';
+    art.setAttribute('data-sec', key);
+    art.setAttribute('data-label', pgLabel);
+    art.setAttribute('aria-hidden', 'true');
+    art.tabIndex = -1;
+    if('inert' in art) art.inert = true;
+    if(!(key in secFirst)) secFirst[key] = pages.length;
+    var meta = { el:art, key:key, secLabel:secLabel, pgLabel:pgLabel, n:1 };
+    pages.push(meta);
+    frag.appendChild(art);
+    return meta;
+  }
+  PLAN.forEach(function(cfg){
+    var S = main.querySelector(cfg.sel) || document.querySelector(cfg.sel);
+    if(!S) return;
+    var pg = mkPage(cfg.key, cfg.label, cfg.label);
+    pg.el.appendChild(S);
+    (cfg.extras || []).forEach(function(x){
+      var ex = (x === 'footer') ? document.querySelector('body > footer') : main.querySelector(x);
+      if(ex) pg.el.appendChild(ex);
+    });
+  });
+  if(!pages.length) throw new Error('no pages');
+  pages.forEach(function(p){ p.el.setAttribute('aria-label', p.secLabel); });
+  /* rebuild the stage */
+  while(main.firstChild) main.removeChild(main.firstChild);
+  main.appendChild(frag);
+  if(topSpan && pages[0]) pages[0].el.insertBefore(topSpan, pages[0].el.firstChild);
+  var more = document.createElement('span');
+  more.id = 'pgMore';
+  more.setAttribute('aria-hidden', 'true');
+  more.innerHTML = 'Scroll for more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
+  main.appendChild(more);
+
+  /* bottom bar */
+  var bbSec = document.getElementById('bbSec'), bbDots = document.getElementById('bbDots'),
+      bbCount = document.getElementById('bbCount'),
+      prevBtn = document.getElementById('pgPrev'), nextBtn = document.getElementById('pgNext');
+  if(bbDots){
+    bbDots.innerHTML = TRACKED.map(function(s){
+      return '<a class="bb-dot" href="#p/' + s[0] + '/1" data-rail="' + s[0] + '"' +
+        ' title="' + s[1] + ' · ' + s[2] + ' · not yet" aria-label="' + s[2] + ', not done">' +
+        '<span class="dot" aria-hidden="true"></span></a>';
+    }).join('');
+  }
+
+  var cur = -1, animT = null;
+  var store = (function(){
+    try{ var t = 'leading-page-test'; window.localStorage.setItem(t,'1'); window.localStorage.removeItem(t); return window.localStorage; }
+    catch(e){ return null; }
+  })();
+  function writeHash(p){
+    try{ window.history.replaceState(null, '', '#p/' + p.key + '/' + p.n); }catch(e){}
+    if(store){ try{ store.setItem('leading-page', p.key + '/' + p.n); }catch(e){} }
+  }
+  function hashIndex(h){
+    if(!h) return null;
+    h = String(h).replace(/^#/, '');
+    if(!h) return null;
+    if(h.indexOf('p/') === 0){
+      var bits = h.split('/');
+      var k = bits[1];
+      return (k in secFirst) ? secFirst[k] : null;
+    }
+    if(h === 'top' || h === 'main') return 0;
+    var el = document.getElementById(h);
+    if(!el) return null;
+    var pg = el.closest ? el.closest('.page') : null;
+    if(!pg) return null;
+    for(var j = 0; j < pages.length; j++){ if(pages[j].el === pg) return j; }
+    return null;
+  }
+  function checkMore(){
+    if(cur < 0) return;
+    var el = pages[cur].el;
+    var scrollable = el.scrollHeight - el.clientHeight > 24;
+    var nearEnd = el.scrollTop + el.clientHeight >= el.scrollHeight - 32;
+    main.classList.toggle('more', scrollable && !nearEnd);
+    /* A page that scrolls is a scrollable region, and WCAG asks that one be
+       reachable from the keyboard so it can be scrolled without a mouse. Some
+       pages (the welcome, the appendix) hold no control at all, so the article
+       itself joins the tab order while it overflows and leaves again when it
+       does not. Pages that do not scroll stay at -1, which is all the pager
+       needs to move focus on a page turn. */
+    el.tabIndex = scrollable ? 0 : -1;
+  }
+  var announce = document.getElementById('pgAnnounce');
+  function updateBar(){
+    var p = pages[cur];
+    if(bbSec) bbSec.textContent = p.secLabel;
+    if(bbCount) bbCount.textContent = (cur + 1) + ' / ' + pages.length;
+    /* Turning the page from the bottom bar leaves focus on the Next button,
+       which is where a keyboard user wants it. Nothing would otherwise tell a
+       screen reader that the content behind it changed, so the new page names
+       itself here. */
+    if(announce) announce.textContent = p.secLabel + ', page ' + (cur + 1) + ' of ' + pages.length;
+    if(prevBtn) prevBtn.disabled = cur === 0;
+    if(nextBtn) nextBtn.disabled = cur === pages.length - 1;
+    document.querySelectorAll('.bb-dot').forEach(function(a){
+      var on = a.getAttribute('data-rail') === p.key;
+      a.classList.toggle('cur', on);
+      if(on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+    });
+  }
+  function clearAnim(){
+    pages.forEach(function(p){ p.el.classList.remove('pg-in-r','pg-in-l','pg-out','pg-out-l','pg-out-r'); });
+  }
+  function go(i, opts){
+    opts = opts || {};
+    if(typeof i !== 'number' || i < 0 || i >= pages.length) return;
+    if(i === cur){ if(opts.focus) pages[i].el.focus({ preventScroll:true }); return; }
+    var from = cur >= 0 ? pages[cur] : null;
+    var to = pages[i];
+    var dir = from && i < cur ? -1 : 1;
+    cur = i;
+    if(animT){ window.clearTimeout(animT); animT = null; clearAnim(); }
+    to.el.scrollTop = 0;
+    to.el.classList.add('cur');
+    to.el.removeAttribute('aria-hidden');
+    if('inert' in to.el) to.el.inert = false;
+    if(from){
+      from.el.classList.remove('cur');
+      from.el.setAttribute('aria-hidden', 'true');
+      /* the outgoing page stays in the DOM through the turn animation, so it
+         leaves the tab order at the same moment it becomes aria-hidden.
+         checkMore() puts the incoming page back in if it scrolls. */
+      from.el.tabIndex = -1;
+      /* The outgoing page is still painted for the length of the turn, and it
+         holds real links and buttons. aria-hidden alone would leave them
+         reachable by Tab during that window, so the page is made inert for as
+         long as it is not the current one. */
+      if('inert' in from.el) from.el.inert = true;
+      if(!reduce){
+        to.el.classList.add(dir > 0 ? 'pg-in-r' : 'pg-in-l');
+        from.el.classList.add('pg-out', dir > 0 ? 'pg-out-l' : 'pg-out-r');
+        animT = window.setTimeout(function(){ animT = null; clearAnim(); }, 420);
+      }
+      /* focus must never be stranded in a hidden page */
+      var ae = document.activeElement;
+      if(opts.focus || (ae && from.el.contains(ae))) to.el.focus({ preventScroll:true });
+    } else if(opts.focus){
+      to.el.focus({ preventScroll:true });
+    }
+    updateBar();
+    writeHash(to);
+    checkMore();
+    try{
+      document.dispatchEvent(new CustomEvent('lead:page', { detail:{ key:to.key, index:cur, label:to.pgLabel } }));
+    }catch(e){}
+  }
+  window.leadPager = {
+    go: go,
+    goToKey: function(k){ if(k in secFirst) go(secFirst[k]); },
+    current: function(){ return cur >= 0 ? { key: pages[cur].key, index: cur } : { key:'', index:0 }; },
+    count: pages.length
+  };
+
+  /* in-page anchors turn pages instead of scrolling */
+  document.addEventListener('click', function(e){
+    if(e.defaultPrevented) return;
+    var a = e.target && e.target.closest ? e.target.closest('a[href^="#"]') : null;
+    if(!a) return;
+    var href = a.getAttribute('href');
+    if(!href || href === '#') return;
+    var id = href.slice(1);
+    if(id === 'main'){ e.preventDefault(); if(cur >= 0) pages[cur].el.focus({ preventScroll:true }); return; }
+    var idx = hashIndex(href);
+    if(idx === null) return;
+    e.preventDefault();
+    go(idx, { focus:true });
+    var el = document.getElementById(id);
+    if(el && pages[idx].el.contains(el) && el !== pages[idx].el){
+      try{ el.scrollIntoView({ block:'start' }); }catch(err){}
+    }
+  });
+  window.addEventListener('hashchange', function(){
+    var idx = hashIndex(window.location.hash);
+    if(idx !== null && idx !== cur) go(idx);
+  });
+  /* book controls */
+  if(prevBtn) prevBtn.addEventListener('click', function(){ go(cur - 1); });
+  if(nextBtn) nextBtn.addEventListener('click', function(){ go(cur + 1); });
+  document.addEventListener('keydown', function(e){
+    if(e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+    if(e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+    var t = e.target;
+    if(t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.tagName === 'SELECT' || t.isContentEditable)) return;
+    if(document.body.classList.contains('menu-open')) return;
+    e.preventDefault();
+    go(cur + (e.key === 'ArrowRight' ? 1 : -1));
+  });
+  /* touch swipe: horizontal, ~50px threshold, ignores mostly-vertical drags */
+  var sx = 0, sy = 0, swiping = false;
+  main.addEventListener('touchstart', function(e){
+    if(e.touches.length === 1){ sx = e.touches[0].clientX; sy = e.touches[0].clientY; swiping = true; }
+    else swiping = false;
+  }, { passive:true });
+  main.addEventListener('touchend', function(e){
+    if(!swiping) return;
+    swiping = false;
+    var t = e.changedTouches && e.changedTouches[0];
+    if(!t) return;
+    var dx = t.clientX - sx, dy = t.clientY - sy;
+    if(Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) go(cur + (dx < 0 ? 1 : -1));
+  }, { passive:true });
+  /* internal-scroll affordance */
+  window.addEventListener('resize', checkMore, { passive:true });
+  document.addEventListener('scroll', function(e){
+    if(cur >= 0 && e.target === pages[cur].el) checkMore();
+  }, true);
+  window.addEventListener('load', checkMore);
+  if(window.ResizeObserver){
+    try{
+      var ro = new ResizeObserver(function(){ checkMore(); });
+      pages.forEach(function(p){
+        Array.prototype.slice.call(p.el.children).forEach(function(ch){ ro.observe(ch); });
+      });
+    }catch(e){}
+  }
+
+  /* open at: deep link > page one. The course always starts on the
+     mode question; only an explicit #p/... hash overrides that. */
+  var startIdx = hashIndex(window.location.hash);
+  go(startIdx === null ? 0 : startIdx);
+}catch(err){
+  /* build failed: fall back to the original scroll layout */
+  document.documentElement.classList.remove('paged');
+  var bar = document.getElementById('bookBar');
+  if(bar) bar.hidden = true;
+}
+})();
+</script>
+
+<script src="../assets/js/qrcode.js"></script>
+<script>
+/* build-time constants: the edition's default mode and its own URL */
+var DEFAULT_MODE = "class";
+var COURSE_URL = "me5231979.github.io/AI-Managers/classroom";
+(function(){
+'use strict';
+var yr = document.getElementById('yr'); if(yr) yr.textContent = new Date().getFullYear();
+
+/* ══════════ storage: one guarded handle, one prefix ══════════
+   Everything this course remembers is a leading-* key in this browser's
+   localStorage. Private windows and blocked-storage settings throw on the
+   first write, so the handle is probed once and every read falls back to an
+   in-memory object. Nothing is ever sent anywhere. */
+var K = 'leading-';
+var mem = {};
+var store = (function(){
+  try{
+    var t = K + 'probe';
+    window.localStorage.setItem(t, '1');
+    window.localStorage.removeItem(t);
+    return window.localStorage;
+  }catch(e){ return null; }
+})();
+function getVal(k){
+  if(store){ try{ var v = store.getItem(K + k); if(v !== null) return v; }catch(e){} }
+  return (k in mem) ? mem[k] : null;
+}
+function setVal(k, v){
+  if(v === null || v === ''){ delete mem[k]; if(store){ try{ store.removeItem(K + k); }catch(e){} } return; }
+  mem[k] = v;
+  if(store){ try{ store.setItem(K + k, v); }catch(e){} }
+}
+
+/* ══════════ QR: encodes the hosted URL, drawn client-side (no network) ══════════ */
+var qrBox = document.getElementById('qrBox');
+if(qrBox && typeof qrcode === 'function'){
+  var qrCard = document.getElementById('qrCard');
+  var qrTarget = (qrCard && qrCard.getAttribute('data-url')) ||
+    (location.protocol === 'file:' ? '' : location.origin + location.pathname);
+  var qrUrlEl = document.getElementById('qrUrl');
+  if(qrTarget){
+    try{
+      var qr = qrcode(0, 'M');
+      qr.addData(qrTarget);
+      qr.make();
+      qrBox.innerHTML = qr.createSvgTag({ scalable:true, margin:2 });
+      if(qrUrlEl) qrUrlEl.textContent = qrTarget.replace(/^https?:\/\//, '').replace(/\/$/, '');
+    }catch(err){
+      if(qrBox.parentElement) qrBox.parentElement.style.display = 'none';
+    }
+  } else {
+    if(qrUrlEl) qrUrlEl.textContent = 'QR appears when the site is hosted';
+    qrBox.innerHTML = '<div style="width:100%;aspect-ratio:1;display:grid;place-items:center;border:1px dashed #E4E4E4;color:#555;font-family:Inter,Arial,sans-serif;font-size:.8rem;padding:1rem;text-align:center">Deploy to generate the QR code</div>';
+  }
+}
+
+/* ══════════ nav shade + mobile menu ══════════ */
+var nav = document.getElementById('nav');
+function navShade(idx){ if(nav) nav.classList.toggle('scrolled', idx > 0); }
+document.addEventListener('lead:page', function(ev){ navShade(ev.detail ? ev.detail.index : 0); });
+if(window.leadPager) navShade(window.leadPager.current().index);
+
+var menuBtn = document.getElementById('menuBtn'), mobileMenu = document.getElementById('mobileMenu');
+function setMenu(open){
+  var wasOpen = document.body.classList.contains('menu-open');
+  document.body.classList.toggle('menu-open', open);
+  if(menuBtn){ menuBtn.setAttribute('aria-expanded', open?'true':'false'); menuBtn.setAttribute('aria-label', open?'Close menu':'Open menu'); }
+  if(open && mobileMenu){
+    var first = mobileMenu.querySelector('a');
+    if(first) first.focus();
+  } else if(wasOpen && !open && menuBtn){
+    menuBtn.focus();
+  }
+}
+if(menuBtn) menuBtn.addEventListener('click', function(){ setMenu(!document.body.classList.contains('menu-open')); });
+if(mobileMenu) mobileMenu.addEventListener('click', function(e){ if(e.target.closest('a')) setMenu(false); });
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') setMenu(false); });
+/* trap Tab inside the open mobile menu */
+document.addEventListener('keydown', function(e){
+  if(e.key !== 'Tab' || !document.body.classList.contains('menu-open') || !mobileMenu) return;
+  var items = Array.prototype.slice.call(mobileMenu.querySelectorAll('a'));
+  if(menuBtn) items.unshift(menuBtn);
+  if(!items.length) return;
+  var first = items[0], last = items[items.length - 1];
+  var active = document.activeElement, idx = items.indexOf(active);
+  if(idx === -1){ e.preventDefault(); first.focus(); }
+  else if(e.shiftKey && active === first){ e.preventDefault(); last.focus(); }
+  else if(!e.shiftKey && active === last){ e.preventDefault(); first.focus(); }
+});
+
+/* ══════════ MODE: classroom vs self-paced ══════════
+   Each edition ships with its own default (DEFAULT_MODE, written by the
+   build). body[data-mode] decides which .mode-* blocks render, on screen and
+   in the print takeaway. The bottom-bar switch exists so a learner who lands
+   on the wrong edition is never stuck with the wrong instructions. */
+var modeMem = DEFAULT_MODE;
+function modeGet(){
+  var v = getVal('mode-locked');
+  return (v === 'class' || v === 'web') ? v : modeMem;
+}
+function modeSet(v){
+  modeMem = (v === 'class') ? 'class' : 'web';
+  setVal('mode-locked', modeMem);
+  modeRender();
+}
+var bbModeBtn = document.getElementById('bbMode'), bbModeT = document.getElementById('bbModeT'),
+    bbModeIcC = document.getElementById('bbModeIcClass'), bbModeIcW = document.getElementById('bbModeIcWeb');
+function modeRender(){
+  var m = modeGet();
+  document.body.setAttribute('data-mode', m);
+  if(bbModeT) bbModeT.textContent = m === 'class' ? 'Mode: class' : 'Mode: solo';
+  /* attribute, not property: SVGElement has no .hidden IDL, so the property would be an inert expando */
+  if(bbModeIcC){ if(m === 'class') bbModeIcC.removeAttribute('hidden'); else bbModeIcC.setAttribute('hidden',''); }
+  if(bbModeIcW){ if(m === 'web') bbModeIcW.removeAttribute('hidden'); else bbModeIcW.setAttribute('hidden',''); }
+  if(bbModeBtn){
+    bbModeBtn.setAttribute('aria-label', m === 'class'
+      ? 'Mode: in a classroom. Select to switch to self-paced.'
+      : 'Mode: self-paced. Select to switch to classroom.');
+    bbModeBtn.setAttribute('title', m === 'class' ? 'Switch to self-paced' : 'Switch to classroom');
+  }
+}
+if(bbModeBtn) bbModeBtn.addEventListener('click', function(){ modeSet(modeGet() === 'class' ? 'web' : 'class'); });
+
+/* ══════════ the prompt builder ══════════
+   Two instances of the same five-field builder: one in Module 02 loaded from
+   worked scenarios, one in Practice for the learner's own message. Each keeps
+   a live <pre> preview in step with the fields, persists what was typed, and
+   feeds the print takeaway. The Interview-style clarifying line is fixed, so
+   it is printed rather than typed and can never be edited away by accident. */
+var CLARIFY = 'Ask me one clarifying question before you draft.';
+var FIELDS = ['Role', 'Context', 'Task', 'Constraints', 'Format'];
+
+function Builder(prefix, preId){
+  var self = this;
+  this.prefix = prefix;
+  this.pre = document.getElementById(preId);
+  this.els = {};
+  FIELDS.forEach(function(f){
+    var el = document.getElementById(prefix + f);
+    if(!el) return;
+    self.els[f] = el;
+    var saved = getVal(prefix + '-' + f.toLowerCase());
+    if(saved) el.value = saved;
+    el.addEventListener('input', function(){
+      setVal(prefix + '-' + f.toLowerCase(), el.value.trim() ? el.value : null);
+      self.render();
+      if(self.onInput) self.onInput();
+    });
+  });
+  this.render();
+}
+Builder.prototype.text = function(){
+  var self = this;
+  var lines = FIELDS.map(function(f){
+    var el = self.els[f];
+    var v = el && el.value.trim();
+    return f + ': ' + (v || '___');
+  });
+  return lines.join('\n') + '\n\n' + CLARIFY;
+};
+Builder.prototype.filled = function(){
+  var self = this;
+  return FIELDS.every(function(f){ var el = self.els[f]; return el && el.value.trim(); });
+};
+Builder.prototype.touched = function(){
+  var self = this;
+  return FIELDS.some(function(f){ var el = self.els[f]; return el && el.value.trim(); });
+};
+Builder.prototype.set = function(values){
+  var self = this;
+  FIELDS.forEach(function(f){
+    var el = self.els[f];
+    if(!el) return;
+    el.value = values && values[f] ? values[f] : '';
+    setVal(self.prefix + '-' + f.toLowerCase(), el.value || null);
+  });
+  this.render();
+};
+Builder.prototype.render = function(){ if(this.pre) this.pre.textContent = this.text(); };
+
+var pb = new Builder('pb', 'pbcode');   /* Module 02, with presets */
+var pr = new Builder('pr', 'prcode');   /* Practice, the learner's own */
+
+/* the three worked scenarios behind the Module 02 preset buttons */
+var PRESETS = {
+  workflow: {
+    Role: 'You are helping a manager at a large research university.',
+    Context: 'A team of eight who have asked for fewer meetings, about to be told there will be one more. They are already stretched and this will land as one more demand unless the reason is clear.',
+    Task: 'Draft an email announcing a shift to weekly stand-ups, and say plainly what it replaces and what it means for their week.',
+    Constraints: 'Warm but direct. Under 120 words. No jargon. Do not invent policy. Name what this replaces.',
+    Format: 'Email with a subject line.'
+  },
+  hard: {
+    Role: 'You are helping a manager prepare for a difficult conversation. You are not writing the conversation.',
+    Context: 'A direct report, described by role only, has missed three deadlines this month. Their work was strong before this. I do not know yet what changed, and I want to find out before I decide anything.',
+    Task: 'Help me prepare. Give me an opening, three curious questions, and one boundary I need to state clearly.',
+    Constraints: 'Do not script what they should say. Do not assume the cause. Nothing that sounds rehearsed.',
+    Format: 'Opening, then the three questions as a list, then the boundary in one sentence.'
+  },
+  upward: {
+    Role: 'You are a skeptical director reading a one-page memo from someone who reports to you.',
+    Context: 'I need a decision from my director about adding evening coverage. They have about four minutes and they will want the recommendation first.',
+    Task: 'Turn the bullets I paste below into a one-page memo. Lead with the recommendation, then the reasoning, then one risk and one open question.',
+    Constraints: 'Under 400 words. No throat-clearing. Do not invent numbers I have not given you.',
+    Format: 'One page: recommendation, reasoning, risk, open question.'
+  }
+};
+var presetBtns = document.querySelectorAll('.pb-preset');
+function presetSync(name){
+  presetBtns.forEach(function(b){
+    b.setAttribute('aria-pressed', b.getAttribute('data-preset') === name ? 'true' : 'false');
+  });
+}
+presetBtns.forEach(function(b){
+  b.addEventListener('click', function(){
+    var name = b.getAttribute('data-preset');
+    if(name === 'clear'){ pb.set(null); presetSync(null); }
+    else { pb.set(PRESETS[name]); presetSync(name); }
+    progAuto('clarity');
+    /* the preview is what changed, so send focus there rather than leaving it
+       on a button whose pressed state no longer describes the page */
+    if(pb.pre){ pb.pre.setAttribute('tabindex', '-1'); pb.pre.focus(); }
+  });
+});
+
+/* ══════════ Module 05: the habit picker ══════════
+   A single-choice toggle group. The chosen habit drives the prompt block on
+   the page, the line in the recap, the printed takeaway, and the wording of
+   the calendar reminder. */
+var HABITS = {
+  recap: {
+    name: 'The ten-minute meeting recap',
+    when: 'after every meeting that has a transcript, within the hour',
+    tool: 'Copilot in Teams, or the Amplify note-taker',
+    prompt: 'Here is the transcript from the meeting that just ended.\n\nGive me:\n1. A five-bullet recap.\n2. A decisions list: what we actually decided, not what we discussed.\n3. An action-item table with owners and due dates.\n\nFlag anything ambiguous as a question rather than inventing an action or an owner.\nKeep it short enough to read on a phone.'
+  },
+  triage: {
+    name: 'The Friday triage',
+    when: 'Friday afternoon, before you close the laptop',
+    tool: 'the Amplify email assistant, or Copilot in Outlook',
+    prompt: 'Here are my top ten unresolved email threads.\n\nCluster them three ways:\n1. Decision needed from me.\n2. Information needed from someone else.\n3. Can be closed today.\n\nFor everything in group 3, draft a one-line reply I can send as it is.\nFor group 1, tell me what decision each one is actually asking for.'
+  },
+  synthesis: {
+    name: 'The weekly synthesis',
+    when: 'once a week, at the end of the week',
+    tool: 'Amplify, or ChatGPT EDU only if nothing internal is involved',
+    prompt: 'Here is my calendar for last week, my notes, and my top three priorities.\n\nTell me:\n1. What I am overspending time on relative to those three priorities.\n2. What to cut, what to delegate, and what to batch next week.\n3. Anything on the calendar that no longer connects to a priority at all.\n\nBe specific about which meetings. Do not soften it.'
+  }
+};
+var habBtns = document.querySelectorAll('.hab');
+var habNote = document.getElementById('habNote');
+var habPre = document.getElementById('habcode');
+var habLabel = document.getElementById('habPromptLabel');
+var recapHabit = document.getElementById('recapHabit');
+
+function habitRender(){
+  var key = getVal('habit');
+  var h = key && HABITS[key];
+  habBtns.forEach(function(b){
+    var on = b.getAttribute('data-habit') === key;
+    b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    var state = b.querySelector('.h-state');
+    if(state) state.textContent = on ? 'Chosen' : 'Choose this one';
+  });
+  if(habNote){
+    habNote.innerHTML = h
+      ? 'You chose <b>' + h.name + '</b>, ' + h.when + ', using ' + h.tool + '. It is on your printed takeaway and in the calendar reminder at the end.'
+      : 'No habit chosen yet. <b>Pick the one that fits the week you actually have</b>, and it will appear on your printed takeaway and in the calendar reminder at the end.';
+  }
+  if(habPre) habPre.textContent = h ? h.prompt : 'Choose a habit above and its prompt appears here, ready to copy.';
+  if(habLabel) habLabel.textContent = h ? ('The prompt for ' + h.name.replace(/^The /, 'the ')) : 'The prompt for your habit';
+  if(recapHabit){
+    recapHabit.textContent = h
+      ? ('You chose ' + h.name + ', ' + h.when + '.')
+      : 'Pick one in Module 05 if you have not yet.';
+  }
+}
+habBtns.forEach(function(b){
+  b.addEventListener('click', function(){
+    var key = b.getAttribute('data-habit');
+    setVal('habit', getVal('habit') === key ? null : key);
+    habitRender();
+    if(getVal('habit')) progAuto('hours');
+  });
+});
+
+/* the self-paced commitment note, printed on the takeaway */
+var cfNote = document.getElementById('cfNote');
+if(cfNote){
+  var savedNote = getVal('note');
+  if(savedNote) cfNote.value = savedNote;
+  cfNote.addEventListener('input', function(){
+    setVal('note', cfNote.value.trim() ? cfNote.value : null);
+    if(cfNote.value.trim()) progAuto('hours');
+  });
+}
+
+/* ══════════ drills and the knowledge check ══════════
+   One engine for every [data-q] block. The verdict is injected as real text
+   ("This one" / "Not this one") rather than carried by border color alone,
+   because the approved palette has no red and because color is never the
+   only channel. The explanation is a role="status" region, so a screen
+   reader hears it the moment it appears. */
+function verdict(btn, ok){
+  var mark = btn.querySelector('.qmark');
+  if(!mark){
+    mark = document.createElement('span');
+    mark.className = 'qmark';
+    btn.appendChild(mark);
+  }
+  mark.textContent = ok ? 'This one' : 'Not this one';
+}
+function clearVerdict(btn){
+  var mark = btn.querySelector('.qmark');
+  if(mark) mark.remove();
+}
+var SCORE_BOX = { tools:'toolScore', anchors:'anchorScore', coach:'coachScore', decide:'decideScore' };
+function scoreGroup(sel, boxId, noun){
+  var qs = document.querySelectorAll(sel);
+  if(!qs.length) return;
+  var box = document.getElementById(boxId);
+  if(!box) return;
+  var answered = 0, right = 0;
+  qs.forEach(function(q){
+    if(q.getAttribute('data-answered') !== '1') return;
+    answered++;
+    if(q.getAttribute('data-right') === '1') right++;
+  });
+  if(!answered){ box.hidden = true; return; }
+  box.hidden = false;
+  box.textContent = answered < qs.length
+    ? (answered + ' of ' + qs.length + ' ' + noun + ' answered')
+    : (right + ' of ' + qs.length + ' right on the first try. ' +
+       (right === qs.length ? 'Nothing here should surprise you now.' : 'Read the reasoning under any you missed; that is where the course actually lands.'));
+}
+document.querySelectorAll('[data-q]').forEach(function(q){
+  var opts = q.querySelectorAll('.qopt'), x = q.querySelector('.qz-x');
+  opts.forEach(function(o){
+    o.addEventListener('click', function(){
+      var firstTry = q.getAttribute('data-answered') !== '1';
+      var ok = o.getAttribute('data-ok') === '1';
+      opts.forEach(function(b){ b.classList.remove('ok','no'); clearVerdict(b); });
+      if(ok){ o.classList.add('ok'); verdict(o, true); }
+      else{
+        o.classList.add('no');
+        verdict(o, false);
+        q.querySelectorAll('.qopt[data-ok="1"]').forEach(function(c){ c.classList.add('ok'); verdict(c, true); });
+      }
+      if(x) x.hidden = false;
+      if(firstTry){
+        q.setAttribute('data-answered', '1');
+        q.setAttribute('data-right', ok ? '1' : '0');
+      }
+      var drill = q.getAttribute('data-drill');
+      if(drill && SCORE_BOX[drill]) scoreGroup('[data-drill="' + drill + '"]', SCORE_BOX[drill], 'cases');
+      if(q.hasAttribute('data-check')){
+        scoreGroup('[data-check]', 'checkScore', 'questions');
+        var all = Array.prototype.every.call(document.querySelectorAll('[data-check]'), function(z){
+          return z.getAttribute('data-answered') === '1';
+        });
+        if(all) progAuto('check');
+      }
+      /* a completed drill completes its module page */
+      if(drill){
+        var done = Array.prototype.every.call(document.querySelectorAll('[data-drill="' + drill + '"]'), function(z){
+          return z.getAttribute('data-answered') === '1';
+        });
+        if(done) progAuto(drill === 'tools' ? 'tools' : drill);
+      }
+    });
+  });
+});
+
+/* ══════════ print takeaway: carries what the learner typed and chose ══════════ */
+function fillPrint(){
+  var pp = document.getElementById('psPrompt');
+  if(pp){
+    pp.textContent = pr.touched() ? pr.text() :
+      'Role: _________________________________________________________________\n' +
+      'Context: ______________________________________________________________\n' +
+      'Task: _________________________________________________________________\n' +
+      'Constraints: __________________________________________________________\n' +
+      'Format: _______________________________________________________________\n\n' + CLARIFY;
+  }
+  var ph = document.getElementById('psHabit');
+  if(ph){
+    var key = getVal('habit'), h = key && HABITS[key];
+    ph.textContent = h
+      ? (h.name + ', ' + h.when + ', using ' + h.tool + '.\n\n' + h.prompt)
+      : 'No habit chosen yet. Pick one of the three: the ten-minute meeting recap, the Friday triage, or the weekly synthesis.';
+  }
+  var pn = document.getElementById('psNote');
+  if(pn){
+    var note = cfNote && cfNote.value.trim();
+    if(note){ pn.textContent = '“' + note + '”'; pn.removeAttribute('hidden'); }
+    else { pn.textContent = ''; pn.setAttribute('hidden',''); }
+  }
+}
+window.addEventListener('beforeprint', fillPrint);
+document.querySelectorAll('.print-btn').forEach(function(b){
+  b.addEventListener('click', function(){ fillPrint(); window.print(); });
+});
+
+/* ══════════ the two-week check-in, as a calendar file ══════════ */
+var icsBtn = document.getElementById('icsBtn');
+if(icsBtn) icsBtn.addEventListener('click', function(){
+  function pad(n){ return (n < 10 ? '0' : '') + n; }
+  function f(t){ return t.getFullYear() + pad(t.getMonth() + 1) + pad(t.getDate()) + 'T' + pad(t.getHours()) + pad(t.getMinutes()) + '00'; }
+  var d = new Date(Date.now() + 14 * 86400000); d.setHours(8, 30, 0, 0);
+  var e = new Date(d.getTime() + 15 * 60000);
+  var key = getVal('habit'), h = key && HABITS[key];
+  var line = h ? ('Your habit was ' + h.name + ', ' + h.when + '. Did it stick?')
+               : 'You had not picked a habit yet. Pick one now: meeting recap, Friday triage, or weekly synthesis.';
+  var ics = 'BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//CHARTProgram//LeadingWithAI//EN\r\nBEGIN:VEVENT\r\nUID:chart-leading-' + d.getTime() + '@vanderbilt\r\n' +
+    'DTSTAMP:' + f(new Date()) + '\r\nDTSTART:' + f(d) + '\r\nDTEND:' + f(e) + '\r\n' +
+    'SUMMARY:Leading with AI check-in: did the habit stick?\r\n' +
+    /* [EDIT · SCORM] swap the refresher URL below for the LMS course link */
+    'DESCRIPTION:Two weeks since the Leading with AI course. ' + line + ' Second question: does every draft still sound like you? Refresher: ' + COURSE_URL + '\r\n' +
+    'END:VEVENT\r\nEND:VCALENDAR\r\n';
+  var blob = new Blob([ics], { type:'text/calendar' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = 'chart-leading-with-ai-checkin.ics';
+  document.body.appendChild(a); a.click();
+  setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 500);
+  progAuto('recap');
+});
+
+/* ══════════ bottom-bar appendix jump ══════════ */
+var bbAppx = document.getElementById('bbAppx');
+if(bbAppx) bbAppx.addEventListener('click', function(){ window.location.hash = 'p/sources/1'; });
+
+/* ══════════ copy buttons (clipboard, with fallback) ══════════ */
+function copyText(txt, labelEl, okMsg){
+  var orig = labelEl.textContent;
+  function done(msg){
+    labelEl.textContent = msg;
+    labelEl.classList.add('copied');
+    window.setTimeout(function(){ labelEl.textContent = orig; labelEl.classList.remove('copied'); }, 1800);
+  }
+  function fallback(){
+    try{
+      var ta = document.createElement('textarea');
+      ta.value = txt; ta.setAttribute('readonly','');
+      ta.style.position = 'fixed'; ta.style.left = '-9999px';
+      document.body.appendChild(ta); ta.select();
+      var ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      done(ok ? okMsg : 'Select and copy manually');
+    }catch(e){ done('Select and copy manually'); }
+  }
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(txt).then(function(){ done(okMsg); }, fallback);
+  } else { fallback(); }
+}
+document.querySelectorAll('.copy-btn').forEach(function(b){
+  b.addEventListener('click', function(){
+    var src = document.getElementById(b.getAttribute('data-copy'));
+    var label = b.querySelector('span');
+    if(src && label) copyText(src.textContent, label, 'Copied');
+  });
+});
+
+/* ══════════ PROGRESS: per-page completion, saved in this browser only ══════════ */
+var PROG_SECTIONS = [
+  { k:'home',       no:'01', name:'Welcome' },
+  { k:'mission',    no:'02', name:'The Chancellor’s charge' },
+  { k:'tools',      no:'03', name:'Which tool, which moment' },
+  { k:'anchors',    no:'04', name:'Module 01: the four anchors' },
+  { k:'clarity',    no:'05', name:'Module 02: clear communication' },
+  { k:'coach',      no:'06', name:'Module 03: coaching prep' },
+  { k:'decide',     no:'07', name:'Module 04: sharper decisions' },
+  { k:'hours',      no:'08', name:'Module 05: three habits' },
+  { k:'guardrails', no:'09', name:'Guardrails' },
+  { k:'practice',   no:'10', name:'Practice now' },
+  { k:'check',      no:'11', name:'Knowledge check' },
+  { k:'recap',      no:'12', name:'Recap' },
+  { k:'sources',    no:'13', name:'Appendix' }
+];
+function progIs(k){ return getVal('progress-' + k) === '1'; }
+function progWrite(k, v){ setVal('progress-' + k, v ? '1' : null); }
+function progRender(){
+  PROG_SECTIONS.forEach(function(s){
+    var done = progIs(s.k);
+    var dot = document.querySelector('.bb-dot[data-rail="' + s.k + '"]');
+    if(dot){
+      dot.classList.toggle('done', done);
+      dot.setAttribute('aria-label', s.name + ', ' + (done ? 'done' : 'not done'));
+      dot.setAttribute('title', s.no + ' · ' + s.name + ' · ' + (done ? 'done' : 'not yet'));
+    }
+  });
+  bbDoneSync();
+}
+/* bottom-bar "Mark done": completes the current page */
+var bbDoneBtn = document.getElementById('bbDone');
+function bbDoneSync(){
+  if(!bbDoneBtn) return;
+  var curKey = (window.leadPager && window.leadPager.current) ? window.leadPager.current().key : '';
+  var sec = null;
+  PROG_SECTIONS.forEach(function(s){ if(s.k === curKey) sec = s; });
+  if(!sec){ bbDoneBtn.hidden = true; bbDoneBtn.removeAttribute('data-prog'); return; }
+  var done = progIs(sec.k);
+  bbDoneBtn.hidden = false;
+  bbDoneBtn.setAttribute('data-prog', sec.k);
+  bbDoneBtn.setAttribute('aria-pressed', done ? 'true' : 'false');
+  bbDoneBtn.setAttribute('aria-label', done ? sec.name + ' completed. Select to un-mark.' : 'Mark done: ' + sec.name);
+  if(done) bbDoneBtn.setAttribute('title', 'Select to un-mark'); else bbDoneBtn.removeAttribute('title');
+  var t = bbDoneBtn.querySelector('.bb-done-t');
+  if(t) t.textContent = done ? 'Completed' : 'Mark done';
+}
+if(bbDoneBtn) bbDoneBtn.addEventListener('click', function(){
+  var k = bbDoneBtn.getAttribute('data-prog');
+  if(!k) return;
+  progWrite(k, !progIs(k));
+  progRender();
+});
+document.addEventListener('lead:page', progRender);
+
+/* auto-complete: finishing a page's activity marks it done. Content pages
+   complete themselves when the learner turns past them; activity pages have
+   their own triggers above. Mark done still works both ways. */
+function progAuto(k){ if(!progIs(k)){ progWrite(k, true); progRender(); } }
+var AUTO_ON_LEAVE = { home:1, mission:1, guardrails:1, recap:1, sources:1 };
+var lastPageKey = null;
+document.addEventListener('lead:page', function(){
+  var cur = (window.leadPager && window.leadPager.current) ? window.leadPager.current().key : null;
+  if(lastPageKey && lastPageKey !== cur && AUTO_ON_LEAVE[lastPageKey]) progAuto(lastPageKey);
+  lastPageKey = cur;
+});
+/* Module 02 and Practice: a filled builder, or copying one, is the activity */
+pb.onInput = function(){ if(pb.filled()) progAuto('clarity'); };
+pr.onInput = function(){ if(pr.filled()) progAuto('practice'); };
+document.querySelectorAll('.copy-btn').forEach(function(b){
+  var target = b.getAttribute('data-copy');
+  b.addEventListener('click', function(){
+    if(target === 'pbcode' && pb.touched()) progAuto('clarity');
+    if(target === 'prcode' && pr.touched()) progAuto('practice');
+    if(target === 'c1code' || target === 'c2code') progAuto('coach');
+    if(target === 'd1code' || target === 'd2code') progAuto('decide');
+    if(target === 'habcode' && getVal('habit')) progAuto('hours');
+  });
+});
+document.querySelectorAll('#recap .print-btn, #practice .print-btn').forEach(function(b){
+  b.addEventListener('click', function(){ progAuto('recap'); });
+});
+
+/* footer reset: clears every leading-* key (progress, last page, mode, habit,
+   both builders, the commitment note) and empties the fields on screen */
+var progReset = document.getElementById('progReset');
+if(progReset) progReset.addEventListener('click', function(){
+  mem = {};
+  modeMem = DEFAULT_MODE;
+  if(store){
+    try{
+      var kill = [];
+      for(var i = 0; i < store.length; i++){
+        var key = store.key(i);
+        if(key && key.indexOf(K) === 0) kill.push(key);
+      }
+      kill.forEach(function(key){ store.removeItem(key); });
+    }catch(e){}
+  }
+  pb.set(null); pr.set(null);
+  presetSync(null);
+  if(cfNote) cfNote.value = '';
+  document.querySelectorAll('[data-q]').forEach(function(q){
+    q.removeAttribute('data-answered'); q.removeAttribute('data-right');
+    var x = q.querySelector('.qz-x'); if(x) x.hidden = true;
+    q.querySelectorAll('.qopt').forEach(function(o){ o.classList.remove('ok','no'); clearVerdict(o); });
+  });
+  document.querySelectorAll('.qscore').forEach(function(s){ s.hidden = true; s.textContent = ''; });
+  habitRender();
+  progRender();
+  modeRender();
+});
+
+habitRender();
+progRender();
+modeRender();
+})();
+</script>
+</body>
+</html>

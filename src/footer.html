@@ -1,0 +1,123 @@
+
+<footer>
+  <div class="wrap">
+    <div class="fcenter">
+      <img src="{{A}}/img/vu-centered-white@2x.png" alt="Vanderbilt University" width="100" height="105" loading="lazy" decoding="async" />
+      <p class="fprogram">Vanderbilt University &middot; The CHART Program &middot; A Managers Voyage course</p>
+      <p class="flegal">&copy; <span id="yr">2026</span> The CHART Program &middot; Vanderbilt. Content reviewed August 2026 &middot; program owner: Matt Estes. {{OTHERPROMPT}} <a href="{{OTHERHREF}}">{{OTHERTEXT}}</a>. An internal training prototype, <b>not an official Vanderbilt University site</b>. Product names (ChatGPT, Amplify, Microsoft Copilot) belong to their respective owners. Accessibility questions or problems: <a href="mailto:matthew.estes@vanderbilt.edu">matthew.estes@vanderbilt.edu</a></p>
+      <p class="flegal"><b>What this course stores:</b> which pages you marked done, the last page you had open, the mode you are in, the habit you picked, and anything you typed into the prompt fields. All of it lives in this browser only and none of it is ever sent anywhere.</p>
+      <span>
+        <button type="button" class="preset" id="progReset">Reset progress<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7M21 3v6h-6"/></svg></button>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════ PRINT-ONLY TAKEAWAY ═══════════════════
+     Hidden on screen; @media print swaps the app for this one page.
+     The mode blocks obey body[data-mode], so a classroom printout carries
+     Discussion notes and a self-paced one carries the commitment block.
+     Nothing here is stored or sent. -->
+<div id="printSummary" aria-hidden="true">
+  <div class="ps-head">
+    <p class="ps-title">Leading with AI</p>
+    <p class="ps-meta">Vanderbilt University &middot; The CHART Program &middot; A Managers Voyage course &middot; {{URL}}<!-- [EDIT · SCORM] swap for the LMS course link --></p>
+  </div>
+
+  <h2>The frame: four anchors, fifteen seconds</h2>
+  <p><b>Authority:</b> you own the final draft. Edit it in your voice before it leaves you. <b>Ask:</b> am I editing this in my voice?</p>
+  <p><b>Purpose:</b> tie the output to a goal you can name. If it does not advance the goal, it is noise. <b>Ask:</b> which goal does this serve?</p>
+  <p><b>Accountability:</b> you bear the consequences. Own the call, not the model. <b>Ask:</b> if this fails, whose name is on it?</p>
+  <p><b>Truth:</b> verify facts, seek alternatives, test what could be wrong. <b>Ask:</b> what could this be wrong about, and how would I know?</p>
+  <p class="ps-rule">Data classification decides. Level 4, PHI, HIPAA, and information about children go into no tool at all.</p>
+
+  <h2>The pattern that writes almost anything</h2>
+  <div class="ps-pre">Role: You are helping a manager at a large research university.
+Context: [Who receives this, what they already know, how they might feel.]
+Task: Draft a [message / agenda / feedback / talking points] that [specific goal].
+Constraints: Warm but direct. Under [X] words. No jargon. Do not invent policy.
+Format: [Email with subject line / bullets / two paragraphs and a closing question.]
+
+Ask me one clarifying question before you draft.</div>
+  <p><b>The rewrite move:</b> paste the draft back with &ldquo;Rewrite this in my voice. I tend to be [three adjectives]. Keep the structure.&rdquo; Two rounds is usually enough.</p>
+
+  <h2>Your prompt</h2>
+  <div class="ps-pre" id="psPrompt">Role: _________________________________________________________________
+Context: ______________________________________________________________
+Task: _________________________________________________________________
+Constraints: __________________________________________________________
+Format: _______________________________________________________________
+
+Ask me one clarifying question before you draft.</div>
+
+  <h2>The habit you chose</h2>
+  <p id="psHabit">No habit chosen yet. Pick one of the three: the ten-minute meeting recap, the Friday triage, or the weekly synthesis.</p>
+
+  <h2>Prompts you can use this week</h2>
+  <p class="ps-plabel">1 &middot; 1:1 preparation. Amplify or Copilot; describe the person by role only</p>
+  <div class="ps-pre">I have a 1:1 tomorrow with a direct report. Refer to them only by role, not by name.
+Here are my rough notes from the last two weeks: [paste your notes].
+Their current stretch goal is: [goal].
+
+Give me:
+1. Three open questions that invite reflection, not yes or no answers.
+2. One thing worth recognizing specifically, tied to something in the notes.
+3. One growth edge to explore, phrased as a question rather than a verdict.
+4. A soft closing that hands the next step to them.
+
+Do not write scripts. I want prompts I can adapt in the moment.</div>
+  <p class="ps-plabel">2 &middot; Feedback drafting, using Situation, Behavior, Impact</p>
+  <div class="ps-pre">Help me draft feedback for a team member, described by role only.
+Situation: [what happened, when, who was affected].
+Behavior: [specifically what they did or did not do].
+Impact: [on the team, the project, or our partners].
+
+Give me two versions:
+A) Reinforcing feedback, if the behavior was strong.
+B) Redirecting feedback, if it needs to change.
+
+Both under 90 words, second person, ending with an invitation to respond.
+Do not use the word "just." Do not soften with "great job, but."</div>
+  <p class="ps-plabel">3 &middot; Options and tradeoffs, before a decision</p>
+  <div class="ps-pre">I am deciding whether to [decision]. Here is what I know: [context].
+The stakeholders are: [list them by role]. Constraints: [budget, timeline, policy].
+
+Give me:
+1. Three distinct options. Not variations on one idea.
+2. For each: the strongest case, the biggest risk, and one signal
+   I could look for in the next 30 days to know if it is working.
+3. One option I probably have not considered.
+
+End with the three questions I should be able to answer before I decide.</div>
+  <p class="ps-plabel">4 &middot; The premortem, run second, on the option you are leaning toward</p>
+  <div class="ps-pre">Assume the decision I just described failed badly, six months from now.
+Write the memo my leadership would send explaining what went wrong.
+
+Then work backward: what were the three earliest warning signs we ignored?
+What would a version of me who saw them coming have done differently?</div>
+
+  <h2>The guardrails</h2>
+  <ol>
+    <li><b>Data classification decides.</b> Level 4, PHI, HIPAA, and information about children go into no tool at all. Levels 1 to 3 go to Amplify when you are unsure. People are described by ROLE, NEVER BY NAME. Personnel matters go to HR and your HR business partner.</li>
+    <li><b>The output is a draft, not a decision.</b> The model informs and proposes; you make the call.</li>
+    <li><b>Interrogate confident answers.</b> Ask what is missing, ask for the counter-case, check every number, quote, and policy.</li>
+    <li><b>Own it, in your voice.</b> Edit before it leaves you, and disclose substantive AI help to the people who rely on it.</li>
+  </ol>
+
+  <h2>The tools</h2>
+  <p>Vanderbilt Amplify &middot; www.vanderbilt.ai (internal information at Levels 1 to 3; the when-in-doubt choice) &nbsp;&bull;&nbsp; Microsoft Copilot &middot; copilot.microsoft.com (when the source already lives in your VU Microsoft 365 workspace; it inherits your permissions, so check sharing) &nbsp;&bull;&nbsp; ChatGPT EDU &middot; chat.openai.com (only when nothing internal or personal is involved)</p>
+
+  <div class="ps-block mode-class">
+    <h2>Discussion notes</h2>
+    <div class="ps-line"></div><div class="ps-line"></div><div class="ps-line"></div><div class="ps-line"></div>
+  </div>
+  <div class="ps-block mode-web">
+    <h2>My commitment</h2>
+    <p id="psNote" hidden></p>
+    <div class="ps-line"></div><div class="ps-line"></div><div class="ps-line"></div><div class="ps-line"></div>
+  </div>
+
+  <h2>Keep learning</h2>
+  <p class="ps-kl">Working Smarter, the full AI course for staff &middot; me5231979.github.io/Course_Library/learn &nbsp;&bull;&nbsp; Decisions, sharper &middot; /learn/decisions &nbsp;&bull;&nbsp; First drafts, faster &middot; /learn/drafts &nbsp;&bull;&nbsp; Manager Foundations &middot; /learn/managers. This course: {{URL}}<!-- [EDIT · SCORM] swap the printed URLs for the LMS links --></p>
+  <p class="ps-fine">Sources: 1&nbsp;Amplify 2.0, Vanderbilt College of Connected Computing (Jan 2026) &middot; 2&nbsp;Amplify data classification and security policy, Vanderbilt AGI Center &middot; 3&nbsp;Vanderbilt multi-tool AI strategy, Vanderbilt News (Jan 2026) &middot; 4&nbsp;Introducing ChatGPT Edu, OpenAI &middot; 5&nbsp;What&rsquo;s new in Microsoft 365 Copilot, Microsoft (Apr 2026) &middot; 6&nbsp;How to lead when working with AI, on HBR&rsquo;s four anchors &middot; 7&nbsp;Designing AI coaches: a scoping review, Taylor &amp; Francis (Mar 2026) &middot; 8&nbsp;Vanderbilt&rsquo;s GenAI tools in use, Vanderbilt News (Jun 2026) &middot; 9&nbsp;Chancellor Diermeier, &ldquo;Daring to Grow&rdquo; (2022). The two hours a week is this course&rsquo;s estimate, not a research finding. Internal training prototype; not an official Vanderbilt University site.</p>
+</div>
