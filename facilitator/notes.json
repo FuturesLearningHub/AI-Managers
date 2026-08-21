@@ -1,0 +1,294 @@
+{
+  "meta": {
+    "program": "Leading with AI · Vanderbilt CHART Program · A Managers Voyage course",
+    "totalMinutes": 45,
+    "audience": "Vanderbilt managers, any department, any level of AI experience. Assume at least one person in the room has never opened an AI tool on purpose, and at least one uses one every day. Both should leave with something.",
+    "roomSetup": "Tables of four if you can get them, because six of the beats are paired. One screen you drive. Ask people to bring a laptop or phone, and say why: they will run a prompt during the session, not after it.",
+    "postSession": "Send the pulse note seven days out (template below). One question: did the habit happen three times? Report the count of learners who picked a habit and the count who used it, which is the program's Kirkpatrick Level 3 measure.",
+    "paths": { "full": 45, "core": 30 },
+    "framework": "ATD Say / Do / Ask / Debrief / Transition per section. Kirkpatrick L1 at the close (fist to five), L2 through the drills and the four-question check, L3 through the habit commitment and the seven-day pulse.",
+    "objectives": [
+      "Choose the right approved tool for a task, based on how sensitive the material is",
+      "Apply one five-part prompt pattern to an announcement, an ask, or a hard conversation",
+      "Prepare a 1:1 or a piece of feedback without letting the tool write the conversation",
+      "Test a decision with options and a premortem before committing to it",
+      "Commit to one of three habits, with a day and a time attached"
+    ],
+    "materials": [
+      "The classroom edition open on the room screen, at the welcome page",
+      "The QR on the welcome page, large enough to scan from the back row",
+      "Paper and pens on the tables, because Module 03 asks people to close the laptop",
+      "A printer or a Save as PDF path, because the takeaway prints at the end and nobody prints it later",
+      "Your own real example of an AI draft you edited, for the Authority anchor"
+    ],
+    "prep": {
+      "weekBefore": [
+        "Send the pre-work invite (template below). No pre-reading, only the ask to bring a real thing they owe someone",
+        "Confirm every attendee can sign into Amplify. Someone who cannot sign in will spend the session watching",
+        "Read Vanderbilt's current Amplify data classification page. If it has changed, your words win over the course text and you should say so out loud"
+      ],
+      "dayBefore": [
+        "Run the classroom edition end to end yourself, on the room's actual screen if you can get in",
+        "Pick your own answer to each of the three tool cases, so you are not deciding live",
+        "Have one real decision of your own ready for Module 04, described by role only"
+      ],
+      "thirtyMinBefore": [
+        "Open the classroom edition and confirm the bottom bar says Mode: class",
+        "Check the QR scans from the back of the room, not from where you are standing",
+        "Open Amplify in a second tab and sign in, so the first live prompt is not a login demo",
+        "Put paper on the tables"
+      ]
+    },
+    "contingencies": [
+      { "if": "Nobody in the room can sign into Amplify", "then": "Run every live prompt yourself on the screen and have the room supply the inputs out loud. The learning is in the prompt, not in who typed it. Fix the access afterwards and say you will." },
+      { "if": "Someone says they are not allowed to use AI at all", "then": "Take it seriously and do not argue. Ask which tool and which data, because the answer is usually about a specific restriction rather than a blanket one. Point at Module 03: preparation for a conversation involves no protected data at all." },
+      { "if": "The room is more experienced than you expected", "then": "Cut the tool cards to 60 seconds, skip the anchor drill, and spend the recovered time on Module 04. Experienced users are usually weakest at interrogating a confident answer." },
+      { "if": "The room is less experienced than you expected", "then": "Drop Module 04 entirely and say so. Spend the time on Module 02 and let everyone run one prompt successfully. One completed prompt beats five explained ones." },
+      { "if": "You are running ten minutes behind at Module 04", "then": "Switch to the Core path from there: read the two prompts aloud, skip the drill, and protect the habit pick in Module 05. The habit is the only thing that changes anyone's week." },
+      { "if": "Someone volunteers a real situation involving a named person", "then": "Thank them, then restate it in role terms out loud before you type anything. Doing that correction in public, calmly, teaches Rule 01 better than the slide does." }
+    ],
+    "toughQuestions": [
+      { "q": "Is this going to replace my team?", "a": "Not a question to dodge. Say what is true: nothing in this course automates a person's job. It automates the recap, the triage, and the first draft. Then name the honest part: what a manager does with the time back is a real choice, and this course argues for spending it on the people." },
+      { "q": "How do I know it is not making things up?", "a": "You do not, which is why Truth is one of the four anchors rather than a footnote. The working rule: any number, quote, or policy gets checked before it moves anything. If it never leaves your own thinking, the cost of an error is low; the moment it enters a memo with your name on it, the cost is yours." },
+      { "q": "Is it cheating to use AI for feedback?", "a": "Ask the room first, because the answers are worth hearing. Then land it: preparing is not cheating, and outsourcing is. If the person across from you would feel differently knowing how it was written, that is your answer. This is why every coaching prompt in Module 03 ends with 'do not write scripts.'" },
+      { "q": "Which tool should I just use for everything?", "a": "Amplify, if you want one answer and you are going to stop listening now. It is approved for Levels 1 to 3 and it is the when-in-doubt choice. The other two earn their place in specific moments, and the course names those moments." },
+      { "q": "My director does not want AI-written communication going out", "a": "Agree with the concern and separate two things: a draft written by a tool and sent unedited, which is what they are objecting to, and a draft the manager shaped into their own voice, which is what Anchor 01 requires. Offer to show them the rewrite move." },
+      { "q": "Two hours a week seems made up", "a": "It is an estimate, and the course says so on the page. Do not defend it as research. Say: pick one habit, note what it saves you over two weeks, and you will have your own number, which is worth more than ours." }
+    ],
+    "templates": [
+      {
+        "label": "Pre-work invite, one week before",
+        "body": "Subject: Bring one thing you owe someone\n\nWe have 45 minutes together on [date] on using AI as a manager. There is no pre-reading.\n\nOne ask: bring something real you owe someone this week. An announcement you have been putting off, an agenda, the opening of a conversation you are dreading, or a decision that has been sitting on your desk. You will work on the real thing during the session, not a made-up example.\n\nBring a laptop or a phone. Before you come, check that you can sign into Amplify at vanderbilt.ai with your VU account. If you cannot, reply and we will fix it before we start.\n\nSee you [date, time, room]."
+      },
+      {
+        "label": "Seven-day pulse, after the session",
+        "body": "Subject: Did the habit happen?\n\nOne question, one line back.\n\nYou picked a habit at the end of the session: the ten-minute meeting recap, the Friday triage, or the weekly synthesis. Did you use it three times this week?\n\nYes / Partly / Not yet, and one sentence about what got in the way if it did.\n\nIf you want the one-page takeaway again, it prints from the last page of the course: [course link]."
+      },
+      {
+        "label": "Manager follow-up, for a learner who asks for more",
+        "body": "Subject: Where to go next\n\nGood question after [session]. Three places, in the order I would take them.\n\nDecisions, sharper: Module 04 of what we covered, in full, about 15 minutes.\nFirst drafts, faster: Module 02 in full, same length.\nWorking Smarter: the whole AI course for staff, longer, and worth it if you want the foundation rather than the manager slice.\n\nAll three are in the CHART library. If you would rather work through something specific with a person, reply and we will find time."
+      }
+    ]
+  },
+  "sections": [
+    {
+      "id": "home",
+      "title": "Welcome",
+      "minutes": 3, "coreMinutes": 2,
+      "coreNote": "Core: skip the round of names, go straight to the QR.",
+      "purpose": "Get every device on the course and set the expectation that this session involves doing, not watching.",
+      "say": "Welcome. This is 45 minutes, five short modules, and you will leave having actually written something. Scan the code on the screen and the whole course opens on your phone. Follow along there or watch up here, whichever you prefer. One thing before we start: I asked you to bring something real you owe someone this week. Keep it in mind, because in about half an hour you are going to write it.",
+      "facilitate": [
+        "Put the QR up and wait until the scanning stops. Do not talk over it.",
+        "Confirm out loud that the bottom bar reads Mode: class on your screen.",
+        "Name the two paths if you are short on time, so nobody is surprised when you skip something."
+      ],
+      "ask": "Show of hands, and be honest: who has used an AI tool for work in the last week? Expect a third to half the room, and expect a few who use it daily to keep their hands down.",
+      "validate": "Every device that wants the course has it open. If more than two people are still fumbling, stop and fix it now rather than at Module 02.",
+      "watchFor": "The room settles into watching. Say early that they will be typing, because the expectation is much harder to set at minute 20 than at minute 2.",
+      "transition": "Before the modules, sixty seconds on why the university is asking managers to work this way at all."
+    },
+    {
+      "id": "mission",
+      "title": "The Chancellor's charge",
+      "minutes": 2, "coreMinutes": 1,
+      "coreNote": "Core: read the headline and the flywheel card, skip the three focus areas.",
+      "purpose": "Connect a productivity course to the institutional reason it exists, so it does not read as a tools demo.",
+      "say": "One page on why this exists. The Chancellor's vision is a single sentence with no hedge in it: Vanderbilt will define the great university of the 21st Century and be it. The how is speed, agility, and scale. That lands on managers as an ordinary Tuesday, and the part I want you to hold is at the bottom: values-driven leadership is visible in how a manager writes, coaches, and decides. That is exactly what the next five modules are about.",
+      "facilitate": [
+        "Read the headline aloud. It is written to be read aloud.",
+        "Point at the 'How this course delivers' card and stop there. Do not narrate all three focus areas unless the room is senior enough to care."
+      ],
+      "ask": "What does uncommon speed cost us if nobody is holding the judgment? Take one answer, do not open a discussion, because Module 01 is the answer.",
+      "validate": "Somebody connects speed to risk without you saying it. If nobody does, say it yourself and move.",
+      "watchFor": "This page can turn into a strategy conversation and eat five minutes. Keep your hand on the Next control.",
+      "transition": "Three tools, one rule that decides between them, sixty seconds."
+    },
+    {
+      "id": "tools",
+      "title": "Which tool, which moment",
+      "minutes": 5, "coreMinutes": 4,
+      "coreNote": "Core: 30 seconds on the cards, then run all three cases. The drill is the part that matters.",
+      "purpose": "Replace feature comparison with one decision rule, and make the rule land through cases rather than assertion.",
+      "say": "You have three approved tools and managers lose more time choosing between them than using them. You do not need to compare features. One question sorts almost every case: how sensitive is the material you are about to paste in. Amplify takes internal Vanderbilt information at Levels 1 to 3 and it is the when-in-doubt choice. Copilot is best when the thing already lives in your Microsoft 365 workspace. ChatGPT EDU is approved to a lower level, so it is for material with nothing internal or personal in it. Now three cases, and I want hands before the answer.",
+      "facilitate": [
+        "Read each case, then hands up for each tool before you click. Every case, no exceptions.",
+        "On Case 3, let the room commit before you reveal. The wrong answers are the teaching moment.",
+        "After Case 3, take one real example from the floor: something someone was about to paste somewhere. Sort it as a room."
+      ],
+      "ask": "Case 3, hands up: who picked a tool? Expect most of the room. That is the point, and it is not a gotcha.",
+      "validate": "Somebody says out loud that they have done something like Case 3, or nearly did. That admission is worth more than the correct answer.",
+      "watchFor": "A confident person answers Case 3 fast and the room follows. Take hands before any discussion starts.",
+      "transition": "That is which tool. Module 01 is the frame that goes around all three."
+    },
+    {
+      "id": "anchors",
+      "title": "Module 01: the four anchors",
+      "minutes": 4, "coreMinutes": 3,
+      "coreNote": "Core: teach the four anchors, run only the first drill question.",
+      "purpose": "Give the room a fifteen-second check they will actually run, and make it stick through three failure cases.",
+      "say": "AI drafts fast and it sounds certain, which is exactly the problem. Certainty is its writing style, not evidence it is right. Four questions hold the frame. Authority: am I editing this in my voice. Purpose: which goal does this serve. Accountability: if this fails, whose name is on it. Truth: what could this be wrong about, and how would I know. Fifteen seconds, every time. Here are three managers who skipped one.",
+      "facilitate": [
+        "Tell your own story for Authority. A real draft you edited, or one you did not and regretted.",
+        "Run all three drill questions with hands up first.",
+        "Then the paired beat: 45 seconds each way, one real output from this week, all four questions out loud."
+      ],
+      "ask": "In the pairs: which of the four was hardest to answer? Take two answers from the room. Purpose comes up most, and that is worth naming.",
+      "validate": "In the debrief, somebody names a piece of work they produce that no longer has a purpose they can state. That is the anchor doing its job.",
+      "watchFor": "The pairs turn into a chat. Give a hard 45 seconds and call the swap yourself.",
+      "transition": "The frame is set. Now the pattern that writes almost everything you send."
+    },
+    {
+      "id": "clarity",
+      "title": "Module 02: clear communication",
+      "minutes": 7, "coreMinutes": 5,
+      "coreNote": "Core: load scenario 01 only, and protect the live rewrite. It is the moment people remember.",
+      "purpose": "The core skill of the session. Everyone should watch a bad prompt become a good one and understand which part did the work.",
+      "say": "Almost everything you write is an announcement, an ask, or the opening of a hard conversation. One pattern covers all three. Role, Context, Task, Constraints, Format. And one line that changes everything: ask me one clarifying question before you draft. A model that asks first writes second, and the question it asks is usually the part of the message you had not decided yet. Watch.",
+      "facilitate": [
+        "Load scenario 01 on the screen and run it live in Amplify. Let the room see the clarifying question come back.",
+        "Take the Constraints line from the room, out loud, one word at a time. Then run it again.",
+        "Show the rewrite move on the result: rewrite this in my voice, I tend to be [three adjectives], keep the structure."
+      ],
+      "ask": "Which constraint changed the draft most? Expect the word count and the 'do not invent policy' line to win, and expect somebody to be surprised by that.",
+      "validate": "The room can name the five parts without looking. Ask for them out loud before you move on.",
+      "watchFor": "You demo and nobody types. If the room is watching rather than working, stop and give 60 seconds of silence for everyone to load a scenario themselves.",
+      "transition": "Same discipline, aimed at the conversation you are about to have."
+    },
+    {
+      "id": "coach",
+      "title": "Module 03: coaching prep",
+      "minutes": 5, "coreMinutes": 3,
+      "coreNote": "Core: teach the prep and script distinction, run drill question 1, skip the paired activity.",
+      "purpose": "Draw the line between preparing a conversation and outsourcing it, and make the line feel obvious rather than moralistic.",
+      "say": "The research on AI coaching is genuinely encouraging for the structured parts: goal setting, reflection prompts, feedback prep. It is also clear on the limits. It cannot read a room and it misses cultural nuance. So there is a real line here, and it is between preparing a conversation and scripting one. Preparation gives you better questions. A script gives you a performance, and the person across from you can tell. Every prompt in this module ends with the same instruction: do not write scripts.",
+      "facilitate": [
+        "Run drill question 1 and let the room feel why the second draft is better. Situation, Behavior, Impact, and an invitation to respond.",
+        "Name the two banned phrases and say them out loud: 'just' and 'great job, but'. People recognize their own writing.",
+        "Then the paired beat, three minutes each way, describing a real upcoming 1:1 by role only."
+      ],
+      "ask": "In the pairs: which question do you actually want to keep? One answer per table.",
+      "validate": "Somebody says a question their partner asked was better than the one they would have asked themselves. That is the module landing.",
+      "watchFor": "Someone names a person. Restate it in role terms yourself, calmly, out loud. The public correction teaches Rule 01 better than the guardrails page will.",
+      "transition": "Same tools, aimed at the call everyone is waiting on."
+    },
+    {
+      "id": "decide",
+      "title": "Module 04: sharper decisions",
+      "minutes": 4, "coreMinutes": 2,
+      "coreNote": "Core: read both prompts aloud, run the premortem on your own example, skip the drill.",
+      "purpose": "Teach the premortem, and teach that a confident recommendation is the beginning of the work rather than the end.",
+      "say": "AI is an extremely persuasive summarizer, and that is the risk. It can argue any side well, which means a strong case for the option you already liked tells you almost nothing. Two prompts, in this order. The first widens: three genuinely different options, the strongest case and biggest risk for each, and a signal you could watch for in 30 days. The second attacks: assume it already failed and write the retrospective. That is a premortem, and it works because explaining a failure that happened is far easier than imagining one that has not.",
+      "facilitate": [
+        "Use your own real decision, by role only. A borrowed example is obvious and it costs you the room.",
+        "Run the premortem live. Read the retrospective out loud and let the silence sit.",
+        "Split the output across tables: warning signs, the option nobody considered, the three questions. One sentence back from each."
+      ],
+      "ask": "What did the premortem name that you would not have said out loud in a meeting? This is the question the module exists for.",
+      "validate": "A table reports a failure mode that is genuinely uncomfortable. If every report is safe, push once: what is the version of this nobody wants to say?",
+      "watchFor": "The room treats the premortem as pessimism. Reframe it: a failure reason you cannot rule out is a question to answer now, not a reason to stop.",
+      "transition": "Last module, and the only one that changes your calendar."
+    },
+    {
+      "id": "hours",
+      "title": "Module 05: three habits",
+      "minutes": 4, "coreMinutes": 3,
+      "coreNote": "Core: 90 seconds on the three habits, then protect the commitment round. Never cut the commitment.",
+      "purpose": "Convert 40 minutes of understanding into one thing that will happen next week. This is the section the whole session exists for.",
+      "say": "Everything so far was capability. This is the part that changes your week. Three habits, each attached to something already on your calendar so there is nothing new to remember. The ten-minute meeting recap. The Friday triage. The weekly synthesis. Pick one. Not three, one. Add the next when the first has stopped requiring a decision. And one honest note: the two hours a week on the screen is our estimate, not a research finding. Pick a habit, watch what it saves you for two weeks, and you will have your own number.",
+      "facilitate": [
+        "Have everyone pick on their own device. The choice drives their printed takeaway and their calendar reminder.",
+        "Then the commitment round: around the table, one sentence each, the habit and the day and the time.",
+        "Say the reason out loud: a habit with a slot survives, a habit with good intentions does not.",
+        "Ask tables to note who picked what, so there is someone to ask in two weeks."
+      ],
+      "ask": "Around the table: which habit, which day, what time? Take the whole round. Do not shortcut it.",
+      "validate": "Every person has said a habit and a time out loud. Count the room; that number is your Level 3 baseline.",
+      "watchFor": "Someone picks all three. Push back gently: one, and the reason is that three is how a habit fails.",
+      "transition": "Four rules that keep all of this safe, and then you write the real thing."
+    },
+    {
+      "id": "guardrails",
+      "title": "Guardrails",
+      "minutes": 2, "coreMinutes": 1,
+      "coreNote": "Core: read Rule 01 only. It is the one people break.",
+      "purpose": "State the rules once, plainly, with the strictest first.",
+      "say": "Four rules. The first matters most and it is the one people break by accident. Data classification decides: Level 4, protected health information, and HIPAA data go into none of these tools, and neither does information about children. Levels 1 to 3 go to Amplify when you are unsure. People are described by role, never by name. Anything that is really a personnel matter goes to HR. The other three: the output is a draft not a decision, interrogate confident answers, and own it in your voice.",
+      "facilitate": [
+        "Read Rule 01 verbatim. Do not paraphrase it.",
+        "If Vanderbilt's policy page has changed since this course was reviewed, say so here and say your words win."
+      ],
+      "ask": "Anything you were about to do this week that Rule 01 just stopped? Wait for it. Somebody usually says yes.",
+      "validate": "Somebody names a real thing they were about to paste somewhere.",
+      "watchFor": "Reading all four rules at speed. Rule 01 slowly beats four rules quickly.",
+      "transition": "Now the thing you brought with you."
+    },
+    {
+      "id": "practice",
+      "title": "Practice now",
+      "minutes": 5, "coreMinutes": 4,
+      "coreNote": "Core: keep the full paired activity and cut your own talking to nothing.",
+      "purpose": "Everyone leaves having written the real thing, not an exercise.",
+      "say": "The thing I asked you to bring. Five fields, roles not names, and then you run it. In pairs: interview your partner about what they owe someone and fill in their five fields for them. Then swap. When both are done, one more trade: tell your partner the single constraint they forgot. Go.",
+      "facilitate": [
+        "Say go, then stop talking. Circulate, do not narrate.",
+        "Watch for anyone stuck on Context; that is where people freeze, and one question from you unsticks it.",
+        "At two minutes left, call the swap if tables have not.",
+        "Before you move on, have everyone print or save the takeaway. Nobody prints it later."
+      ],
+      "ask": "What constraint did your partner forget? Two answers from the room. It is almost always length or tone.",
+      "validate": "Walk the room and count filled fields. If more than a couple of pairs are empty, give another 90 seconds; this is the section worth the time.",
+      "watchFor": "People writing a generic example instead of their real thing. Ask one pair what it is actually for; that usually resets the room.",
+      "transition": "Four questions to check it stuck, and then we are done."
+    },
+    {
+      "id": "check",
+      "title": "Knowledge check",
+      "minutes": 2, "coreMinutes": 0,
+      "coreNote": "Core: cut entirely. The commitment round already gave you the Level 2 signal.",
+      "purpose": "A quick Level 2 check, run as a room rather than as a test.",
+      "say": "Four questions, no tricks, nothing scored or sent anywhere. Hands up before I click.",
+      "facilitate": [
+        "Run all four with hands up first.",
+        "Spend your time on question 3. It is the one that matters and it is the one people get wrong."
+      ],
+      "ask": "Question 3, hands up before the answer. Expect a split, and expect the split to be instructive.",
+      "validate": "Question 3 lands with most of the room. If it does not, re-read Rule 01 before you close. It is the single most important thing in the session.",
+      "watchFor": "This turning into a quiz nobody wants to be wrong in. Keep it light, and answer one wrong yourself if the room is tight.",
+      "transition": "The close: what you learned, and the one thing to do this week."
+    },
+    {
+      "id": "recap",
+      "title": "Recap and close",
+      "minutes": 2, "coreMinutes": 2,
+      "coreNote": "Core: unchanged. Never cut the close.",
+      "purpose": "Land the three things worth remembering, confirm the commitment, and take the Level 1 reading.",
+      "say": "Three things to keep. One frame: Authority, Purpose, Accountability, Truth, fifteen seconds before any output becomes an action. One pattern: Role, Context, Task, Constraints, Format, and ask me one clarifying question before you draft. One rule about data: classification decides, and when you are unsure it goes to Amplify. Your habit is on your takeaway. Use it three times this week, which is roughly where it stops needing a decision. Print the page before you stand up.",
+      "facilitate": [
+        "Confirm everyone has printed or saved the takeaway. Look, do not ask.",
+        "Fist to five on the way out: how useful was this. Count it and record it.",
+        "Tell them the pulse note comes in seven days with one question."
+      ],
+      "ask": "Fist to five, right now, all at once: how useful was this? Then one voice on why, from anyone under three.",
+      "validate": "Record two numbers: the fist-to-five average, and how many people said a habit out loud in Module 05. Those are your Level 1 and your Level 3 baseline.",
+      "watchFor": "Ending on logistics. End on the habit, said out loud, then let them go.",
+      "transition": "Seven days from now, one question in your inbox: did the habit happen?"
+    },
+    {
+      "id": "sources",
+      "title": "Appendix",
+      "minutes": 0, "coreMinutes": 0,
+      "coreNote": "Reference only. Not taught, and it carries no time on either path.",
+      "purpose": "Every claim cited, and every technical term defined, for the person who wants to check your work.",
+      "say": "Not a page we go through. It is there because every number in this course is cited and every technical word is defined. If somebody challenges a claim, this is where the answer is.",
+      "facilitate": [
+        "Point at the Appendix button in the bottom bar, which reaches this from any page.",
+        "Know source 2, the Amplify data classification page. It is the one that will be challenged."
+      ],
+      "ask": "None. Do not stop here.",
+      "validate": "Not applicable. Reference material.",
+      "watchFor": "Nothing to watch for, but know where source 2 is before someone asks.",
+      "transition": "None. This is the end of the course."
+    }
+  ]
+}

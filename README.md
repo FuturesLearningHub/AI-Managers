@@ -17,6 +17,9 @@ Both are the same course, built from the same source.
 | Self-paced | `index.html` | mode `web` | Pause and reflect beats, the commitment note |
 | Classroom | `classroom/index.html` | mode `class` | QR welcome panel, the gold Together cards, discussion-notes takeaway |
 
+A third file, `facilitator/index.html`, is the instructor's runbook. It is not
+an edition of the course; it is the document you read before you teach it.
+
 `body[data-mode]` decides which `.mode-web` / `.mode-class` blocks render, on
 screen and in the print takeaway. The bottom bar can switch modes, so a learner
 who lands on the wrong edition is never stuck with the wrong instructions.
@@ -58,7 +61,8 @@ The two editions are generated; do not hand-edit `index.html` or
 `classroom/index.html`. Edit `src/` and rebuild.
 
 ```
-python3 tools/build.py
+python3 tools/build.py              # the two editions
+python3 tools/build-facilitator.py  # the facilitator runbook
 ```
 
 | Source | What it is |
@@ -70,6 +74,31 @@ python3 tools/build.py
 | `src/bookbar.html` | Bottom book bar and the page-change live region |
 | `src/pager.js` | Book mode: the scroll page becomes turnable pages |
 | `src/app.js` | Every interaction, progress, storage, print, calendar |
+| `facilitator/notes.json` | The runbook content: prep, run of show, and Say / Do / Ask / Debrief / Transition per section |
+
+## The facilitator runbook
+
+`facilitator/index.html` is generated from `facilitator/notes.json`; edit the
+JSON, never the HTML. It carries the briefing page, the objectives and prep
+checklists, a run-of-show table for both paths, an ATD block for every
+section, the contingencies, the tough questions with answers, and three
+copy-and-paste email templates.
+
+Two paths, and the generator refuses to build if either is wrong:
+
+| Path | Length | What it cuts |
+| --- | --- | --- |
+| Full | 45 minutes | Nothing |
+| Core | 30 minutes | The knowledge check, one drill per module, the second paired activity |
+
+The commitment round in Module 05 is never cut on either path. It is the only
+part that changes anyone's week, and it is the program's Kirkpatrick Level 3
+measure.
+
+`tools/build-facilitator.py` validates before it writes: per-section minutes
+must sum exactly to each advertised path, `totalMinutes` must agree, every
+section id must exist as a page in the course, and no string may contain an em
+or en dash.
 
 ## Ship gates
 
@@ -85,9 +114,15 @@ node    tools/a11y-audit.mjs        # axe over every page, both widths
 node    tools/interaction-test.mjs  # every module round-trips
 ```
 
-**Last run: all three passed, August 2026.** 52 axe scans (2 editions x 13
-pages x 1440x900 and 320px): zero critical, zero serious, no horizontal
-scroll, clean console.
+**Last run: all three passed, August 2026.** 54 axe scans (2 editions x 13
+pages x 1440x900 and 320px, plus the facilitator runbook at both widths):
+zero critical, zero serious, no horizontal scroll, clean console. The
+interaction suite runs 40 checks across both editions.
+
+`tools/inline.py` folds an edition into a single self-contained file with the
+fonts and lockups as data URIs, for hosting somewhere with no sibling asset
+directory. Add `--fragment` to emit page content only, for a host that
+supplies its own document skeleton.
 
 ### What the gates enforce
 
