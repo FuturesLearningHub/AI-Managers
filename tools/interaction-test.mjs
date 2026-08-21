@@ -220,6 +220,57 @@ console.log('-'.repeat(72));
   await cCtx.close();
 }
 
+console.log('\nFacilitator edition');
+console.log('-'.repeat(72));
+{
+  const fCtx = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+  const f = await fCtx.newPage();
+  const KEYS = ['briefing','home','mission','tools','anchors','clarity','coach','decide',
+                'hours','guardrails','practice','check','recap','sources'];
+  await f.goto(`${BASE}/facilitator/`, { waitUntil: 'networkidle' });
+  check(await f.locator('.fac__badge').isVisible(), 'the nav carries the Facilitator Edition badge');
+  check(await f.locator('.page.cur').getAttribute('data-sec') === 'briefing',
+    'the briefing is page one');
+  check((await f.locator('#bbCount').innerText()).includes('/ 14'), 'the briefing adds a 14th page');
+  check(await f.getAttribute('#qrCard', 'data-url') === 'https://me5231979.github.io/AI-Managers/classroom/',
+    'the welcome QR sends learners to their edition, not this one');
+
+  const noRail = [];
+  for (const k of KEYS) {
+    await f.goto(`${BASE}/facilitator/#p/${k}/1`, { waitUntil: 'networkidle' });
+    if (await f.locator('.page.cur .facnote').count() !== 1) noRail.push(k);
+  }
+  check(noRail.length === 0, 'every page carries exactly one script rail', noRail.join(', '));
+
+  await f.goto(`${BASE}/facilitator/#p/clarity/1`, { waitUntil: 'networkidle' });
+  const rail = f.locator('.page.cur .facnote');
+  const txt = await rail.innerText();
+  check(/SAY/i.test(txt) && /DO/i.test(txt) && /ASK/i.test(txt) && /TRANSITION/i.test(txt),
+    'the rail carries Say, Do, Ask and Transition');
+  check(/Validate:/i.test(txt) && /Watch for:/i.test(txt), 'the rail carries Validate and Watch for');
+  check(/30-min core/i.test(txt), 'the rail names the Core cut');
+  check(/Full 7 min/i.test(txt), 'the rail names both path timings');
+
+  await f.locator('.page.cur .facnote__hide').click();
+  check(await rail.isVisible() === false, 'Hide folds the rail away');
+  check(await f.locator('.facshow').isVisible(), 'a Show pill appears when the rail is hidden');
+  check(await f.evaluate(() => document.activeElement?.className) === 'facshow',
+    'focus moves to the Show pill rather than vanishing with the rail');
+  await f.goto(`${BASE}/facilitator/#p/tools/1`, { waitUntil: 'networkidle' });
+  check(await f.locator('.page.cur .facnote').isVisible() === false, 'the hidden state survives a page turn');
+  await f.locator('.facshow').click();
+  check(await f.locator('.page.cur .facnote').isVisible(), 'Show brings the rail back');
+
+  // the learner editions must never carry the facilitator layer
+  await f.goto(`${BASE}/`, { waitUntil: 'networkidle' });
+  check(await f.locator('.facnote').count() === 0, 'the self-paced edition carries no script rail');
+  check(await f.locator('#briefing').count() === 0, 'the self-paced edition carries no briefing page');
+  await f.goto(`${BASE}/classroom/`, { waitUntil: 'networkidle' });
+  check(await f.locator('.facnote').count() === 0, 'the classroom edition carries no script rail');
+  check(await f.locator('#briefing').count() === 0, 'the classroom edition carries no briefing page');
+  await fCtx.close();
+}
+
 if (errors.length) {
   fails.push('console/page errors: ' + errors.slice(0, 3).join(' | '));
   console.log('\n  FAIL  console clean -> ' + errors.slice(0, 3).join(' | '));

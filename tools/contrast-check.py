@@ -16,7 +16,7 @@ import sys
 import pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-PAGES = ["index.html", "classroom/index.html"]
+PAGES = ["index.html", "classroom/index.html", "facilitator/index.html"]
 
 # The approved Vanderbilt FLH palette. Nothing else may appear as a color.
 APPROVED = {
@@ -93,6 +93,20 @@ PAIRS = [
     ("th-light", "secondary on cream",   "#555555", "#F5F3EF", 4.5),
     ("th-light", "muted on cream fill",  "#63615C", "#F5F3EF", 4.5),
     ("th-light", "sand rule on white",   "#E0D5C0", "#FFFFFF", 1.0),
+    # ── the facilitator script rail: its own dark surface whatever page it
+    #    sits beside, so these pairs hold in every section theme ────────────
+    ("fac-rail", "purpose text",         "#FFFFFF", "#141414", 4.5),
+    ("fac-rail", "body text",            "#D6D6D6", "#141414", 4.5),
+    ("fac-rail", "meta text",            "#BDBDBD", "#141414", 4.5),
+    ("fac-rail", "head + time labels",   "#CFAE70", "#141414", 4.5),
+    ("fac-rail", "Say tag",              "#1C1C1C", "#CFAE70", 4.5),
+    ("fac-rail", "Do tag",               "#1C1C1C", "#B3C9CD", 4.5),
+    ("fac-rail", "Ask tag",              "#1C1C1C", "#8BA18E", 4.5),
+    ("fac-rail", "Debrief tag",          "#1C1C1C", "#ECB748", 4.5),
+    ("fac-rail", "Transition tag",       "#FFFFFF", "#4F4F4F", 4.5),
+    ("fac-rail", "briefing box text",    "#D6D6D6", "#262624", 4.5),
+    ("fac-rail", "briefing box heading", "#CFAE70", "#262624", 4.5),
+    ("fac-rail", "template block text",  "#D6D6D6", "#1C1C1C", 4.5),
     # Ink is what sits on the tinted fills; Oak on those same fills lands at
     # 4.3:1, which is why check_tints_are_dark_only() below forbids the pairing.
     ("th-light", "ink on gold-tint fill",  "#1C1C1C", "#FCF7F1", 4.5),
@@ -161,6 +175,11 @@ def check_raw_palette_in_components():
         ".hero", ".qr-side", ".qr-card", ".qr-sub",
         "footer", ".fcenter", ".fprogram", ".flegal", ".preset",
         ".book-bar", ".bb-", "a.bb-dot", "#pgMore", ".page",
+        # the facilitator script rail and the briefing are their own dark
+        # surfaces whatever section theme they sit beside, so gold is correct
+        # on them and their pairs are measured under "fac-rail" in PAIRS above
+        ".facnote", ".facshow", ".fac__badge", ".brief__", "#briefing",
+        ".t-say", ".t-do", ".t-ask", ".t-deb", ".t-tra", "body.fac",
     )
     for page in PAGES:
         path = ROOT / page
@@ -239,7 +258,8 @@ def check_tints_are_dark_only():
 # text colors the template used). They are tints of the approved black/white
 # grounds, so they stay inside the palette's intent.
 NEUTRAL_OK = {"#bdbdbd", "#a3a3a3", "#262624", "#212120", "#141414",
-              "#555555", "#6e6e6e", "#63615c"}
+              "#555555", "#6e6e6e", "#63615c", "#d6d6d6", "#4f4f4f",
+              "#efe0c4", "#e0d5c0"}
 
 if __name__ == "__main__":
     failures = (check_pairs() + check_palette()

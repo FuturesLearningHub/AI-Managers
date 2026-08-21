@@ -77,21 +77,33 @@ for (const ed of EDITIONS) {
   }
 }
 
-// the facilitator runbook is a plain document, so one scan per width is enough
+// the facilitator edition is the course plus a script rail, so it gets the
+// same page-by-page walk; the printable guide is a document and gets one scan
 for (const vp of VIEWPORTS) {
   const ctx = await browser.newContext({ viewport: { width: vp.width, height: vp.height } });
   const page = await ctx.newPage();
-  await page.goto(`${BASE}/facilitator/`, { waitUntil: 'networkidle' });
-  scans++;
-  const results = await new AxeBuilder({ page })
-    .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']).analyze();
-  for (const v of results.violations) {
-    if (v.impact !== 'critical' && v.impact !== 'serious') continue;
-    problems.push(`facilitator ${vp.name}: [${v.impact}] ${v.id} - ${v.help} (${v.nodes.length} node(s))\n      ${v.nodes[0]?.target?.join(' ')}`);
+  for (const sec of ['briefing', ...SECTIONS]) {
+    await page.goto(`${BASE}/facilitator/#p/${sec}/1`, { waitUntil: 'networkidle' });
+    await page.waitForTimeout(120);
+    scans++;
+    const results = await new AxeBuilder({ page })
+      .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']).analyze();
+    for (const v of results.violations) {
+      if (v.impact !== 'critical' && v.impact !== 'serious') continue;
+      problems.push(`facilitator ${vp.name} #${sec}: [${v.impact}] ${v.id} - ${v.help} (${v.nodes.length} node(s))\n      ${v.nodes[0]?.target?.join(' ')}`);
+    }
+    const overflow = await page.evaluate(() =>
+      document.documentElement.scrollWidth - document.documentElement.clientWidth);
+    if (overflow > 1) problems.push(`facilitator ${vp.name} #${sec}: page scrolls horizontally by ${overflow}px`);
   }
-  const overflow = await page.evaluate(() =>
-    document.documentElement.scrollWidth - document.documentElement.clientWidth);
-  if (overflow > 1) problems.push(`facilitator ${vp.name}: page scrolls horizontally by ${overflow}px`);
+  await page.goto(`${BASE}/facilitator/guide.html`, { waitUntil: 'networkidle' });
+  scans++;
+  const g = await new AxeBuilder({ page })
+    .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']).analyze();
+  for (const v of g.violations) {
+    if (v.impact !== 'critical' && v.impact !== 'serious') continue;
+    problems.push(`guide ${vp.name}: [${v.impact}] ${v.id} - ${v.help} (${v.nodes.length} node(s))\n      ${v.nodes[0]?.target?.join(' ')}`);
+  }
   await page.close(); await ctx.close();
 }
 

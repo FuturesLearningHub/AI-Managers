@@ -17,8 +17,14 @@ Both are the same course, built from the same source.
 | Self-paced | `index.html` | mode `web` | Pause and reflect beats, the commitment note |
 | Classroom | `classroom/index.html` | mode `class` | QR welcome panel, the gold Together cards, discussion-notes takeaway |
 
-A third file, `facilitator/index.html`, is the instructor's runbook. It is not
-an edition of the course; it is the document you read before you teach it.
+| Facilitator | `facilitator/index.html` | mode `class` | Everything the classroom edition has, plus a briefing page and a script rail on every page |
+
+The facilitator edition **is** the course. It is the classroom build with the
+Say / Do / Ask / Validate / Watch for / Transition script in a sticky rail
+beside each page, so you teach from the same pages the room is looking at.
+A Hide control folds the rail away when you want to project the page clean,
+and the choice is remembered. `facilitator/guide.html` is the paper version:
+the same script with each page pictured beside its notes.
 
 `body[data-mode]` decides which `.mode-web` / `.mode-class` blocks render, on
 screen and in the print takeaway. The bottom bar can switch modes, so a learner
@@ -74,15 +80,19 @@ python3 tools/build-facilitator.py  # the facilitator runbook
 | `src/bookbar.html` | Bottom book bar and the page-change live region |
 | `src/pager.js` | Book mode: the scroll page becomes turnable pages |
 | `src/app.js` | Every interaction, progress, storage, print, calendar |
-| `facilitator/notes.json` | The runbook content: prep, run of show, and Say / Do / Ask / Debrief / Transition per section |
+| `facilitator/notes.json` | The facilitator content: prep, run of show, and Say / Do / Ask / Validate / Transition per section |
+| `facilitator/img/` | One image per page, for the printable guide. Re-shoot after any visual change |
 
-## The facilitator runbook
+## The facilitator edition
 
-`facilitator/index.html` is generated from `facilitator/notes.json`; edit the
-JSON, never the HTML. It carries the briefing page, the objectives and prep
-checklists, a run-of-show table for both paths, an ATD block for every
-section, the contingencies, the tough questions with answers, and three
-copy-and-paste email templates.
+Generated from `facilitator/notes.json` and the classroom build. Edit the JSON
+or the course sources, never `facilitator/index.html`.
+
+```
+python3 tools/build.py              # the learner editions first
+node    tools/shoot-slides.mjs      # page images for the printable guide
+python3 tools/build-facilitator.py  # the facilitator edition and the guide
+```
 
 Two paths, and the generator refuses to build if either is wrong:
 
@@ -97,8 +107,11 @@ measure.
 
 `tools/build-facilitator.py` validates before it writes: per-section minutes
 must sum exactly to each advertised path, `totalMinutes` must agree, every
-section id must exist as a page in the course, and no string may contain an em
-or en dash.
+section id must exist as a page in the course, and no string anywhere in the
+notes may contain an em or en dash.
+
+The welcome QR in the facilitator edition encodes the **learner** URL, never
+its own. A room that scans it lands on the classroom edition.
 
 ## Ship gates
 
@@ -114,10 +127,10 @@ node    tools/a11y-audit.mjs        # axe over every page, both widths
 node    tools/interaction-test.mjs  # every module round-trips
 ```
 
-**Last run: all three passed, August 2026.** 54 axe scans (2 editions x 13
-pages x 1440x900 and 320px, plus the facilitator runbook at both widths):
-zero critical, zero serious, no horizontal scroll, clean console. The
-interaction suite runs 40 checks across both editions.
+**Last run: all three passed, August 2026.** 82 axe scans (3 editions across
+every page, at 1440x900 and 320px, plus the printable guide): zero critical,
+zero serious, no horizontal scroll, clean console. The interaction suite runs
+58 checks across all three editions.
 
 `tools/inline.py` folds an edition into a single self-contained file with the
 fonts and lockups as data URIs, for hosting somewhere with no sibling asset
