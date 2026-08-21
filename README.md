@@ -61,6 +61,25 @@ Every teaching page has something to do, not just something to read.
 - **Practice builder** (page 10) the same builder, for something the learner actually owes someone.
 - **Knowledge check** (page 11) four questions with scored feedback.
 
+## The hero montage
+
+The welcome page plays a three-clip ambient montage behind the live headline:
+the team at work, a 1:1 coaching conversation, and hands typing, all in the
+course's black and gold grade. Generated with Runway (stills with
+nano-banana-pro, motion with seedance-2, 10s per clip, 1080p, no audio) and
+hosted on the program's media CDN; the URLs live in `tools/build.py`.
+
+The montage is strictly progressive enhancement, and
+`tools/hero-montage-test.mjs` holds it to that:
+
+- The title and value statement are live HTML over a scrim, never burned into
+  the video, so contrast, brand type, and screen readers are unaffected.
+- Nothing is fetched until the welcome page is the visible page; leaving the
+  page pauses it; a visible chip pauses and resumes it (WCAG 2.2.2).
+- `prefers-reduced-motion` swaps the motion for the still.
+- An unreachable CDN (an embedded viewer, an offline room) leaves the black
+  hero exactly as designed, with no errors and no half-loaded layers.
+
 ## Build
 
 The two editions are generated; do not hand-edit `index.html` or
@@ -122,9 +141,10 @@ python3 -m http.server 8765
 ```
 
 ```
-python3 tools/contrast-check.py     # palette and contrast
-node    tools/a11y-audit.mjs        # axe over every page, both widths
-node    tools/interaction-test.mjs  # every module round-trips
+python3 tools/contrast-check.py       # palette and contrast
+node    tools/a11y-audit.mjs          # axe over every page, both widths
+node    tools/interaction-test.mjs    # every module round-trips
+node    tools/hero-montage-test.mjs   # the hero video behaves, and fails safe
 ```
 
 **Last run: all three passed, August 2026.** 82 axe scans (3 editions across

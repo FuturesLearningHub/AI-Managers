@@ -39,6 +39,8 @@
 }
 
 *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+/* the hidden attribute always wins, even over components that set display */
+[hidden]{ display:none !important; }
 html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; scroll-padding-top:118px; }
 body{ font-family:var(--sans); font-size:1.0625rem; background:var(--vu-black); color:#fff; line-height:1.6;
   overflow-x:hidden; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; min-height:100dvh; }
@@ -630,3 +632,36 @@ a.bb-dot:focus-visible{ outline:2px solid var(--vu-highlight); outline-offset:1p
 
 /* Wide blocks scroll inside themselves; the page body never scrolls sideways. */
 .scroll-x{ overflow-x:auto; }
+
+
+/* ═══════════════════ HERO AMBIENT MONTAGE ═══════════════════
+   Three clips crossfade behind the welcome headline. The media layer sits
+   under the scrim and the scrim under the text, so the measured pair for the
+   headline stays white-on-near-black: the left gradient stop holds the text
+   side at ~.92 black over even the brightest frame. The video is decorative:
+   no audio, no controls, pointer-events none, hidden from the tree. */
+.hero{ position:relative; overflow:hidden; }
+.hero-media{ position:absolute; inset:0; z-index:0; pointer-events:none; }
+.hero-poster, .hero-video{ position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; opacity:0; transition:opacity 1.8s ease; }
+.hero-poster.hv-on, .hero-video.hv-on{ opacity:.42; }
+.hero-scrim{ position:absolute; inset:0;
+  background:linear-gradient(90deg, rgba(28,28,28,.94) 0%, rgba(28,28,28,.78) 46%, rgba(28,28,28,.42) 100%),
+             linear-gradient(180deg, rgba(28,28,28,.30) 0%, rgba(28,28,28,.05) 40%, rgba(28,28,28,.88) 100%); }
+.hero > .wrap{ position:relative; z-index:1; }
+/* WCAG 2.2.2: moving content that starts by itself must be pausable. The chip
+   appears once a clip is actually playing and toggles the whole montage. */
+.hv-toggle{ position:absolute; right:clamp(14px,2vw,28px); bottom:14px; z-index:2;
+  display:inline-flex; align-items:center; gap:7px; cursor:pointer;
+  font-family:var(--cond); font-weight:700; font-size:.66rem; letter-spacing:.07em; text-transform:uppercase;
+  color:var(--vu-gold); background:rgba(28,28,28,.85); border:1px solid rgba(207,174,112,.45);
+  border-radius:var(--r); padding:8px 12px; }
+.hv-toggle:hover{ color:var(--vu-highlight); border-color:var(--vu-gold); }
+.hv-toggle svg{ width:12px; height:12px; }
+@media (prefers-reduced-motion:reduce){
+  .hero-video{ display:none !important; }
+  .hv-toggle{ display:none !important; }
+  /* the still may stand in for the motion */
+  .hero-poster.hv-on{ opacity:.42; }
+}
+@media print{ .hero-media, .hv-toggle{ display:none !important; } }

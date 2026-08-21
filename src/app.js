@@ -50,6 +50,128 @@ if(qrBox && typeof qrcode === 'function'){
   }
 }
 
+/* ══════════ hero ambient montage ══════════
+   Three clips crossfade on two <video> layers, Working Smarter style. The
+   montage is strictly progressive enhancement: it waits for the first clip's
+   canplay before showing anything, so an unreachable CDN (an embedded viewer,
+   an offline room) leaves the black hero exactly as designed. Reduced motion
+   shows the still instead. The pause chip satisfies WCAG 2.2.2 and appears
+   only once something is actually moving. */
+var HERO_POSTER = '__HERO_POSTER__';
+var HERO_CLIPS = [
+  '__HERO_CLIP_1__',
+  '__HERO_CLIP_2__',
+  '__HERO_CLIP_3__'
+];
+(function(){
+  var A = document.getElementById('heroVidA'), B = document.getElementById('heroVidB');
+  var posterEl = document.getElementById('heroPoster');
+  var toggle = document.getElementById('hvToggle'), toggleT = document.getElementById('hvToggleT');
+  var icPause = document.getElementById('hvIcPause'), icPlay = document.getElementById('hvIcPlay');
+  if(!A || !B) return;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var configured = HERO_CLIPS.filter(function(u){ return /^https:/.test(u); });
+  if(posterEl && /^https:/.test(HERO_POSTER)){
+    posterEl.src = HERO_POSTER;
+    posterEl.hidden = false;
+    posterEl.addEventListener('load', function(){ posterEl.classList.add('hv-on'); });
+  }
+  if(reduce || !configured.length) return;   /* the still (or nothing) stands */
+
+  var layers = [A, B];
+  var clip = 0;          /* index into configured of the clip now playing */
+  var active = 0;        /* which layer is on top */
+  var started = false, userPaused = false, pageVisible = true, fadeT = null;
+
+  function src(i){ return configured[i % configured.length]; }
+  function label(playing){
+    if(toggleT) toggleT.textContent = playing ? 'Pause the background video' : 'Play the background video';
+    if(toggle){
+      toggle.setAttribute('aria-pressed', playing ? 'false' : 'true');
+      toggle.setAttribute('aria-label', playing ? 'Pause the background video' : 'Play the background video');
+    }
+    if(icPause){ if(playing) icPause.removeAttribute('hidden'); else icPause.setAttribute('hidden',''); }
+    if(icPlay){ if(playing) icPlay.setAttribute('hidden',''); else icPlay.removeAttribute('hidden'); }
+  }
+  function playSafe(v){ var pr = v.play(); if(pr && pr.catch) pr.catch(function(){}); }
+  function shouldRun(){ return started && !userPaused && pageVisible; }
+  function syncPlayback(){
+    if(shouldRun()){ playSafe(layers[active]); }
+    else { layers.forEach(function(v){ try{ v.pause(); }catch(e){} }); }
+  }
+
+  /* crossfade to the next clip when the current one is nearly done */
+  function arm(v){
+    v.addEventListener('timeupdate', function(){
+      if(v !== layers[active] || !shouldRun()) return;
+      if(!v.duration || v.duration - v.currentTime > 1.6) return;
+      var next = layers[1 - active];
+      if(next.getAttribute('data-clip') !== String(clip + 1)){
+        next.setAttribute('data-clip', String(clip + 1));
+        next.src = src(clip + 1);
+        next.load();
+      }
+      if(next.readyState >= 3 && !next.classList.contains('hv-on')){
+        clip += 1; active = 1 - active;
+        next.currentTime = 0;
+        playSafe(next);
+        next.classList.add('hv-on');
+        v.classList.remove('hv-on');
+        if(fadeT) window.clearTimeout(fadeT);
+        fadeT = window.setTimeout(function(){ try{ v.pause(); }catch(e){} }, 1900);
+      }
+    });
+    /* a clip that dies mid-montage ends the show quietly; the poster stands */
+    v.addEventListener('error', function(){
+      if(!started && v === A){ if(toggle) toggle.hidden = true; }
+      v.classList.remove('hv-on');
+    });
+  }
+  layers.forEach(arm);
+
+  /* boot: nothing is fetched until the hero is the visible page */
+  var booted = false;
+  function boot(){
+    if(booted) return;
+    booted = true;
+    A.setAttribute('data-clip', '0');
+    A.preload = 'auto';
+    A.src = src(0);
+    A.load();
+    A.addEventListener('canplay', function onc(){
+      A.removeEventListener('canplay', onc);
+      started = true;
+      A.classList.add('hv-on');
+      if(posterEl) posterEl.classList.remove('hv-on');
+      if(toggle) toggle.hidden = false;
+      label(true);
+      syncPlayback();
+      /* warm the second clip once the first is safely up */
+      B.preload = 'auto';
+      B.setAttribute('data-clip', '1');
+      B.src = src(1);
+      B.load();
+    });
+  }
+
+  /* the montage runs only while the welcome page is the current page */
+  function onPage(){
+    var cur = (window.leadPager && window.leadPager.current) ? window.leadPager.current().key : 'home';
+    pageVisible = (cur === 'home') && !document.hidden;
+    if(pageVisible) boot();
+    syncPlayback();
+  }
+  document.addEventListener('lead:page', onPage);
+  document.addEventListener('visibilitychange', onPage);
+  onPage();
+
+  if(toggle) toggle.addEventListener('click', function(){
+    userPaused = !userPaused;
+    label(!userPaused);
+    syncPlayback();
+  });
+})();
+
 /* ══════════ nav shade + mobile menu ══════════ */
 var nav = document.getElementById('nav');
 function navShade(idx){ if(nav) nav.classList.toggle('scrolled', idx > 0); }

@@ -34,6 +34,22 @@ SECTIONS = [
 
 BASE_URL = "me5231979.github.io/AI-Managers"
 
+# The hero montage: three clips and a poster still, hosted on the CDN the
+# library already streams from. Empty string = not yet hosted; the hero then
+# stands on its black ground with no video layer (the js checks for https).
+# Generated with Runway (stills: nano-banana-pro; motion: seedance-2), then
+# imported to the program's media store; these URLs are permanent hosted
+# copies, not the expiring Runway task URLs.
+HERO_POSTER = "https://d2ol7oe51mr4n9.cloudfront.net/user_3CCurpI0FW75YAnAl4Hbz3vPdBv/21038734-9807-4b2c-a37d-3c25719ba0ac.png"
+HERO_CLIPS = [
+    # the team at work, manager standing
+    "https://d2ol7oe51mr4n9.cloudfront.net/user_3CCurpI0FW75YAnAl4Hbz3vPdBv/b663e1b3-d357-413c-bb37-8d46559a383d.mp4",
+    # the 1:1 coaching conversation
+    "https://d2ol7oe51mr4n9.cloudfront.net/user_3CCurpI0FW75YAnAl4Hbz3vPdBv/65ed1df4-d219-467a-99b7-aa9e364874f6.mp4",
+    # hands typing, notes, coffee
+    "https://d2ol7oe51mr4n9.cloudfront.net/user_3CCurpI0FW75YAnAl4Hbz3vPdBv/be8b0512-940c-4770-b83f-3b36f354a24b.mp4",
+]
+
 EDITIONS = [
     {
         "out": "index.html",
@@ -88,6 +104,10 @@ def build(ed):
         + 'var DEFAULT_MODE = "{{MODE}}";\n'
         + 'var COURSE_URL = "{{URL}}";\n'
         + read("app.js")
+          .replace("__HERO_POSTER__", HERO_POSTER)
+          .replace("__HERO_CLIP_1__", HERO_CLIPS[0])
+          .replace("__HERO_CLIP_2__", HERO_CLIPS[1])
+          .replace("__HERO_CLIP_3__", HERO_CLIPS[2])
         + "</script>\n</body>\n</html>\n"
     )
     page = page.replace("{{CSS}}", css)

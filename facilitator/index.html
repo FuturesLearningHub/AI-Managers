@@ -110,6 +110,8 @@
 }
 
 *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+/* the hidden attribute always wins, even over components that set display */
+[hidden]{ display:none !important; }
 html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; scroll-padding-top:118px; }
 body{ font-family:var(--sans); font-size:1.0625rem; background:var(--vu-black); color:#fff; line-height:1.6;
   overflow-x:hidden; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; min-height:100dvh; }
@@ -703,6 +705,39 @@ a.bb-dot:focus-visible{ outline:2px solid var(--vu-highlight); outline-offset:1p
 .scroll-x{ overflow-x:auto; }
 
 
+/* ═══════════════════ HERO AMBIENT MONTAGE ═══════════════════
+   Three clips crossfade behind the welcome headline. The media layer sits
+   under the scrim and the scrim under the text, so the measured pair for the
+   headline stays white-on-near-black: the left gradient stop holds the text
+   side at ~.92 black over even the brightest frame. The video is decorative:
+   no audio, no controls, pointer-events none, hidden from the tree. */
+.hero{ position:relative; overflow:hidden; }
+.hero-media{ position:absolute; inset:0; z-index:0; pointer-events:none; }
+.hero-poster, .hero-video{ position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; opacity:0; transition:opacity 1.8s ease; }
+.hero-poster.hv-on, .hero-video.hv-on{ opacity:.42; }
+.hero-scrim{ position:absolute; inset:0;
+  background:linear-gradient(90deg, rgba(28,28,28,.94) 0%, rgba(28,28,28,.78) 46%, rgba(28,28,28,.42) 100%),
+             linear-gradient(180deg, rgba(28,28,28,.30) 0%, rgba(28,28,28,.05) 40%, rgba(28,28,28,.88) 100%); }
+.hero > .wrap{ position:relative; z-index:1; }
+/* WCAG 2.2.2: moving content that starts by itself must be pausable. The chip
+   appears once a clip is actually playing and toggles the whole montage. */
+.hv-toggle{ position:absolute; right:clamp(14px,2vw,28px); bottom:14px; z-index:2;
+  display:inline-flex; align-items:center; gap:7px; cursor:pointer;
+  font-family:var(--cond); font-weight:700; font-size:.66rem; letter-spacing:.07em; text-transform:uppercase;
+  color:var(--vu-gold); background:rgba(28,28,28,.85); border:1px solid rgba(207,174,112,.45);
+  border-radius:var(--r); padding:8px 12px; }
+.hv-toggle:hover{ color:var(--vu-highlight); border-color:var(--vu-gold); }
+.hv-toggle svg{ width:12px; height:12px; }
+@media (prefers-reduced-motion:reduce){
+  .hero-video{ display:none !important; }
+  .hv-toggle{ display:none !important; }
+  /* the still may stand in for the motion */
+  .hero-poster.hv-on{ opacity:.42; }
+}
+@media print{ .hero-media, .hv-toggle{ display:none !important; } }
+
+
 /* ═══════════════════ FACILITATOR EDITION ═══════════════════
    The rail is its own dark surface whatever theme the page under it uses, so
    its contrast is fixed and measurable rather than dependent on the section. */
@@ -915,6 +950,23 @@ See you [date, time, room].</div>
 
 <!-- ═══════════ 01 · WELCOME ═══════════ -->
 <section class="hero th-dark" aria-label="Welcome">
+  <!-- Ambient montage: three clips crossfading behind the headline, streamed
+       from the CDN like the Working Smarter hero. Decorative only, so it is
+       aria-hidden and muted; the scrim keeps the live HTML text at contrast;
+       reduced motion swaps it for the still; if the CDN is unreachable (an
+       embedded viewer, an offline room) nothing loads and the black hero
+       stands untouched. -->
+  <div class="hero-media" aria-hidden="true">
+    <img class="hero-poster" id="heroPoster" alt="" src="" hidden decoding="async" />
+    <video class="hero-video" id="heroVidA" muted playsinline preload="none" tabindex="-1"></video>
+    <video class="hero-video" id="heroVidB" muted playsinline preload="none" tabindex="-1"></video>
+    <div class="hero-scrim"></div>
+  </div>
+  <button type="button" class="hv-toggle" id="hvToggle" hidden aria-pressed="false">
+    <svg id="hvIcPause" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+    <svg id="hvIcPlay" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true" hidden><path d="M8 5v14l11-7z"/></svg>
+    <span id="hvToggleT">Pause the background video</span>
+  </button>
   <div class="wrap">
     <div class="hero-grid">
       <div>
@@ -2429,6 +2481,128 @@ if(qrBox && typeof qrcode === 'function'){
     qrBox.innerHTML = '<div style="width:100%;aspect-ratio:1;display:grid;place-items:center;border:1px dashed #E4E4E4;color:#555;font-family:Inter,Arial,sans-serif;font-size:.8rem;padding:1rem;text-align:center">Deploy to generate the QR code</div>';
   }
 }
+
+/* ══════════ hero ambient montage ══════════
+   Three clips crossfade on two <video> layers, Working Smarter style. The
+   montage is strictly progressive enhancement: it waits for the first clip's
+   canplay before showing anything, so an unreachable CDN (an embedded viewer,
+   an offline room) leaves the black hero exactly as designed. Reduced motion
+   shows the still instead. The pause chip satisfies WCAG 2.2.2 and appears
+   only once something is actually moving. */
+var HERO_POSTER = 'https://d2ol7oe51mr4n9.cloudfront.net/user_3CCurpI0FW75YAnAl4Hbz3vPdBv/21038734-9807-4b2c-a37d-3c25719ba0ac.png';
+var HERO_CLIPS = [
+  'https://d2ol7oe51mr4n9.cloudfront.net/user_3CCurpI0FW75YAnAl4Hbz3vPdBv/b663e1b3-d357-413c-bb37-8d46559a383d.mp4',
+  'https://d2ol7oe51mr4n9.cloudfront.net/user_3CCurpI0FW75YAnAl4Hbz3vPdBv/65ed1df4-d219-467a-99b7-aa9e364874f6.mp4',
+  'https://d2ol7oe51mr4n9.cloudfront.net/user_3CCurpI0FW75YAnAl4Hbz3vPdBv/be8b0512-940c-4770-b83f-3b36f354a24b.mp4'
+];
+(function(){
+  var A = document.getElementById('heroVidA'), B = document.getElementById('heroVidB');
+  var posterEl = document.getElementById('heroPoster');
+  var toggle = document.getElementById('hvToggle'), toggleT = document.getElementById('hvToggleT');
+  var icPause = document.getElementById('hvIcPause'), icPlay = document.getElementById('hvIcPlay');
+  if(!A || !B) return;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var configured = HERO_CLIPS.filter(function(u){ return /^https:/.test(u); });
+  if(posterEl && /^https:/.test(HERO_POSTER)){
+    posterEl.src = HERO_POSTER;
+    posterEl.hidden = false;
+    posterEl.addEventListener('load', function(){ posterEl.classList.add('hv-on'); });
+  }
+  if(reduce || !configured.length) return;   /* the still (or nothing) stands */
+
+  var layers = [A, B];
+  var clip = 0;          /* index into configured of the clip now playing */
+  var active = 0;        /* which layer is on top */
+  var started = false, userPaused = false, pageVisible = true, fadeT = null;
+
+  function src(i){ return configured[i % configured.length]; }
+  function label(playing){
+    if(toggleT) toggleT.textContent = playing ? 'Pause the background video' : 'Play the background video';
+    if(toggle){
+      toggle.setAttribute('aria-pressed', playing ? 'false' : 'true');
+      toggle.setAttribute('aria-label', playing ? 'Pause the background video' : 'Play the background video');
+    }
+    if(icPause){ if(playing) icPause.removeAttribute('hidden'); else icPause.setAttribute('hidden',''); }
+    if(icPlay){ if(playing) icPlay.setAttribute('hidden',''); else icPlay.removeAttribute('hidden'); }
+  }
+  function playSafe(v){ var pr = v.play(); if(pr && pr.catch) pr.catch(function(){}); }
+  function shouldRun(){ return started && !userPaused && pageVisible; }
+  function syncPlayback(){
+    if(shouldRun()){ playSafe(layers[active]); }
+    else { layers.forEach(function(v){ try{ v.pause(); }catch(e){} }); }
+  }
+
+  /* crossfade to the next clip when the current one is nearly done */
+  function arm(v){
+    v.addEventListener('timeupdate', function(){
+      if(v !== layers[active] || !shouldRun()) return;
+      if(!v.duration || v.duration - v.currentTime > 1.6) return;
+      var next = layers[1 - active];
+      if(next.getAttribute('data-clip') !== String(clip + 1)){
+        next.setAttribute('data-clip', String(clip + 1));
+        next.src = src(clip + 1);
+        next.load();
+      }
+      if(next.readyState >= 3 && !next.classList.contains('hv-on')){
+        clip += 1; active = 1 - active;
+        next.currentTime = 0;
+        playSafe(next);
+        next.classList.add('hv-on');
+        v.classList.remove('hv-on');
+        if(fadeT) window.clearTimeout(fadeT);
+        fadeT = window.setTimeout(function(){ try{ v.pause(); }catch(e){} }, 1900);
+      }
+    });
+    /* a clip that dies mid-montage ends the show quietly; the poster stands */
+    v.addEventListener('error', function(){
+      if(!started && v === A){ if(toggle) toggle.hidden = true; }
+      v.classList.remove('hv-on');
+    });
+  }
+  layers.forEach(arm);
+
+  /* boot: nothing is fetched until the hero is the visible page */
+  var booted = false;
+  function boot(){
+    if(booted) return;
+    booted = true;
+    A.setAttribute('data-clip', '0');
+    A.preload = 'auto';
+    A.src = src(0);
+    A.load();
+    A.addEventListener('canplay', function onc(){
+      A.removeEventListener('canplay', onc);
+      started = true;
+      A.classList.add('hv-on');
+      if(posterEl) posterEl.classList.remove('hv-on');
+      if(toggle) toggle.hidden = false;
+      label(true);
+      syncPlayback();
+      /* warm the second clip once the first is safely up */
+      B.preload = 'auto';
+      B.setAttribute('data-clip', '1');
+      B.src = src(1);
+      B.load();
+    });
+  }
+
+  /* the montage runs only while the welcome page is the current page */
+  function onPage(){
+    var cur = (window.leadPager && window.leadPager.current) ? window.leadPager.current().key : 'home';
+    pageVisible = (cur === 'home') && !document.hidden;
+    if(pageVisible) boot();
+    syncPlayback();
+  }
+  document.addEventListener('lead:page', onPage);
+  document.addEventListener('visibilitychange', onPage);
+  onPage();
+
+  if(toggle) toggle.addEventListener('click', function(){
+    userPaused = !userPaused;
+    label(!userPaused);
+    syncPlayback();
+  });
+})();
 
 /* ══════════ nav shade + mobile menu ══════════ */
 var nav = document.getElementById('nav');

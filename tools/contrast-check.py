@@ -175,6 +175,9 @@ def check_raw_palette_in_components():
         ".hero", ".qr-side", ".qr-card", ".qr-sub",
         "footer", ".fcenter", ".fprogram", ".flegal", ".preset",
         ".book-bar", ".bb-", "a.bb-dot", "#pgMore", ".page",
+        # the hero montage chip and scrim live only on the hero's dark ground,
+        # like #pgMore; the gold-on-black pair is measured in PAIRS above
+        ".hv-toggle", ".hero-media", ".hero-scrim", ".hero-poster", ".hero-video",
         # the facilitator script rail and the briefing are their own dark
         # surfaces whatever section theme they sit beside, so gold is correct
         # on them and their pairs are measured under "fac-rail" in PAIRS above

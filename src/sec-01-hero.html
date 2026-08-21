@@ -1,6 +1,23 @@
 
 <!-- ═══════════ 01 · WELCOME ═══════════ -->
 <section class="hero th-dark" aria-label="Welcome">
+  <!-- Ambient montage: three clips crossfading behind the headline, streamed
+       from the CDN like the Working Smarter hero. Decorative only, so it is
+       aria-hidden and muted; the scrim keeps the live HTML text at contrast;
+       reduced motion swaps it for the still; if the CDN is unreachable (an
+       embedded viewer, an offline room) nothing loads and the black hero
+       stands untouched. -->
+  <div class="hero-media" aria-hidden="true">
+    <img class="hero-poster" id="heroPoster" alt="" src="" hidden decoding="async" />
+    <video class="hero-video" id="heroVidA" muted playsinline preload="none" tabindex="-1"></video>
+    <video class="hero-video" id="heroVidB" muted playsinline preload="none" tabindex="-1"></video>
+    <div class="hero-scrim"></div>
+  </div>
+  <button type="button" class="hv-toggle" id="hvToggle" hidden aria-pressed="false">
+    <svg id="hvIcPause" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+    <svg id="hvIcPlay" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true" hidden><path d="M8 5v14l11-7z"/></svg>
+    <span id="hvToggleT">Pause the background video</span>
+  </button>
   <div class="wrap">
     <div class="hero-grid">
       <div>
