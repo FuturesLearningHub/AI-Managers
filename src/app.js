@@ -399,7 +399,7 @@ document.querySelectorAll('.print-btn').forEach(function(b){
 
 /* ══════════ the two-week check-in, as a calendar file ══════════ */
 var icsBtn = document.getElementById('icsBtn');
-if(icsBtn) icsBtn.addEventListener('click', function(){
+function icsParts(){
   function pad(n){ return (n < 10 ? '0' : '') + n; }
   function f(t){ return t.getFullYear() + pad(t.getMonth() + 1) + pad(t.getDate()) + 'T' + pad(t.getHours()) + pad(t.getMinutes()) + '00'; }
   var d = new Date(Date.now() + 14 * 86400000); d.setHours(8, 30, 0, 0);
@@ -407,18 +407,47 @@ if(icsBtn) icsBtn.addEventListener('click', function(){
   var key = getVal('habit'), h = key && HABITS[key];
   var line = h ? ('Your habit was ' + h.name + ', ' + h.when + '. Did it stick?')
                : 'You had not picked a habit yet. Pick one now: meeting recap, Friday triage, or weekly synthesis.';
+  var summary = 'Leading with AI check-in: did the habit stick?';
+  /* [EDIT · SCORM] swap the refresher URL below for the LMS course link */
+  var desc = 'Two weeks since the Leading with AI course. ' + line +
+    ' Second question: does every draft still sound like you? Refresher: ' + COURSE_URL;
   var ics = 'BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//CHARTProgram//LeadingWithAI//EN\r\nBEGIN:VEVENT\r\nUID:chart-leading-' + d.getTime() + '@vanderbilt\r\n' +
     'DTSTAMP:' + f(new Date()) + '\r\nDTSTART:' + f(d) + '\r\nDTEND:' + f(e) + '\r\n' +
-    'SUMMARY:Leading with AI check-in: did the habit stick?\r\n' +
-    /* [EDIT · SCORM] swap the refresher URL below for the LMS course link */
-    'DESCRIPTION:Two weeks since the Leading with AI course. ' + line + ' Second question: does every draft still sound like you? Refresher: ' + COURSE_URL + '\r\n' +
-    'END:VEVENT\r\nEND:VCALENDAR\r\n';
-  var blob = new Blob([ics], { type:'text/calendar' });
+    'SUMMARY:' + summary + '\r\nDESCRIPTION:' + desc + '\r\nEND:VEVENT\r\nEND:VCALENDAR\r\n';
+  return { start:d, end:e, summary:summary, desc:desc, ics:ics };
+}
+/* An embedded viewer (the published-artifact frame, some LMS players) will not
+   let a page hand over a file, and the click would silently do nothing. Where
+   that is the case the details are shown to copy instead, so the control
+   always does something the learner can act on. */
+function canHandOverFiles(){
+  try{
+    if(window.claude) return false;              /* artifact viewer */
+    if(window.top !== window.self) return false; /* embedded in a frame */
+  }catch(e){ return false; }                     /* cross-origin frame */
+  return typeof Blob === 'function' && typeof URL !== 'undefined' && !!URL.createObjectURL;
+}
+if(icsBtn) icsBtn.addEventListener('click', function(){
+  var p = icsParts();
+  progAuto('recap');
+  if(!canHandOverFiles()){
+    var box = document.getElementById('icsFallback'), pre = document.getElementById('icsText');
+    if(pre){
+      pre.textContent = 'What: ' + p.summary + '\n' +
+        'When: ' + p.start.toLocaleString() + ', 15 minutes\n\n' + p.desc;
+    }
+    if(box){
+      box.hidden = false;
+      box.setAttribute('tabindex', '-1');
+      box.focus();
+    }
+    return;
+  }
+  var blob = new Blob([p.ics], { type:'text/calendar' });
   var a = document.createElement('a');
   a.href = URL.createObjectURL(blob); a.download = 'chart-leading-with-ai-checkin.ics';
   document.body.appendChild(a); a.click();
   setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 500);
-  progAuto('recap');
 });
 
 /* ══════════ bottom-bar appendix jump ══════════ */

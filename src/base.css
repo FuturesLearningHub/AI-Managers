@@ -1,21 +1,5 @@
-/* Self-hosted brand faces (no third-party font CDN). */
-@font-face{font-family:'Libre Caslon Display';font-style:normal;font-weight:400;font-display:swap;
-  src:url('../../assets/fonts/libre-caslon-display-latin-400-normal.woff2') format('woff2');}
-/* Display has no italic cut; serve Libre Caslon Text italic under the same family so <em> renders a true italic */
-@font-face{font-family:'Libre Caslon Display';font-style:italic;font-weight:400;font-display:swap;
-  src:url('../../assets/fonts/libre-caslon-text-latin-400-italic.woff2') format('woff2');}
-@font-face{font-family:'Libre Caslon Text';font-style:normal;font-weight:400;font-display:swap;
-  src:url('../../assets/fonts/libre-caslon-text-latin-400-normal.woff2') format('woff2');}
-@font-face{font-family:'Libre Caslon Text';font-style:italic;font-weight:400;font-display:swap;
-  src:url('../../assets/fonts/libre-caslon-text-latin-400-italic.woff2') format('woff2');}
-@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;
-  src:url('../../assets/fonts/inter-latin-400-normal.woff2') format('woff2');}
-@font-face{font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;
-  src:url('../../assets/fonts/inter-latin-500-normal.woff2') format('woff2');}
-@font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;
-  src:url('../../assets/fonts/inter-latin-600-normal.woff2') format('woff2');}
-@font-face{font-family:'Antonio';font-style:normal;font-weight:700;font-display:swap;
-  src:url('../../assets/fonts/antonio-latin-700-normal.woff2') format('woff2');}
+/* The @font-face block lives in src/head.html, where the build can write
+   the edition's asset prefix into it. Do not redeclare the faces here. */
 
 /* ═══════════════════ TOKENS (shared with the Working Smarter course) ═══════════════════ */
 :root{

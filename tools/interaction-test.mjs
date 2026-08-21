@@ -159,6 +159,24 @@ const download = await dl;
 check(!!download && download.suggestedFilename().endsWith('.ics'),
   'the two-week check-in downloads as a calendar file',
   download ? download.suggestedFilename() : 'no download');
+check(await page.locator('#icsFallback').isVisible() === false,
+  'the copy-by-hand fallback stays hidden where the download works');
+
+// where a page cannot hand over a file (an embedded viewer), the control must
+// still do something: show the details to copy rather than fail silently
+{
+  const emb = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+  const e = await emb.newPage();
+  await e.addInitScript(() => { window.claude = {}; });   // stands in for the artifact frame
+  await e.goto(`${BASE}/#p/recap/1`, { waitUntil: 'networkidle' });
+  await e.locator('#icsBtn').click();
+  await e.waitForTimeout(150);
+  check(await e.locator('#icsFallback').isVisible(), 'an embedded viewer gets the details to copy instead');
+  const txt = await e.locator('#icsText').innerText();
+  check(/Leading with AI check-in/.test(txt) && /When:/.test(txt),
+    'the copyable details name the event and its time', txt.slice(0, 60));
+  await emb.close();
+}
 
 // ── reduced motion kills the page-turn animation ────────────────────────────
 {
