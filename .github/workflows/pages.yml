@@ -1,7 +1,7 @@
-# Deploys the course library to GitHub Pages on every push to main.
-# actions/configure-pages with enablement: true creates the Pages site on
-# first run, so no manual Settings step is needed.
-name: Deploy to GitHub Pages
+# Keeps the published site in sync: every push to main is mirrored to the
+# gh-pages branch, which GitHub Pages serves (deploy from branch, root).
+# The gh-pages branch is publish output; never commit to it directly.
+name: Mirror main to gh-pages
 
 on:
   push:
@@ -9,27 +9,16 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
-  group: pages
+  group: pages-mirror
   cancel-in-progress: true
 
 jobs:
-  deploy:
+  mirror:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/configure-pages@v5
-        with:
-          enablement: true
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: .
-      - id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Push main to gh-pages
+        run: git push --force origin HEAD:gh-pages
