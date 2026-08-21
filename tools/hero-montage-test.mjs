@@ -39,6 +39,14 @@ await p.waitForTimeout(1500);
 ck(await p.locator('#heroVidA').evaluate(v => v.classList.contains('hv-on')), 'clip 1 fades in once it can play');
 ck(await p.locator('#heroVidA').evaluate(v => !v.paused), 'clip 1 is playing');
 ck(await p.locator('#hvToggle').isVisible(), 'the pause chip appears once something moves');
+// the poster must never ghost under a playing clip, even when its image
+// finishes loading after the video starts
+await p.evaluate(() => {
+  const img = document.getElementById('heroPoster');
+  img.dispatchEvent(new Event('load'));   // simulate a late-arriving poster
+});
+ck(await p.locator('#heroPoster').evaluate(el => el.hidden && !el.classList.contains('hv-on')),
+  'a late-loading poster cannot ghost under the playing video');
 ck(await p.locator('#heroVidA').evaluate(v => v.muted), 'the video is muted');
 
 // crossfade: 4s stubs -> layer B takes over; poll rather than race the timer

@@ -2328,7 +2328,14 @@ var HERO_CLIPS = ['http://localhost:8765/tools/stubs/stub1.webm','http://localho
   if(posterEl && /^https?:/.test(HERO_POSTER)){
     posterEl.src = HERO_POSTER;
     posterEl.hidden = false;
-    posterEl.addEventListener('load', function(){ posterEl.classList.add('hv-on'); });
+    /* The poster may finish loading AFTER the first clip starts (a 2K still
+       vs a streaming video). Unguarded, it would fade in under the playing
+       video and sit there as a ghost. It only ever shows while nothing is
+       playing: before the first canplay, under reduced motion, or if the
+       clips never load. */
+    posterEl.addEventListener('load', function(){
+      if(typeof started === 'undefined' || !started) posterEl.classList.add('hv-on');
+    });
   }
   if(reduce || !configured.length) return;   /* the still (or nothing) stands */
 
@@ -2396,7 +2403,7 @@ var HERO_CLIPS = ['http://localhost:8765/tools/stubs/stub1.webm','http://localho
       A.removeEventListener('canplay', onc);
       started = true;
       A.classList.add('hv-on');
-      if(posterEl) posterEl.classList.remove('hv-on');
+      if(posterEl){ posterEl.classList.remove('hv-on'); posterEl.hidden = true; }
       if(toggle) toggle.hidden = false;
       label(true);
       syncPlayback();
