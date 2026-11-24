@@ -199,7 +199,7 @@ pages are correct. See `#src2` in the appendix.
 ## Credits
 
 Built on the Working Smarter pattern from
-[me5231979/Course_Library](https://github.com/me5231979/Course_Library).
+[FuturesLearningHub/FLH-Learning-Library-](https://github.com/FuturesLearningHub/FLH-Learning-Library-).
 Brand assets are authorized-use Vanderbilt lockups and self-hosted brand faces.
 
 An internal training prototype. Not an official Vanderbilt University site.

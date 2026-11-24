@@ -232,7 +232,7 @@ console.log('-'.repeat(72));
   check(await f.locator('.page.cur').getAttribute('data-sec') === 'briefing',
     'the briefing is page one');
   check((await f.locator('#bbCount').innerText()).includes('/ 14'), 'the briefing adds a 14th page');
-  check(await f.getAttribute('#qrCard', 'data-url') === 'https://me5231979.github.io/AI-Managers/classroom/',
+  check(await f.getAttribute('#qrCard', 'data-url') === 'https://futureslearninghub.github.io/AI-Managers/classroom/',
     'the welcome QR sends learners to their edition, not this one');
 
   const noRail = [];

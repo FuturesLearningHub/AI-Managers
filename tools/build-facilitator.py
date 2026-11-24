@@ -24,7 +24,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 NOTES = ROOT / "facilitator/notes.json"
 BASE = ROOT / "classroom/index.html"
 OUT = ROOT / "facilitator/index.html"
-LEARNER_URL = "https://me5231979.github.io/AI-Managers/classroom/"
+LEARNER_URL = "https://futureslearninghub.github.io/AI-Managers/classroom/"
 
 
 def e(s):
