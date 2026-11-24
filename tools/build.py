@@ -32,7 +32,7 @@ SECTIONS = [
     "sec-13-sources.html",
 ]
 
-BASE_URL = "me5231979.github.io/AI-Managers"
+BASE_URL = "futureslearninghub.github.io/AI-Managers"
 
 # The hero montage: three clips and a poster still, hosted on the CDN the
 # library already streams from. Empty string = not yet hosted; the hero then
